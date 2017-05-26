@@ -28,7 +28,10 @@ class SimpleLinkedListTest extends TestCase {
     }
 
     public function testInsertAt() {
-        $this->assertEquals(true, true);
+        $this->list->insertAt(0, "string");
+        $this->assertEquals("string", $this->list->get(0));
+        $this->list->insertAt(0, "other");
+        $this->assertEquals("other", $this->list->get(0));
     }
 
     public function testUnshift() {
@@ -41,5 +44,13 @@ class SimpleLinkedListTest extends TestCase {
 
     public function testShift() {
         $this->assertTrue(true);
+    }
+
+    public function testGet() {
+        $this->assertTrue(true);
+    }
+
+    public function testGetAll() {
+        // $this->assertCount(10);
     }
 }
