@@ -1,0 +1,21 @@
+{
+    "name": "siro-diaz/data-structures",
+    "description": "Data structures for PHP language",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Siro Diaz Palazon",
+            "email": "siro_diaz@yahoo.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "~5.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "DataStructures\\": "DataStructures"
+        }
+    }
+}
