@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<phpunit colors="true"
+		 syntaxCheck="false"
+		 stopOnFailure="true"
+		 bootstrap="tests/bootstrap.php">
+	<testsuite name="DataStructures test">
+		<directory>./tests/</directory>
+	</testsuite>
+</phpunit>
