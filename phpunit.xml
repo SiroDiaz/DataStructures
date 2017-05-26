@@ -4,7 +4,9 @@
 		 syntaxCheck="false"
 		 stopOnFailure="true"
 		 bootstrap="tests/bootstrap.php">
-	<testsuite name="DataStructures test">
-		<directory>./tests/</directory>
-	</testsuite>
+	<testsuites>
+        <testsuite name="DataStructures test">
+            <directory>./tests/</directory>
+        </testsuite>
+    </testsuites>
 </phpunit>
