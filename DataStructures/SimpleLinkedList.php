@@ -4,6 +4,7 @@ namespace DataStructures;
 
 use DataStructures\Nodes\SimpleLinkedListNode as Node;
 use OutOfBoundsException;
+use Iterator;
 
 /**
  * SimpleLinkedList is a single linked list that has
@@ -11,13 +12,17 @@ use OutOfBoundsException;
  *
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
-class SimpleLinkedList {
+class SimpleLinkedList implements Iterator {
     private $head;
     private $size;
+    private $position;
+    private $current;
 
     public function __construct() {
         $this->head = null;
         $this->size = 0;
+        $this->position = 0;
+        $this->current = $this->head;
     }
 
     /**
@@ -48,6 +53,7 @@ class SimpleLinkedList {
         $newNode = new Node($data);
         if($this->head === null) {
             $this->head = &$newNode;
+            $this->current = &$this->head;
         } else {
             $current = $this->head;
             while($current->next !== null) {
@@ -115,6 +121,7 @@ class SimpleLinkedList {
             $aux = $this->head;
             $this->head = &$newNode;
             $newNode->next = &$aux;
+            $this->current = &$this->head;
         } else {
             $i = 0;
             $current = $this->head;
@@ -153,7 +160,8 @@ class SimpleLinkedList {
 
         if($index === 0) {
             $node = $this->head;
-            $this->header = $this->head->next;
+            $this->head = $this->head->next;
+            $this->current = &$this->head;
             $this->size--;
             return $node->data;
         }
@@ -189,4 +197,43 @@ class SimpleLinkedList {
     public function shift() {
         return $this->delete(0);
     }
+
+    /**
+     *
+     */
+    public function rewind() {
+        var_dump(__METHOD__);
+        $this->position = 0;
+        $this->current = $this->head;
+    }
+
+    /**
+     *
+     */
+    public function current() {
+        return $this->current->data;
+    }
+
+    /**
+     *
+     */
+    public function key() {
+        return $this->position;
+    }
+
+    /**
+     *
+     */
+    public function next() {
+        ++$this->position;
+        $this->current = $this->current->next;
+    }
+
+    /**
+     *
+     */
+    public function valid() {
+        return $this->current !== null;
+    }
+
 }
