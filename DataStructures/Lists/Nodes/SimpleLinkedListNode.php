@@ -1,6 +1,6 @@
 <?php
 
-namespace DataStructures\Nodes;
+namespace DataStructures\Lists\Nodes;
 
 class SimpleLinkedListNode {
     public $data = null;

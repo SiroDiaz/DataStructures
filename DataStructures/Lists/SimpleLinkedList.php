@@ -1,8 +1,9 @@
 <?php
 
-namespace DataStructures;
+namespace DataStructures\Lists;
 
-use DataStructures\Nodes\SimpleLinkedListNode as Node;
+use DataStructures\Lists\Nodes\SimpleLinkedListNode as Node;
+use DataStructures\Lists\Interfaces\ListInterface;
 use OutOfBoundsException;
 use Iterator;
 
@@ -12,7 +13,7 @@ use Iterator;
  *
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
-class SimpleLinkedList implements Iterator {
+class SimpleLinkedList implements ListInterface {
     private $head;
     private $size;
     private $position;
@@ -218,7 +219,7 @@ class SimpleLinkedList implements Iterator {
     }
 
     /**
-     *
+     * Reset the cursor position.
      */
     public function rewind() {
         $this->position = 0;
@@ -226,21 +227,26 @@ class SimpleLinkedList implements Iterator {
     }
 
     /**
+     * Returns the current node data.
      *
+     * @return mixed
      */
     public function current() {
         return $this->current->data;
     }
 
     /**
+     * Key or index that indicates the cursor position.
      *
+     * @return integer The current position.
      */
     public function key() {
         return $this->position;
     }
 
     /**
-     *
+     * Move the cursor to the next node and increments the
+     * position counter.
      */
     public function next() {
         ++$this->position;
@@ -248,10 +254,11 @@ class SimpleLinkedList implements Iterator {
     }
 
     /**
+     * Returns if the current pointer position is valid.
      *
+     * @return boolean true if pointer is not last, else false.
      */
     public function valid() {
         return $this->current !== null;
     }
-
 }

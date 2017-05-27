@@ -5,8 +5,8 @@
 		 stopOnFailure="true"
 		 bootstrap="tests/bootstrap.php">
 	<testsuites>
-        <testsuite name="DataStructures test">
-            <directory>./tests/</directory>
+        <testsuite name="Lists test">
+            <directory>./tests/Lists</directory>
         </testsuite>
     </testsuites>
 </phpunit>

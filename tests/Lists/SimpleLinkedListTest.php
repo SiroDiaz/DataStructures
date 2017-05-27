@@ -1,6 +1,6 @@
 <?php
 
-use DataStructures\SimpleLinkedList;
+use DataStructures\Lists\SimpleLinkedList;
 use PHPUnit\Framework\TestCase;
 
 class SimpleLinkedListTest extends TestCase {
