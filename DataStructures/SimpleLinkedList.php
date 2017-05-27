@@ -1,7 +1,9 @@
 <?php
 
 namespace DataStructures;
-use DataStructures\Nodes\SimpleLinkedListNode;
+
+use DataStructures\Nodes\SimpleLinkedListNode as Node;
+use OutOfBoundsException;
 
 /**
  * SimpleLinkedList is a single linked list that has
@@ -40,11 +42,11 @@ class SimpleLinkedList {
      * Adds at the end of the list new node containing
      * the data to be stored.
      *
-     * @param mixed $node The data
+     * @param mixed $data The data
      */
-    public function push($node) {
-        $newNode = new SimpleLinkedListNode($node);
-        if($this->size === 0) {
+    public function push($data) {
+        $newNode = new Node($data);
+        if($this->head === null) {
             $this->head = &$newNode;
         } else {
             $current = $this->head;
@@ -91,7 +93,7 @@ class SimpleLinkedList {
         }
 
         $current = $this->head;
-        while($current->next !== null) {
+        while($current !== null) {
             yield $current->data;
             $current = $current->next;
         }
@@ -101,26 +103,90 @@ class SimpleLinkedList {
      * Insert a node in the specified list position.
      *
      * @param integer $index position
-     * @param mixed $node data to be saved
+     * @param mixed $data data to be saved
      */
-    public function insertAt($index, $node) {
-        if($index === 0 || $index === $this->size - 1) {
-            return $this->push($node);
+    public function insert($index, $data) {
+        if($this->head === null) {
+            return $this->push($data);
         }
 
-        $i = 0;
-        $current = $this->head;
-        while($i < $index && $current->next !== null) {
-            $i++;
+        $newNode = new Node($data);
+        if($index === 0) {
+            $aux = $this->head;
+            $this->head = &$newNode;
+            $newNode->next = &$aux;
+        } else {
+            $i = 0;
+            $current = $this->head;
+            $prev = $current;
+            while($i < $index && $current->next !== null) {
+                $prev = $current;
+                $current = $current->next;
+                $i++;
+            }
+
+            $prev->next = &$newNode;
+            $newNode->next = &$current;
         }
 
         $this->size++;
     }
 
     /**
+     * Delete a node in the given position and returns it back.
      *
+     * @param integer $index the position.
+     * @throws OutOfBoundsException if index is negative
+     *  or is greater than the size of the list.
      */
-    public function unshift($node) {
+    public function delete($index) {
+        if($index < 0) {
+            throw new OutOfBoundsException();
+        }
+        if($this->head === null) {
+            return null;
+        }
 
+        if($index >= $this->size) {
+            return null;    // It should return an exception
+        }
+
+        if($index === 0) {
+            $node = $this->head;
+            $this->header = $this->head->next;
+            $this->size--;
+            return $node->data;
+        }
+        
+        $i = 0;
+        $current = $this->head;
+        $prev = $current;
+        while($i < $index && $current->next !== null) {
+            $prev = $current;
+            $current = $current->next;
+        }
+        $prev->next = $current->next;
+        $this->size--;
+
+        return $prev->data;
+    }
+
+    /**
+     * Adds at the beginning a node in the list.
+     *
+     * @param mixed $data
+     * @return mixed the data stored.
+     */
+    public function unshift($data) {
+        $this->insert(0, $data);
+    }
+
+    /**
+     * Deletes the first node of the list and returns it.
+     *
+     * @return mixed the data.
+     */
+    public function shift() {
+        return $this->delete(0);
     }
 }
