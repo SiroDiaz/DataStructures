@@ -106,4 +106,15 @@ class SimpleLinkedListTest extends TestCase {
         $this->assertCount(5, $data);
         $this->assertSame([20, true, 15, 3.14, "string"], $data);
     }
+
+    public function testToArray() {
+        $this->list->push(20);
+        $this->list->push(true);
+        $this->list->push(15);
+        $this->list->push(3.14);
+        $this->list->push("string");
+        $this->list->pop();
+        $nodes = $this->list->toArray();
+        $this->assertSame([20, true, 15, 3.14], $nodes);
+    }
 }

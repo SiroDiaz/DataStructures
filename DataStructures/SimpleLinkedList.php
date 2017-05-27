@@ -180,6 +180,25 @@ class SimpleLinkedList implements Iterator {
     }
 
     /**
+     *
+     */
+    public function pop() {
+        return $this->delete($this->size - 1);
+    }
+
+    /**
+     *
+     */
+    public function toArray() : array {
+        $arr = [];
+        foreach($this->getAll() as $node) {
+            $arr[] = $node;
+        }
+
+        return $arr;
+    }
+
+    /**
      * Adds at the beginning a node in the list.
      *
      * @param mixed $data
@@ -202,7 +221,6 @@ class SimpleLinkedList implements Iterator {
      *
      */
     public function rewind() {
-        var_dump(__METHOD__);
         $this->position = 0;
         $this->current = $this->head;
     }
