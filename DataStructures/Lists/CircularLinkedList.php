@@ -1,6 +1,6 @@
 <?php
 
-namespace DataStructures;
+namespace DataStructures\Lists;
 
 use DataStructures\Nodes\SimpleLinkedListNode as Node;
 use DataStructures\Lists\Interfaces\ListInterface;
@@ -17,11 +17,26 @@ class CircularLinkedList implements ListInterface {
     private $head;
     private $size;
     private $current;
+    private $position;
 
     public function __construct() {
         $this->head = null;
+        $this->size = 0;
+        $this->position = 0;
+        $this->current = &$this->head;
     }
 
+    public function insert($index, $data) {
+
+    }
+    
+    public function get($index) {
+        return null;
+    }
+    
+    public function delete($index) {
+        return null;
+    }
     /**
      * Returns the list size.
      *
@@ -29,6 +44,10 @@ class CircularLinkedList implements ListInterface {
      */
     public function size() : int {
         return $this->size;
+    }
+
+    public function toArray() : array {
+        return [];
     }
 
     /**
@@ -72,6 +91,6 @@ class CircularLinkedList implements ListInterface {
      * @return boolean true if pointer is not last, else false.
      */
     public function valid() {
-        return $this->current !== null;
+        return $this->current !== $this->head;
     }
 }

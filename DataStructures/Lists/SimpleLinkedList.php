@@ -23,7 +23,7 @@ class SimpleLinkedList implements ListInterface {
         $this->head = null;
         $this->size = 0;
         $this->position = 0;
-        $this->current = $this->head;
+        $this->current = &$this->head;
     }
 
     /**
