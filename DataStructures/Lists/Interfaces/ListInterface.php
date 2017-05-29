@@ -17,9 +17,10 @@ interface ListInterface extends Iterator {
     // Returns true if this list contains the specified element.
     // public function contains($data);
     public function get($index);
+    public function getAll();
     // Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
     // public function indexOf($data);
-    // public function empty();
+    public function empty() : bool;
     // Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element.
     // public function lastIndexOf(Object o)
     public function delete($index);
@@ -29,8 +30,8 @@ interface ListInterface extends Iterator {
     // public function deleteAll(ListInterface $list);
     // public function set($index, $newValue);
     // Replaces the element at the specified position in this list with the specified element (optional operation).
-    public function size();
+    public function size() : int;
     // Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.
     // List<E>	subList(int fromIndex, int toIndex)
-    public function toArray();
+    public function toArray() : array;
 }

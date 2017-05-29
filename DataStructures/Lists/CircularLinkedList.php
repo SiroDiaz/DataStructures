@@ -168,7 +168,34 @@ class CircularLinkedList implements ListInterface {
 
         return $current->data;
     }
+
+    /**
+     * Generator for retrieve all nodes stored.
+     * 
+     * @return null if the head is null (or list is empty)
+     */
+    public function getAll() {
+        if($this->head === null) {
+            yield null;
+            return;
+        }
+        
+        if($this->head->next === $this->tail) {
+            yield $this->head->data;
+        } else {
+            $current = $this->head;
+            $i = 0;
+            while($i < $this->size) {
+                yield $current->data;
+                $current = $current->next;
+                $i++;
+            }
+        }
+    }
     
+    /**
+     *
+     */
     public function delete($index) {
         if($index < 0 || ($index > 0 && $index > $this->size - 1)) {
             throw new OutOfBoundsException();
@@ -204,6 +231,9 @@ class CircularLinkedList implements ListInterface {
         return $temp->data;
     }
 
+    /**
+     *
+     */
     private function deleteAt($index) {
         $i = 0;
         $prev = $this->head;
@@ -245,16 +275,30 @@ class CircularLinkedList implements ListInterface {
         return $temp->data;
     }
 
+    /**
+     *
+     */
     public function shift() {
         return $this->delete(0);
     }
 
+    /**
+     * 
+     */
     public function pop() {
         return $this->delete($this->size - 1);
     }
 
+    /**
+     *
+     */
     public function toArray() : array {
-        return [];
+        $arr = [];
+        foreach($this->getAll() as $node) {
+            $arr[] = $node;
+        }
+
+        return $arr;
     }
 
     /**
@@ -298,6 +342,6 @@ class CircularLinkedList implements ListInterface {
      * @return boolean true if pointer is not last, else false.
      */
     public function valid() {
-        return $this->current !== $this->tail;
+        return $this->position < $this->size;
     }
 }

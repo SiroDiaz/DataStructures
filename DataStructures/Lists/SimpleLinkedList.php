@@ -96,7 +96,8 @@ class SimpleLinkedList implements ListInterface {
      */
     public function getAll() {
         if($this->head === null) {
-            return null;
+            yield null;
+            return;
         }
 
         $current = $this->head;
