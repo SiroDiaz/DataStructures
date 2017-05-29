@@ -52,7 +52,7 @@ class CircularLinkedList implements ListInterface {
         }
 
         if($index === 0) {
-            $this->insertBegining($data);
+            $this->insertBeginning($data);
         } else if($index >= $this->size) {
             $this->insertEnd($data);
         } else if($index > 0 && $index < $this->size) {
@@ -62,7 +62,7 @@ class CircularLinkedList implements ListInterface {
         $this->size++;
     }
 
-    private function insertBegining($data) {
+    private function insertBeginning($data) {
         $newNode = new Node($data);
         if($this->head === null) {
             $newNode->next = &$this->head;
