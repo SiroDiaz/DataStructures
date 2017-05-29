@@ -74,8 +74,8 @@ class SimpleLinkedList implements ListInterface {
      * @return mixed The data stored in the given index
      */
     public function get($index) {
-        if($this->head === null || $index > $this->size - 1 || $index < 0) {
-            return null;
+        if($index > $this->size - 1 || $index < 0) {
+            throw new OutOfBoundsException();
         }
         
 

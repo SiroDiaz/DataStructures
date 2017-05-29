@@ -25,6 +25,8 @@ class SimpleLinkedListTest extends TestCase {
         $this->list->push(true);
         $this->assertEquals(2, $this->list->size());
         $this->assertTrue($this->list->get(1));
+        $this->list->push(30);
+        $this->assertEquals(30, $this->list->get(2));
     }
 
     public function testInsert() {
@@ -77,11 +79,23 @@ class SimpleLinkedListTest extends TestCase {
     }
 
     public function testPop() {
+        //TODO 
         $this->assertTrue(true);
     }
 
     public function testUnshift() {
-        $this->assertTrue(true);
+        $this->list->unshift(999);
+        $this->assertEquals(1, $this->list->size());
+        $this->assertEquals(999, $this->list->get(0));
+        $this->list->unshift(888);
+        $this->assertEquals(2, $this->list->size());
+        $this->assertEquals(888, $this->list->get(0));
+        $this->assertEquals(999, $this->list->get(1));
+        $this->list->unshift(777);
+        $this->assertEquals(3, $this->list->size());
+        $this->assertEquals(777, $this->list->get(0));
+        $this->assertEquals(888, $this->list->get(1));
+        $this->assertEquals(999, $this->list->get(2));
     }
 
     public function testGet() {
