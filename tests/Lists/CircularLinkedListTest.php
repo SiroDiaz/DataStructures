@@ -29,7 +29,6 @@ class CircularLinkedListTest extends TestCase {
         $this->assertTrue($this->list->get(1));
         
         $this->list->push(30);
-        // echo $this->list->get(0) . $this->list->get(1) . $this->list->get(2) . PHP_EOL;
         $this->assertEquals(20, $this->list->get(0));
         $this->assertEquals(30, $this->list->get(1));
         $this->assertEquals(true, $this->list->get(2));
@@ -62,23 +61,32 @@ class CircularLinkedListTest extends TestCase {
         $this->list->insert(2, 1000);
         $this->assertEquals($this->list->get(2), 1000);
         $this->assertEquals($this->list->get(3), 100);
+        $this->list->insert(6, true);
+        $this->assertTrue($this->list->get(4));
     }
     
-    /*
+    public function testDeleteException() {
+        $this->expectException(OutOfBoundsException::class);
+        $this->list->delete(10);
+    }
+
     public function testDelete() {
-        $this->assertNull($this->list->delete(10));
         $this->list->push(20);
         $this->list->push(true);
         $this->list->push(15);
         $this->list->push(3.14);
         $this->list->push("string");
+        
+        // echo $this->list->get(0) . $this->list->get(1) . $this->list->get(2) . $this->list->get(3) . $this->list->get(4) . PHP_EOL;
+        $this->assertEquals($this->list->delete(4), "string");
         $this->assertEquals(3.14, $this->list->delete(3));
-        $this->assertEquals(4, $this->list->size());
+        
+        $this->assertEquals(3, $this->list->size());
         $this->assertEquals(true, $this->list->delete(1));
         $this->assertEquals(false, $this->list->empty());
         $this->assertEquals(20, $this->list->delete(0));
     }
-
+    
     public function testShift() {
         $this->assertNull($this->list->shift());
         $this->list->push(20);
@@ -89,12 +97,29 @@ class CircularLinkedListTest extends TestCase {
         $this->assertEquals(true, $this->list->empty());
         $this->assertNull($this->list->shift());
     }
-
+    
     public function testPop() {
-        $this->assertTrue(true);
+        $this->list->push(20);
+        $this->list->push(true);
+        $this->list->push(15);
+        $this->list->push(3.14);
+        $this->list->push("string");
+        
+        $this->assertEquals($this->list->pop(), "string");
+        $this->assertEquals(3.14, $this->list->pop());
+        $this->list->insert(1, ['hello']);
+        $this->assertEquals(15, $this->list->pop());
+        $this->assertTrue($this->list->pop());
+        $this->assertSame($this->list->pop(), ['hello']);
+        $this->assertSame($this->list->pop(), 20);
+        $this->assertTrue($this->list->empty());
     }
-    */
 
+    public function testPopException() {
+        $this->expectException(OutOfBoundsException::class);
+        $this->list->pop();
+    }
+    
     public function testUnshift() {
         $this->list->unshift(999);
         $this->assertEquals(1, $this->list->size());

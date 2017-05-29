@@ -127,9 +127,9 @@ class CircularLinkedList implements ListInterface {
     }
 
     /**
-     * Returns the last node with O(1)
+     * Returns the last node with O(1).
      *
-     * @return mixed
+     * @return mixed null if the list is empty.
      */
     public function getLast() {
         if($this->head === null) {
@@ -170,19 +170,87 @@ class CircularLinkedList implements ListInterface {
     }
     
     public function delete($index) {
-        return null;
+        if($index < 0 || ($index > 0 && $index > $this->size - 1)) {
+            throw new OutOfBoundsException();
+        }
+
+        if($this->head === null) {
+            return null;
+        }
+        
+        if($this->head->next === $this->head) {
+            $temp = $this->head;
+            $this->head = null;
+            $this->size--;
+
+            return $temp->data;
+        }
+
+        if($index === 0) {
+            return $this->deleteBeginning();
+        } else if($index === $this->size - 1) {
+            return $this->deleteEnd();
+        } else {
+            return $this->deleteAt($index);
+        }
     }
 
     private function deleteBeginning() {
-        return null;
+        $temp = $this->head;
+        $this->head = &$this->head->next;
+        $this->tail->next = &$this->head;
+        $this->size--;
+
+        return $temp->data;
     }
 
     private function deleteAt($index) {
-        return null;
+        $i = 0;
+        $prev = $this->head;
+        $current = $this->head;
+        
+        while($i < $index) {
+            $prev = $current;
+            $current = $current->next;
+            $i++;
+        }
+
+        $temp = $current;
+        $prev->next = &$current->next;
+        $current = null;
+        $this->size--;
+
+        return $temp->data;
     }
 
+    /**
+     *
+     */
     private function deleteEnd() {
-        return null;
+        $prev = $this->head;
+        $current = $this->head;
+        
+        while($current !== $this->tail) {
+            $prev = $current;
+            $current = $current->next;
+        }
+        
+        $temp = $current;
+        $prev->next = &$this->head;
+        $this->tail = &$prev;
+        $current = null;
+
+        $this->size--;
+
+        return $temp->data;
+    }
+
+    public function shift() {
+        return $this->delete(0);
+    }
+
+    public function pop() {
+        return $this->delete($this->size - 1);
     }
 
     public function toArray() : array {
