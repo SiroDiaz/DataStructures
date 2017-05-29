@@ -36,6 +36,7 @@ class CircularLinkedListTest extends TestCase {
     }
     
     public function testGetLast() {
+        $this->assertNull($this->list->getLast());
         $this->list->push(true);
         $this->list->push(50);
         $this->list->push("string");

@@ -46,6 +46,12 @@ class CircularLinkedList implements ListInterface {
         return $this->size == 0;
     }
 
+    /**
+     * Inserts data in the specified position.
+     *
+     * @param integer $index the position.
+     * @param mixed $data the data to store.
+     */
     public function insert($index, $data) {
         if($index < 0) {
             throw new OutOfBoundsException();
@@ -62,6 +68,9 @@ class CircularLinkedList implements ListInterface {
         $this->size++;
     }
 
+    /**
+     *
+     */
     private function insertBeginning($data) {
         $newNode = new Node($data);
         if($this->head === null) {
@@ -75,6 +84,9 @@ class CircularLinkedList implements ListInterface {
         }
     }
 
+    /**
+     *
+     */
     private function insertEnd($data) {
         $newNode = new Node($data);
         $this->tail->next = &$newNode;
@@ -82,6 +94,9 @@ class CircularLinkedList implements ListInterface {
         $this->tail = &$newNode;
     }
 
+    /**
+     *
+     */
     private function insertAt($index, $data) {
         $newNode = new Node($data);
         $current = $this->head;
@@ -97,21 +112,40 @@ class CircularLinkedList implements ListInterface {
         $newNode->next = &$current;
     }
 
+    /**
+     *
+     */
     public function push($data) {
         $this->insert($this->size, $data);
     }
 
+    /**
+     * 
+     */
     public function unshift($data) {
         $this->insert(0, $data);
     }
 
     /**
+     * Returns the last node with O(1)
      *
+     * @return mixed
      */
     public function getLast() {
+        if($this->head === null) {
+            return null;
+        }
         return $this->tail->data;
     }
     
+    /**
+     * Returns the data stored in the given position.
+     * If index is 0 or size - 1 the method is O(1) else O(n).
+     *
+     * @param integer $index the position.
+     * @throws OutOfBoundsException if it is out of limits (< 0 or > size - 1)
+     * @return mixed the data stored in $index node.
+     */
     public function get($index) {
         if($index < 0 || $index > $this->size - 1) {
             throw new OutOfBoundsException();
@@ -119,6 +153,10 @@ class CircularLinkedList implements ListInterface {
 
         if($index === 0) {
             return $this->head->data;
+        }
+
+        if($index === $this->size - 1) {
+            return $this->getLast();
         }
 
         $i = 0;
@@ -132,6 +170,18 @@ class CircularLinkedList implements ListInterface {
     }
     
     public function delete($index) {
+        return null;
+    }
+
+    private function deleteBeginning() {
+        return null;
+    }
+
+    private function deleteAt($index) {
+        return null;
+    }
+
+    private function deleteEnd() {
         return null;
     }
 
