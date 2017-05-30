@@ -3,6 +3,7 @@
 namespace DataStructures\Lists;
 
 use DataStructures\Lists\Nodes\SimpleLinkedListNode as Node;
+use DataStructures\Exceptions\FullException;
 use OutOfBoundsException;
 
 /**
@@ -61,5 +62,24 @@ class Stack {
      */
     public function pop() {
         return null;
+    }
+
+    /**
+     * Gets the element at the front of the queue without removing it.
+     *
+     * @return mixed
+     */
+    public function peek() {
+        return null;
+    }
+
+    /**
+     * Returns true if is full the stack and false if there is
+     * space available.
+     *
+     * @return bool 
+     */
+    public function isFull() {
+        return false;
     }
 }
