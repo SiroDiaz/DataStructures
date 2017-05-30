@@ -51,4 +51,18 @@ class Queue {
     public function dequeue() {
 
     }
+
+    /**
+     *
+     */
+    public function peek() {
+        return null;
+    }
+
+    /**
+     *
+     */
+    public function isFull() {
+        return false;
+    }
 }
