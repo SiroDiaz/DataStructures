@@ -189,6 +189,15 @@ class SimpleLinkedList implements ListInterface {
     }
 
     /**
+     * Remove all nodes of the list using shift.
+     */
+    public function clear() {
+        while($this->head !== null) {
+            $this->shift();
+        }
+    }
+
+    /**
      *
      */
     public function toArray() : array {

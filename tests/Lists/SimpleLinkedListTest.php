@@ -131,4 +131,14 @@ class SimpleLinkedListTest extends TestCase {
         $nodes = $this->list->toArray();
         $this->assertSame([20, true, 15, 3.14], $nodes);
     }
+
+    public function testClear() {
+        $this->list->push(20);
+        $this->list->push(true);
+        $this->list->push(15);
+        $this->list->push(3.14);
+        $this->list->push("string");
+        $this->list->clear();
+        $this->assertEquals($this->list->size(), 0);
+    }
 }

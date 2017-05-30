@@ -13,7 +13,7 @@ interface ListInterface extends Iterator {
     public function insert($index, $data);
     // public function addAll(array $data, $index = 0);
     // Removes all of the elements from this list (optional operation).
-    // public function clear();
+    public function clear();
     // Returns true if this list contains the specified element.
     // public function contains($data);
     public function get($index);
