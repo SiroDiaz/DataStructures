@@ -3,7 +3,7 @@
 namespace DataStructures\Lists;
 
 /**
- * Queue is a circular linked list that inserts at the end
+ * Queue (FIFO) is a circular linked list that inserts at the end
  * of list and removes at the beginning. Insert and remove
  * are O(1), size and empty are also O(1).
  *
@@ -21,14 +21,18 @@ class Queue {
     }
 
     /**
+     * Returns the queue size.
      *
+     * @return int the length
      */
     public function size() : int {
         return 0;
     }
 
     /**
+     * Checks if the queue is empty.
      *
+     * @return boolean true if is empty, else false.
      */
     public function empty() : boolean {
         return false;

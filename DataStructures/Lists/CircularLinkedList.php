@@ -298,7 +298,9 @@ class CircularLinkedList implements ListInterface {
     }
 
     /**
-     * 
+     * Removes and returns the last node in the list.
+     *
+     * @return mixed data in node.
      */
     public function pop() {
         return $this->delete($this->size - 1);
@@ -314,7 +316,9 @@ class CircularLinkedList implements ListInterface {
     }
 
     /**
+     * Converts/exports the list content into array type.
      *
+     * @return array data stored in all nodes.
      */
     public function toArray() : array {
         $arr = [];
