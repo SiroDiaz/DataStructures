@@ -41,7 +41,7 @@ class SimpleLinkedList implements ListInterface {
      * @return boolean true if is empty, else false.
      */
     public function empty() : bool {
-        return $this->size == 0;
+        return $this->size === 0;
     }
 
     /**

@@ -2,8 +2,9 @@
 
 namespace DataStructures\Lists;
 
+use DataStructures\Lists\Nodes\SimpleLinkedListNode as Node;
 use DataStructures\Exceptions\FullException;
-use OutOfBoundsException;
+use InvalidArgumentException;
 
 /**
  * Queue (FIFO) is a circular linked list that inserts at the end
@@ -16,8 +17,13 @@ class Queue {
     private $head;
     private $tail;
     private $size;
+    private $maxSize;
 
-    public function __construct() {
+    public function __construct($maxSize = 0) {
+        if($maxSize < 0) {
+            throw new InvalidArgumentException();
+        }
+        $this->maxSize = $maxSize;
         $this->head = null;
         $this->tail = &$this->head;
         $this->size = 0;
@@ -29,7 +35,7 @@ class Queue {
      * @return int the length
      */
     public function size() : int {
-        return 0;
+        return $this->size;
     }
 
     /**
@@ -37,8 +43,8 @@ class Queue {
      *
      * @return bool true if is empty, else false.
      */
-    public function empty() : boolean {
-        return false;
+    public function empty() : bool {
+        return $this->size === 0;
     }
 
     /**
@@ -48,7 +54,20 @@ class Queue {
      * @throws DataStructures\Exceptions\FullException if the queue is full.
      */
     public function enqueue($data) {
-
+        if($this->isFull()) {
+            throw new FullException();
+        }
+        
+        $newNode = new Node($data);
+        if($this->head === null) {
+            $this->head = &$newNode;
+            $newNode->next = &$this->head;
+            $this->tail = &$this->head;
+        } else {
+            $this->tail->next = &$newNode;
+            $newNode->next = &$this->head;
+        }
+        $this->size++;
     }
     
     /**
@@ -57,7 +76,19 @@ class Queue {
      * @return mixed
      */
     public function dequeue() {
-        return null;
+        if($this->head === null) {
+            return null;
+        }
+
+        echo $this->tail->data .'------------------------'. $this->head->data . PHP_EOL;
+        $temp = $this->head;
+        $this->head = &$this->head->next;
+        $this->tail->next = &$this->head;
+        $this->size--;
+
+        echo $this->tail->data .'------------------------'. $this->head->data . PHP_EOL;
+
+        return $temp->data;
     }
 
     /**
@@ -66,7 +97,7 @@ class Queue {
      * @return mixed
      */
     public function peek() {
-        return null;
+        return ($this->head === null) ? null : $this->head->data;
     }
 
     /**
@@ -76,6 +107,10 @@ class Queue {
      * @return bool 
      */
     public function isFull() {
-        return false;
+        if($this->maxSize === 0) {
+            return false;
+        }
+        
+        return $this->size > 0 && $this->size >= ($this->maxSize - 1);
     }
 }

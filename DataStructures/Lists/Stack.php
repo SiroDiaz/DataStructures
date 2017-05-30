@@ -4,7 +4,7 @@ namespace DataStructures\Lists;
 
 use DataStructures\Lists\Nodes\SimpleLinkedListNode as Node;
 use DataStructures\Exceptions\FullException;
-use OutOfBoundsException;
+use InvalidArgumentException;
 
 /**
  * Stack (LIFO) is a doubly linked list that inserts at the end
@@ -18,9 +18,9 @@ class Stack {
     private $size;
     private $maxSize;
 
-    public function __construct($maxSize = -1) {
-        if($maxSize < -1 || $maxSize === 0) {
-            throw new OutOfBoundsException();
+    public function __construct($maxSize = 0) {
+        if($maxSize < 0) {
+            throw new InvalidArgumentException();
         }
         $this->maxSize = $maxSize;
         $this->size = 0;
@@ -80,6 +80,10 @@ class Stack {
      * @return bool 
      */
     public function isFull() {
-        return false;
+        if($this->maxSize === 0) {
+            return false;
+        }
+        
+        return $this->size > 0 && $this->size >= ($this->maxSize - 1);
     }
 }
