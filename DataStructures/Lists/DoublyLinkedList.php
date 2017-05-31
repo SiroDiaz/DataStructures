@@ -58,10 +58,18 @@ class DoublyLinkedList implements ListInterface {
         }
 
         $current = &$this->head;
-        $i = 0;
-        while($i < $index) {
-            $current = &$current->next;
-            $i++;
+        if($index < (int) ceil($this->size / 2)) {
+            $i = 0;
+            while($i < $index) {
+                $current = &$current->next;
+                $i++;
+            }    
+        } else {
+            $i = $this->size;
+            while($i > $index) {
+                $current = &$current->prev;
+                $i--;
+            }
         }
 
         return $current->data;
