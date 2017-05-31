@@ -1,5 +1,6 @@
 # DataStructures
 Data structures for PHP development
+[![Build Status](https://travis-ci.org/SiroDiaz/DataStructures.svg?branch=master)](https://travis-ci.org/SiroDiaz/DataStructures)
 
 ## Lists
 
