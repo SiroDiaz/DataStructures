@@ -52,14 +52,6 @@ class QueueTest extends TestCase {
         $this->assertEquals($this->queue->dequeue(), 5);
     }
 
-    public function testDequeueWithMaxSize() {
-        $this->queue = new Queue(4);
-        $this->queue->enqueue(1);
-        $this->queue->enqueue(2);
-        $this->queue->enqueue(3);
-        $this->queue->enqueue(5);
-    }
-
     public function testSize() {
         $this->queue = new Queue();
         $this->assertEquals($this->queue->size(), 0);
