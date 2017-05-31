@@ -61,11 +61,12 @@ class Queue {
         $newNode = new Node($data);
         if($this->head === null) {
             $this->head = &$newNode;
-            $newNode->next = &$this->head;
             $this->tail = &$this->head;
+            $newNode->next = &$this->tail;
         } else {
             $this->tail->next = &$newNode;
             $newNode->next = &$this->head;
+            $this->tail = &$newNode;
         }
         $this->size++;
     }
@@ -80,14 +81,20 @@ class Queue {
             return null;
         }
 
-        echo $this->tail->data .'------------------------'. $this->head->data . PHP_EOL;
+        if($this->head === $this->tail) {
+            $temp = $this->head;
+            $this->head = null;
+            $this->tail = &$this->head;
+            $this->size--;
+
+            return $temp->data;
+        }
+
         $temp = $this->head;
         $this->head = &$this->head->next;
         $this->tail->next = &$this->head;
         $this->size--;
-
-        echo $this->tail->data .'------------------------'. $this->head->data . PHP_EOL;
-
+        
         return $temp->data;
     }
 
@@ -111,6 +118,6 @@ class Queue {
             return false;
         }
         
-        return $this->size > 0 && $this->size >= ($this->maxSize - 1);
+        return $this->size > 0 && $this->size >= $this->maxSize;
     }
 }
