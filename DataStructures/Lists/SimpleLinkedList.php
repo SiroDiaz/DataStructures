@@ -285,4 +285,30 @@ class SimpleLinkedList implements ListInterface {
     public function count() {
         return $this->size;
     }
+
+    public function offsetSet($offset, $valor) {
+        //TODO
+        if (is_null($offset)) {
+            // $this->contenedor[] = $valor;
+        } else {
+            // $this->contenedor[$offset] = $valor;
+        }
+    }
+    
+    public function offsetExists($offset) {
+        //TODO
+        return false;
+        // return isset($this->contenedor[$offset]);
+    }
+
+    public function offsetUnset($offset) {
+        //TODO
+        // unset($this->contenedor[$offset]);
+    }
+
+    public function offsetGet($offset) {
+        //TODO
+        return false;
+        // return isset($this->contenedor[$offset]) ? $this->contenedor[$offset] : null;
+    }
 }
