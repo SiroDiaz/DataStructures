@@ -102,7 +102,7 @@ class DoublyLinkedListTest extends TestCase {
         $this->assertEquals(true, $this->list->empty());
         $this->assertNull($this->list->shift());
     }
-    /*
+    
     public function testPop() {
         $this->list->push(20);
         $this->list->push(true);
@@ -119,7 +119,7 @@ class DoublyLinkedListTest extends TestCase {
         $this->assertSame($this->list->pop(), 20);
         $this->assertTrue($this->list->empty());
     }
-
+    
     public function testPopException() {
         $this->expectException(OutOfBoundsException::class);
         $this->list->pop();
@@ -155,7 +155,7 @@ class DoublyLinkedListTest extends TestCase {
         $this->assertEquals($this->list->get(3), 3.14);
         $this->assertEquals($this->list->get(4), "string");
     }
-
+    
     public function testGetWithException() {
         $this->expectException(OutOfBoundsException::class);
         $this->list->get(5);
@@ -165,7 +165,7 @@ class DoublyLinkedListTest extends TestCase {
         $this->expectException(OutOfBoundsException::class);
         $this->list->get(-1);
     }
-
+    
     public function testGetAll() {
         foreach($this->list->getAll() as $node) {
             $this->assertNull($node);
@@ -183,7 +183,7 @@ class DoublyLinkedListTest extends TestCase {
         $this->assertCount(5, $data);
         $this->assertSame([20, true, 15, 3.14, "string"], $data);
     }
-    
+    /*
     public function testToArray() {
         $this->list->push(20);
         $this->list->push(true);
@@ -205,4 +205,17 @@ class DoublyLinkedListTest extends TestCase {
         $this->assertEquals($this->list->size(), 0);
     }
     */
+
+    public function testIterator() {
+        $this->list->push(20);
+        $this->list->push(true);
+        $this->list->push(15);
+        $this->list->push(3.14);
+        $this->list->push("string");
+
+        $this->list->shift();
+        foreach($this->list as $index => $val) {
+            // echo $index ." ". $val . PHP_EOL;
+        }
+    }
 }

@@ -85,7 +85,22 @@ class DoublyLinkedList implements ListInterface {
      * @return null if the head is null (or list is empty)
      */
     public function getAll() {
-        
+        if($this->head === null) {
+            yield null;
+            return;
+        }
+
+        if($this->head === $this->tail) {
+            yield $this->head->data;
+        } else {
+            $current = $this->head;
+            $i = 0;
+            while($i < $this->size) {
+                yield $current->data;
+                $current = $current->next;
+                $i++;
+            }
+        }
     }
     
     /**
@@ -186,6 +201,16 @@ class DoublyLinkedList implements ListInterface {
     public function push($data) {
         $this->insert($this->size, $data);
     }
+
+    /**
+     * Adds at the beginning a node in the list.
+     *
+     * @param mixed $data
+     * @return mixed the data stored.
+     */
+    public function unshift($data) {
+        $this->insert(0, $data);
+    }
     
     /**
      * Delete a node in the given position and returns it back.
@@ -255,6 +280,7 @@ class DoublyLinkedList implements ListInterface {
 
         $temp = $current;
         $prev->next = &$current->next;
+        $current->next->prev = &$pre;
         $current = null;
         $this->size--;
 
