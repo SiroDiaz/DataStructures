@@ -2,9 +2,16 @@
 
 namespace DataStructures\Lists;
 
+use DataStructures\Lists\Nodes\DoublyLinkedListNode as Node;
 use DataStructures\Lists\Interfaces\ListInterface;
 
-class DoublyLinkedList extends ListInterface {
+/**
+ * SimpleLinkedList is a single linked list that has
+ * a pointer to the next node but last node points to null.
+ *
+ * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
+ */
+class DoublyLinkedList implements ListInterface {
     private $head;
     private $tail;
     private $size;
@@ -12,14 +19,20 @@ class DoublyLinkedList extends ListInterface {
     private $current;
 
     public function __construct() {
+        $this->head = null;
+        $this->tail = &$this->head;
         $this->size = 0;
+        $this->position = 0;
+        $this->current = &$this->head;
     }
 
     /**
      * Removes all nodes of the list. It removes from the beginning.
      */
     public function clear() {
-
+        if($this->head !== null) {
+            $this->shift();
+        }
     }
     
     /**
@@ -71,6 +84,24 @@ class DoublyLinkedList extends ListInterface {
      */
     public function delete($index) {
         return null;
+    }
+
+    /**
+     * Deletes the first node of the list and returns it.
+     *
+     * @return mixed the data.
+     */
+    public function shift() {
+        return $this->delete(0);
+    }
+
+    /**
+     * Removes and returns the last node in the list.
+     *
+     * @return mixed data in node.
+     */
+    public function pop() {
+        return $this->delete($this->size - 1);
     }
     
     /**
