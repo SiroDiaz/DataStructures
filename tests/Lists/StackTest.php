@@ -7,10 +7,6 @@ use PHPUnit\Framework\TestCase;
 class StackTest extends TestCase {
     private $stack;
 
-    public function setUp() {
-        // $this->stack = new Stack();
-    }
-
     public function testContructMaxSize() {
         $this->expectException(InvalidArgumentException::class);
         $this->stack = new Stack(-1);
