@@ -4,13 +4,15 @@ Data structures for PHP development
 
 ## Lists
 
-lists types:
+The list data structures supported are the following:
 
- - Singly linked list: SimpleLinkedList
- - Circular singly linked list: CircularLinkedList
- - Circular doubly linked list: DoublyLinkedList
- - Stack: Stack
- - Queue: Queue
+*list type*: **class**
+
+ - *Singly linked list*: **SimpleLinkedList**
+ - *Circular singly linked list*: **CircularLinkedList**
+ - *Circular doubly linked list*: **DoublyLinkedList**
+ - *Stack*: **Stack**
+ - *Queue*: **Queue**
 
 ## Trees
 
