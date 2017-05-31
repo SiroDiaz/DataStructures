@@ -183,7 +183,7 @@ class DoublyLinkedListTest extends TestCase {
         $this->assertCount(5, $data);
         $this->assertSame([20, true, 15, 3.14, "string"], $data);
     }
-    /*
+    
     public function testToArray() {
         $this->list->push(20);
         $this->list->push(true);
@@ -204,7 +204,6 @@ class DoublyLinkedListTest extends TestCase {
         $this->list->clear();
         $this->assertEquals($this->list->size(), 0);
     }
-    */
 
     public function testIterator() {
         $this->list->push(20);
@@ -214,8 +213,15 @@ class DoublyLinkedListTest extends TestCase {
         $this->list->push("string");
 
         $this->list->shift();
-        foreach($this->list as $index => $val) {
-            // echo $index ." ". $val . PHP_EOL;
+        $expectedResult = [];
+        $result = [];
+        foreach($this->list->getAll() as $node) {
+            $expectedResult[] = $node;
         }
+        foreach($this->list as $index => $val) {
+            $result[] = $val;
+        }
+
+        $this->assertSame($expectedResult, $result);
     }
 }

@@ -31,7 +31,7 @@ class DoublyLinkedList implements ListInterface {
      * Removes all nodes of the list. It removes from the beginning.
      */
     public function clear() {
-        if($this->head !== null) {
+        while($this->head !== null) {
             $this->shift();
         }
     }
@@ -345,7 +345,12 @@ class DoublyLinkedList implements ListInterface {
      * @return array data stored in all nodes.
      */
     public function toArray() : array {
-        return [];
+        $arr = [];
+        foreach($this->getAll() as $node) {
+            $arr[] = $node;
+        }
+
+        return $arr;
     }
 
     /**
