@@ -2,22 +2,20 @@
 
 use DataStructures\Lists\Stack;
 use PHPUnit\Framework\TestCase;
-use InvalidArgumentException;
-use OutOfBoundsException;
 
 class StackTest extends TestCase {
     private $stack;
 
     public function setUp() {
-        $this->stack = new Stack();
+        // $this->stack = new Stack();
     }
 
-    /*
     public function testContructMaxSize() {
         $this->expectException(InvalidArgumentException::class);
         $this->stack = new Stack(-1);
     }
-
+    
+    /*
     public function testEnqueueWithMaxSize() {
         $this->stack = new Stack(5);
         $this->stack->push(1);
