@@ -7,9 +7,8 @@ use DataStructures\Exceptions\FullException;
 use InvalidArgumentException;
 
 /**
- * Stack (LIFO) is a doubly linked list that inserts at the end
- * of list and removes at the end. Insert and remove
- * are O(1), size and empty are also O(1).
+ * Stack (LIFO) is a singly linked list that inserts and removes at the
+ *  beginnig of list. Insert and remove are O(1), size and empty are also O(1).
  *
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
@@ -22,6 +21,7 @@ class Stack {
         if($maxSize < 0) {
             throw new InvalidArgumentException();
         }
+        $this->head = null;
         $this->maxSize = $maxSize;
         $this->size = 0;
     }
