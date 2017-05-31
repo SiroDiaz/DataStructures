@@ -85,7 +85,10 @@ class CircularLinkedList implements ListInterface {
     }
 
     /**
+     * Add a new node in the specified index.
      *
+     * @param integer $index the position.
+     * @param mixed $data the data to be stored.
      */
     private function insertEnd($data) {
         $newNode = new Node($data);
@@ -95,7 +98,10 @@ class CircularLinkedList implements ListInterface {
     }
 
     /**
+     * Add a new node in the specified index.
      *
+     * @param integer $index the position.
+     * @param mixed $data the data to be stored.
      */
     private function insertAt($index, $data) {
         $newNode = new Node($data);
@@ -211,10 +217,12 @@ class CircularLinkedList implements ListInterface {
             throw new OutOfBoundsException();
         }
 
+        // if the list is empty
         if($this->head === null) {
             return null;
         }
         
+        // if only there is an element
         if($this->head->next === $this->head) {
             $temp = $this->head;
             $this->head = null;
@@ -233,7 +241,9 @@ class CircularLinkedList implements ListInterface {
     }
 
     /**
+     * Deletes at the beginnig of the list and returns the data stored.
      *
+     * @return mixed the data stored in the node.
      */
     private function deleteBeginning() {
         $temp = $this->head;
@@ -245,7 +255,10 @@ class CircularLinkedList implements ListInterface {
     }
 
     /**
+     * Deletes at the specified position and returns the data stored.
      *
+     * @param integer $index the position.
+     * @return mixed the data stored in the node.
      */
     private function deleteAt($index) {
         $i = 0;
@@ -267,7 +280,9 @@ class CircularLinkedList implements ListInterface {
     }
 
     /**
+     * Deletes at the end of the list and returns the data stored.
      *
+     * @return mixed the data stored in the node.
      */
     private function deleteEnd() {
         $prev = $this->head;
