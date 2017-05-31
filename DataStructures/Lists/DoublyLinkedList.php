@@ -110,7 +110,7 @@ class DoublyLinkedList implements ListInterface {
      * @return int the length
      */
     public function size() : int {
-        return 0;
+        return $this->size;
     }
     
     /**
