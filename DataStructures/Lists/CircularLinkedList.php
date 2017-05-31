@@ -69,7 +69,9 @@ class CircularLinkedList implements ListInterface {
     }
 
     /**
+     * Inserts at the beginning of the list.
      *
+     * @param mixed $data
      */
     private function insertBeginning($data) {
         $newNode = new Node($data);

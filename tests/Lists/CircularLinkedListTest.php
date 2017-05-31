@@ -12,6 +12,9 @@ class CircularLinkedListTest extends TestCase {
 
     public function testSize() {
         $this->assertEquals($this->list->size(), 0);
+        $this->list->push(true);
+        $this->list->push(2);
+        $this->assertEquals($this->list->size(), 2);
     }
 
     public function testEmpty() {

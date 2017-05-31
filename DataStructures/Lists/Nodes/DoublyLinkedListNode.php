@@ -2,15 +2,13 @@
 
 namespace DataStructures\Lists\Nodes;
 
-use DataStructures\Lists\Interfaces\ListInterface;
-
 /**
  * DoublyLinkedList represents the node structure that points to 
  * the next and previous node.
  *
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
-class DoublyLinkedListNode implements ListInterface {
+class DoublyLinkedListNode {
     public $data;
     public $next;
     public $prev;

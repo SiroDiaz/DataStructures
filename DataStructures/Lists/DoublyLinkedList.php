@@ -4,6 +4,7 @@ namespace DataStructures\Lists;
 
 use DataStructures\Lists\Nodes\DoublyLinkedListNode as Node;
 use DataStructures\Lists\Interfaces\ListInterface;
+use OutOfBoundsException;
 
 /**
  * SimpleLinkedList is a single linked list that has
@@ -44,7 +45,38 @@ class DoublyLinkedList implements ListInterface {
      * @throws OutOfBoundsException if index is out bounds.
      */
     public function get($index) {
-        return null;
+        if($index < 0 || $index > $this->size - 1) {
+            throw new OutOfBoundsException();
+        }
+
+        if($index === 0) {
+            return $this->head->data;
+        }
+
+        if($index === $this->size - 1) {
+            return $this->tail->data;
+        }
+
+        $current = &$this->head;
+        $i = 0;
+        while($i < $index) {
+            $current = &$current->next;
+            $i++;
+        }
+
+        return $current->data;
+    }
+
+    /**
+     * Returns the last node with O(1).
+     *
+     * @return mixed null if the list is empty.
+     */
+    public function getLast() {
+        if($this->head === null) {
+            return null;
+        }
+        return $this->tail->data;
     }
     
     /**
@@ -53,7 +85,7 @@ class DoublyLinkedList implements ListInterface {
      * @return null if the head is null (or list is empty)
      */
     public function getAll() {
-
+        
     }
     
     /**
@@ -66,13 +98,93 @@ class DoublyLinkedList implements ListInterface {
     }
 
     /**
+     * Inserts data in the specified position.
+     *
+     * @param integer $index the position.
+     * @param mixed $data the data to store.
+     */
+    public function insert($index, $data) {
+        if($index < 0) {
+            throw new OutOfBoundsException();
+        }
+
+        if($index === 0) {
+            $this->insertBeginning($data);
+        } else if($index >= $this->size) {
+            $this->insertEnd($data);
+        } else if($index > 0 && $index < $this->size) {
+            $this->insertAt($index, $data);
+        }
+        
+        $this->size++;
+    }
+
+    /**
+     * Inserts at the beginning of the list.
+     *
+     * @param mixed $data
+     */
+    private function insertBeginning($data) {
+        $newNode = new Node($data);
+        if($this->head === null) {
+            $newNode->next = &$this->head;
+            $newNode->prev = &$this->head;
+            $this->head = &$newNode;
+            $this->tail = &$newNode;
+        } else {
+            $this->tail->next = &$newNode;
+            $newNode->next = &$this->head;
+            $newNode->prev = &$this->tail;
+            $this->head = &$newNode;
+        }
+    }
+
+    /**
+     * Add a new node in the specified index.
+     *
+     * @param integer $index the position.
+     * @param mixed $data the data to be stored.
+     */
+    private function insertEnd($data) {
+        $newNode = new Node($data);
+        $this->tail->next = &$newNode;
+        $newNode->next = &$this->head;
+        $newNode->prev = &$this->tail;
+        $this->tail = &$newNode;
+        $this->head->prev = &$newNode;
+    }
+
+    /**
+     * Add a new node in the specified index.
+     *
+     * @param integer $index the position.
+     * @param mixed $data the data to be stored.
+     */
+    private function insertAt($index, $data) {
+        $newNode = new Node($data);
+        $current = $this->head;
+        $prev = null;
+        $i = 0;
+        while($i < $index) {
+            $prev = $current;
+            $current = $current->next;
+            $i++;
+        }
+        
+        $prev->next = &$newNode;
+        $newNode->prev = &$prev;
+        $newNode->next = &$current;
+        $current->prev = &$newNode;
+    }
+
+    /**
      * Adds at the end of the list new node containing
      * the data to be stored.
      *
      * @param mixed $data The data
      */
     public function push($data) {
-        
+        $this->insert($this->size, $data);
     }
     
     /**
@@ -83,7 +195,95 @@ class DoublyLinkedList implements ListInterface {
      *  or is greater than the size of the list.
      */
     public function delete($index) {
-        return null;
+        if($index < 0 || ($index > 0 && $index > $this->size - 1)) {
+            throw new OutOfBoundsException();
+        }
+
+        // if the list is empty
+        if($this->head === null) {
+            return null;
+        }
+        
+        // if only there is an element
+        if($this->head->next === $this->head) {
+            $temp = $this->head;
+            $this->head = null;
+            $this->size--;
+
+            return $temp->data;
+        }
+
+        if($index === 0) {
+            return $this->deleteBeginning();
+        } else if($index === $this->size - 1) {
+            return $this->deleteEnd();
+        } else {
+            return $this->deleteAt($index);
+        }
+    }
+
+    /**
+     * Deletes at the beginnig of the list and returns the data stored.
+     *
+     * @return mixed the data stored in the node.
+     */
+    private function deleteBeginning() {
+        $temp = $this->head;
+        $this->head = &$this->head->next;
+        $this->tail->next = &$this->head;
+        $this->size--;
+
+        return $temp->data;
+    }
+
+    /**
+     * Deletes at the specified position and returns the data stored.
+     *
+     * @param integer $index the position.
+     * @return mixed the data stored in the node.
+     */
+    private function deleteAt($index) {
+        $i = 0;
+        $prev = $this->head;
+        $current = $this->head;
+        
+        while($i < $index) {
+            $prev = $current;
+            $current = $current->next;
+            $i++;
+        }
+
+        $temp = $current;
+        $prev->next = &$current->next;
+        $current = null;
+        $this->size--;
+
+        return $temp->data;
+    }
+
+    /**
+     * Deletes at the end of the list and returns the data stored.
+     *
+     * @return mixed the data stored in the node.
+     */
+    private function deleteEnd() {
+        $prev = $this->head;
+        $current = $this->head;
+        
+        while($current !== $this->tail) {
+            $prev = $current;
+            $current = $current->next;
+        }
+        
+        $temp = $current;
+        $prev->next = &$this->head;
+        $this->head->prev = &$prev;
+        $this->tail = &$prev;
+        $current = null;
+
+        $this->size--;
+
+        return $temp->data;
     }
 
     /**
