@@ -389,4 +389,13 @@ class CircularLinkedList implements ListInterface {
     public function valid() {
         return $this->position < $this->size;
     }
+
+    /**
+     * Binds to count() method. This is equal to make $this->list->size().
+     *
+     * @return integer the list size. 0 if it is empty.
+     */
+    public function count() {
+        return $this->size;
+    }
 }

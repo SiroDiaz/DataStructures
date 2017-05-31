@@ -5,6 +5,7 @@ namespace DataStructures\Lists;
 use DataStructures\Lists\Nodes\SimpleLinkedListNode as Node;
 use DataStructures\Exceptions\FullException;
 use InvalidArgumentException;
+use Countable;
 
 /**
  * Queue (FIFO) is a circular linked list that inserts at the end
@@ -13,7 +14,7 @@ use InvalidArgumentException;
  *
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
-class Queue {
+class Queue implements Countable {
     private $head;
     private $tail;
     private $size;
@@ -119,5 +120,14 @@ class Queue {
         }
         
         return $this->size > 0 && $this->size >= $this->maxSize;
+    }
+
+    /**
+     * Binds to count() method. This is equal to make $this->queue->size().
+     *
+     * @return integer the queue size. 0 if it is empty.
+     */
+    public function count() {
+        return $this->size;
     }
 }

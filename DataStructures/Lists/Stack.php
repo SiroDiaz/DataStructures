@@ -5,6 +5,7 @@ namespace DataStructures\Lists;
 use DataStructures\Lists\Nodes\SimpleLinkedListNode as Node;
 use DataStructures\Exceptions\FullException;
 use InvalidArgumentException;
+use Countable;
 
 /**
  * Stack (LIFO) is a singly linked list that inserts and removes at the
@@ -12,7 +13,7 @@ use InvalidArgumentException;
  *
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
-class Stack {
+class Stack implements Countable {
     private $head;
     private $size;
     private $maxSize;
@@ -108,5 +109,14 @@ class Stack {
         }
         
         return $this->size > 0 && $this->size >= $this->maxSize;
+    }
+
+    /**
+     * Binds to count() method. This is equal to make $this->stack->size().
+     *
+     * @return integer the stack size. 0 if it is empty.
+     */
+    public function count() {
+        return $this->size;
     }
 }

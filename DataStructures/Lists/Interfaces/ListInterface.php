@@ -2,6 +2,7 @@
 
 namespace DataStructures\Lists\Interfaces;
 
+use Countable;
 use Iterator;
 
 /**
@@ -9,7 +10,7 @@ use Iterator;
  * 
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
-interface ListInterface extends Iterator {
+interface ListInterface extends Iterator, Countable {
     public function insert($index, $data);
     // public function addAll(array $data, $index = 0);
     // Removes all of the elements from this list (optional operation).
