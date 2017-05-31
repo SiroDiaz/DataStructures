@@ -32,7 +32,7 @@ class Stack {
      * @return int the length
      */
     public function size() : int {
-        return 0;
+        return $this->size;
     }
     
 
@@ -42,7 +42,7 @@ class Stack {
      * @return boolean true if is empty, else false.
      */
     public function empty() : bool {
-        return false;
+        return $this->size === 0;
     }
 
     /**
@@ -50,9 +50,24 @@ class Stack {
      * the data to be stored.
      *
      * @param mixed $data The data
+     * @throws DataStructures\Exceptions\FullException if the queue is full.
      */
     public function push($data) {
-        
+        if($this->isFull()) {
+            throw new FullException();
+        }
+
+        $newNode = new Node($data);
+        if($this->head === null) {
+            $this->head = &$newNode;
+            $newNode->next = null;
+        } else {
+            $temp = $this->head;
+            $this->head = &$newNode;
+            $newNode->next = &$temp;
+        }
+
+        $this->size++;
     }
 
     /**
@@ -61,7 +76,15 @@ class Stack {
      * @return mixed data in node.
      */
     public function pop() {
-        return null;
+        if($this->head === null) {
+            return null;
+        }
+        
+        $node = $this->head;
+        $this->head = $this->head->next;
+        $this->size--;
+
+        return $node->data;
     }
 
     /**
@@ -70,7 +93,7 @@ class Stack {
      * @return mixed
      */
     public function peek() {
-        return null;
+        return ($this->head === null) ? null : $this->head->data;
     }
 
     /**
@@ -84,6 +107,6 @@ class Stack {
             return false;
         }
         
-        return $this->size > 0 && $this->size >= ($this->maxSize - 1);
+        return $this->size > 0 && $this->size >= $this->maxSize;
     }
 }
