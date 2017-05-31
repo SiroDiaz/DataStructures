@@ -33,7 +33,6 @@ class QueueTest extends TestCase {
         $this->queue->enqueue(3);
         $this->queue->enqueue(4);
         $this->queue->enqueue(5);
-        // $this->queue->head->data . $this->queue->head->next->data . $this->queue->head->next->next->data . PHP_EOL;
         $this->assertEquals($this->queue->size(), 5);
         $this->assertEquals($this->queue->peek(), 1);
     }

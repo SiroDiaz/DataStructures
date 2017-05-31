@@ -307,7 +307,7 @@ class CircularLinkedList implements ListInterface {
     }
 
     /**
-     *
+     * Removes all nodes of the list. It removes from the beginning.
      */
     public function clear() {
         while($this->head !== null) {

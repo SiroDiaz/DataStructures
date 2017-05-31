@@ -72,6 +72,7 @@ class SimpleLinkedList implements ListInterface {
      * @param integer $index Index that must be greater than 0
      *  and lower than the list size.
      * @return mixed The data stored in the given index
+     * @throws OutOfBoundsException if index is out bounds.
      */
     public function get($index) {
         if($index > $this->size - 1 || $index < 0) {
