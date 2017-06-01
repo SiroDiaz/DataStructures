@@ -2,6 +2,12 @@
 
 namespace DataStructures\Trees\Nodes;
 
+/**
+ * BSTNode class. Contains all attributes that represent the node for BST
+ * and AVL.
+ *
+ * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
+ */
 class BSTNode {
     public $key;   // key used to insert, remove and retrieve
     public $data;  // associated data
