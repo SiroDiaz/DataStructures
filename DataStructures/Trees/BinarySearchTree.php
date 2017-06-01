@@ -33,7 +33,7 @@ class BinarySearchTree implements TreeInterface {
     }
 
     public function update($key, $data) {
-        
+
     }
 
     public function get($key) {
@@ -62,5 +62,14 @@ class BinarySearchTree implements TreeInterface {
 
     private function search($key) : Node {
         return null;
+    }
+
+    /**
+     * Binds to count() method. This is equal to make $this->tree->size().
+     *
+     * @return integer the tree size. 0 if it is empty.
+     */
+    public function count() {
+        return $this->size;
     }
 }

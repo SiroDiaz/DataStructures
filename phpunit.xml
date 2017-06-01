@@ -8,5 +8,8 @@
         <testsuite name="Lists test">
             <directory>./tests/Lists</directory>
         </testsuite>
+        <testsuite name="Trees test">
+            <directory>./tests/Trees</directory>
+        </testsuite>
     </testsuites>
 </phpunit>
