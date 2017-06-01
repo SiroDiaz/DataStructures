@@ -2,11 +2,14 @@
 
 namespace DataStructures\Trees;
 
-class BinarySearchTree {
+use DataStructures\Trees\Interfaces\TreeInterface;
+
+class BinarySearchTree implements TreeInterface {
     private $root;
     private $size;
 
     public function __construct() {
+        $this->root = null;
         $this->size = 0;
     }
 }
