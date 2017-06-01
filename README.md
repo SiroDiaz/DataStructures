@@ -1,6 +1,12 @@
 # DataStructures [![Build Status](https://travis-ci.org/SiroDiaz/DataStructures.svg?branch=master)](https://travis-ci.org/SiroDiaz/DataStructures)
 Data structures for PHP >= 7.0.
 
+## Install
+
+Via Composer just copy and paste:
+```sh
+composer require siro-diaz/data-structures:"dev-master"
+```
 ## Lists
 
 The list data structures supported are the following:
