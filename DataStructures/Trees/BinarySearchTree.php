@@ -3,7 +3,7 @@
 namespace DataStructures\Trees;
 
 use DataStructures\Trees\Interfaces\TreeInterface;
-
+use DataStructures\Trees\Nodes\BSTNode as Node;
 /**
  * BinarySearchTree class. Represents a BST actions that can be realized.
  * At the beginning root is null and it can grow up to a O(n) in search,
@@ -18,5 +18,49 @@ class BinarySearchTree implements TreeInterface {
     public function __construct() {
         $this->root = null;
         $this->size = 0;
+    }
+
+    public function empty() : bool {
+        return $this->root === null;
+    }
+
+    public function size() : int {
+        return $this->size;
+    }
+    
+    public function put($key, $data) {
+
+    }
+
+    public function update($key, $data) {
+        
+    }
+
+    public function get($key) {
+
+    }
+
+    public function getMin() {
+
+    }
+
+    public function getMax() {
+
+    }
+
+    public function deleteMin() {
+
+    }
+
+    public function deleteMax() {
+        
+    }
+
+    public function delete($key) {
+
+    }
+
+    private function search($key) : Node {
+        return null;
     }
 }
