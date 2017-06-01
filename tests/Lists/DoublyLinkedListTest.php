@@ -202,6 +202,7 @@ class DoublyLinkedListTest extends TestCase {
         $this->list->push(3.14);
         $this->list->push("string");
         $this->list->clear();
+        $this->assertEmpty($this->list->toArray());
         $this->assertEquals($this->list->size(), 0);
     }
 
