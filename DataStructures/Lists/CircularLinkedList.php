@@ -190,7 +190,6 @@ class CircularLinkedList implements ListInterface {
      */
     public function getAll() {
         if($this->head === null) {
-            yield null;
             return;
         }
         
