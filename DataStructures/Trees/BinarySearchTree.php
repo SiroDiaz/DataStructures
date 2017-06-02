@@ -154,11 +154,37 @@ class BinarySearchTree implements TreeInterface {
     }
 
     public function getMin() {
+        if($this->root === null) {
+            return null;
+        }
+        
+        if($this->root->left === null) {
+            return $this->root;
+        }
 
+        $current = $this->root;
+        while($current->left !== null) {
+            $current = $current->left;
+        }
+
+        return $current;
     }
 
     public function getMax() {
+        if($this->root === null) {
+            return null;
+        }
 
+        if($this->root->right === null) {
+            return $this->root;
+        }
+
+        $current = $this->root;
+        while($current->right !== null) {
+            $current = $current->right;
+        }
+
+        return $current;
     }
 
     public function deleteMin() {

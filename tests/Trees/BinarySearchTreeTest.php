@@ -86,4 +86,21 @@ class BinarySearchTreeTest extends TestCase {
         $this->assertEquals("water", $this->tree->search("water")->key);
         $this->assertNull($this->tree->search(100));
     }
+
+    public function testGetMin() {
+        $this->tree->put(2, "two");
+        $this->tree->put(3, "three");
+        $this->assertEquals(2, $this->tree->getMin()->key);
+        $this->tree->put(1, "one");
+        $this->assertEquals(1, $this->tree->getMin()->key);
+    }
+
+    public function testGetMax() {
+        $this->tree->put(1, "one");
+        $this->assertEquals(1, $this->tree->getMax()->key);
+        $this->tree->put(2, "two");
+        $this->assertEquals(2, $this->tree->getMax()->key);
+        $this->tree->put(3, "three");
+        $this->assertEquals(3, $this->tree->getMax()->key);
+    }
 }
