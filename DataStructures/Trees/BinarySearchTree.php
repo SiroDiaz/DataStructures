@@ -132,13 +132,12 @@ class BinarySearchTree implements TreeInterface {
             return false;
         }
 
-        $current = $this->root;
-        if($key === $current->key) {
+        if($node->key === $key) {
             return true;
-        } else if($key < $current->key) {
-            return $this->_exists($current->left, $key);
-        } else {
-            return $this->_exists($current->right, $key); 
+        } else if($key < $node->key) {
+            return $this->_exists($node->left, $key);
+        } else if($key > $node->key) {
+            return $this->_exists($node->right, $key);
         }
     }
 
