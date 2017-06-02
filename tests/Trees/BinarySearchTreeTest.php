@@ -18,6 +18,7 @@ class BinarySearchTreeTest extends TestCase {
         $this->assertEquals("Siro", $this->tree->get(24));
         $this->assertEquals("Clara", $this->tree->get(19));
         $this->assertEquals("Elisa", $this->tree->get(51));
+        $this->assertNull($this->tree->get(100));
     }
 
     public function testPutWithUpdate() {
@@ -74,5 +75,15 @@ class BinarySearchTreeTest extends TestCase {
         $this->assertTrue($this->tree->exists("tree"));
         $this->assertTrue($this->tree->exists("water"));
         $this->assertFalse($this->tree->exists("sun"));
+    }
+
+    public function testSearch() {
+        $this->tree->put("greet", "saludo");
+        $this->tree->put("tree", "árbol");
+        $this->tree->put("water", "agua");
+        $this->assertEquals("greet", $this->tree->search("greet")->key);
+        $this->assertEquals("árbol", $this->tree->search("tree")->data);
+        $this->assertEquals("water", $this->tree->search("water")->key);
+        $this->assertNull($this->tree->search(100));
     }
 }

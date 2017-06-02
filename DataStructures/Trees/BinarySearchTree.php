@@ -157,7 +157,7 @@ class BinarySearchTree implements TreeInterface {
         
     }
 
-    public function delete($key) : Node {
+    public function delete($key) {
         return null;
     }
 
@@ -167,7 +167,25 @@ class BinarySearchTree implements TreeInterface {
      * @param int|string $key the key used to store.
      * @return DataStructures\Trees\Nodes\BSTNode the node or null.
      */
-    public function search($key) : Node {
+    public function search($key) {
+        if($this->root === null) {
+            return null;
+        }
+
+        if($this->root->key === $key) {
+            return $this->root;
+        } else {
+            $node = $this->root;
+            while($node !== null) {
+                if($key < $node->key) {
+                    $node = $node->left;
+                } else if($key > $node->key) {
+                    $node = $node->right;
+                } else {
+                    return $node;
+                }
+            }
+        }
 
         return null;
     }
