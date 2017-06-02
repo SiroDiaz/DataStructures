@@ -20,6 +20,18 @@ class BinarySearchTreeTest extends TestCase {
         $this->assertEquals("Elisa", $this->tree->get(51));
     }
 
+    public function testPutUpdate() {
+        $this->tree->put(24, "Siro");
+        $this->tree->put(19, "Clara");
+        $this->tree->put(51, "Elisa");
+        $this->assertEquals(3, $this->tree->size());
+        $this->tree->put(51, "Pepe", true);
+        $this->tree->put(24, "John", true);
+        $this->assertEquals("John", $this->tree->get(24));
+        $this->assertEquals("Clara", $this->tree->get(19));
+        $this->assertEquals("Pepe", $this->tree->get(51));
+    }
+
     public function testEmpty() {
         $this->assertTrue($this->tree->empty());
         $this->tree->put(24, "Siro");

@@ -20,14 +20,32 @@ class BinarySearchTree implements TreeInterface {
         $this->size = 0;
     }
 
+    /**
+     * Checks if the tree is empty.
+     *
+     * @return boolean true if is empty, else false.
+     */
     public function empty() : bool {
         return $this->root === null;
     }
 
+    /**
+     * Returns the tree size.
+     *
+     * @return int the length
+     */
     public function size() : int {
         return $this->size;
     }
-    
+
+    /**
+     * Inserts data in the correct position.
+     *
+     * @param integer|string $key the key used to store.
+     * @param mixed $data the data to store.
+     * @param bool $update if false the node isn't updated
+     *  else if the key matches is updated.
+     */
     public function put($key, $data, $update = false) {
         $newNode = new Node($key, $data);
         
@@ -36,7 +54,7 @@ class BinarySearchTree implements TreeInterface {
             $this->size++;
             return;
         }
-        
+
         $parentNode = null;
         $current = &$this->root;
         while($current !== null) {
@@ -45,6 +63,11 @@ class BinarySearchTree implements TreeInterface {
                 $current = &$current->left;
             } else if($key > $current->key) {
                 $current = &$current->right;
+            } else {
+                if($update) {
+                    $current->data = $data;
+                }
+                return;
             }
         }
 
@@ -62,6 +85,12 @@ class BinarySearchTree implements TreeInterface {
 
     }
 
+    /**
+     * Retrieve the data stored in the tree.
+     *
+     * @param int|string $key the key to identify the data.
+     * @return mixed
+     */
     public function get($key) {
         $node = $this->root;
         if($node === null) {
@@ -85,6 +114,9 @@ class BinarySearchTree implements TreeInterface {
         return $node->data;
     }
 
+    /**
+     *
+     */
     public function exists($key) : bool {
         return $this->_exists($this->root, $key);
     }
