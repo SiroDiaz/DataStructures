@@ -153,7 +153,21 @@ class BinarySearchTree implements TreeInterface {
         }
     }
 
-    public function getMin() {
+    public function floor($key) {
+
+    }
+    
+    public function ceil($key) {
+        
+    }
+    
+    /**
+     * Gets the node with the minimum key. The most left and more bottom.
+     * 
+     * @return DataStructures\Trees\Nodes\BSTNode|null the minum node or
+     *  null if the tree is empty.
+     */
+    public function min() {
         if($this->root === null) {
             return null;
         }
@@ -170,7 +184,13 @@ class BinarySearchTree implements TreeInterface {
         return $current;
     }
 
-    public function getMax() {
+    /**
+     * Gets the node with the maximum key. The most right and more bottom.
+     * 
+     * @return DataStructures\Trees\Nodes\BSTNode|null the maximum node or
+     *  null if the tree is empty.
+     */
+    public function max() {
         if($this->root === null) {
             return null;
         }
