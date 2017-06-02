@@ -81,8 +81,14 @@ class BinarySearchTree implements TreeInterface {
         $this->size++;
     }
     
-    public function update($key, $data) {
-
+    /**
+     * Creates a new node or updates it if already exists.
+     *
+     * @param int|string $key the key.
+     * @param mixed $data the data to be stored. 
+     */
+    public function putOrUpdate($key, $data) {
+        $this->put($key, $data, true);
     }
 
     /**

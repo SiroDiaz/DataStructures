@@ -13,7 +13,7 @@ interface TreeInterface extends Countable {
     public function empty();
     public function size();
     public function put($key, $data);
-    public function update($key, $data);
+    public function putOrUpdate($key, $data);
     public function get($key);
     public function exists($key);
     public function getMin();
