@@ -21,6 +21,10 @@ class BinarySearchTreeTest extends TestCase {
     }
 
     public function testEmpty() {
-        $this->assertTrue(true);
+        $this->assertTrue($this->tree->empty());
+        $this->tree->put(24, "Siro");
+        $this->tree->put(19, "Clara");
+        $this->tree->put(51, "Elisa");
+        $this->assertFalse($this->tree->empty());
     }
 }
