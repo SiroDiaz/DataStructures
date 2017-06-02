@@ -21,4 +21,5 @@ interface TreeInterface extends Countable {
     public function deleteMin();
     public function deleteMax();
     public function delete($key);
+    public function search($key);
 }

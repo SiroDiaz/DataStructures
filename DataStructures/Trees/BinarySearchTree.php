@@ -157,11 +157,18 @@ class BinarySearchTree implements TreeInterface {
         
     }
 
-    public function delete($key) {
-
+    public function delete($key) : Node {
+        return null;
     }
 
-    private function search($key) : Node {
+    /**
+     * Retrieves the node with the specified key.
+     *
+     * @param int|string $key the key used to store.
+     * @return DataStructures\Trees\Nodes\BSTNode the node or null.
+     */
+    public function search($key) : Node {
+
         return null;
     }
 

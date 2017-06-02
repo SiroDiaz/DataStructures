@@ -4,7 +4,7 @@ namespace DataStructures\Trees\Nodes;
 
 /**
  * BSTNode class. Contains all attributes that represent the node for BST
- * and AVL.
+ * and AVL with a pointer to the parent node.
  *
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
