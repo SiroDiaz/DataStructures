@@ -121,12 +121,24 @@ class BinarySearchTree implements TreeInterface {
     }
 
     /**
+     * Looks for the node with the given key.
      *
+     * @param int|string $key the key used to look for.
+     * @return bool true if was found.
      */
     public function exists($key) : bool {
         return $this->_exists($this->root, $key);
     }
 
+    /**
+     * Method that retrieves true if found a node with the specified key.
+     * It's the recursive version of exists method and it's used internally
+     * for traverse through a root node.
+     *
+     * @param DataStructures\Trees\Nodes\BSTNode $node the root node.
+     * @param int|string $key the key used to look for.
+     * @return bool true if exists a node with that key.
+     */
     private function _exists($node, $key) : bool {
         if($node === null) {
             return false;
