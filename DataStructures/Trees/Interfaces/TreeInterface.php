@@ -15,6 +15,7 @@ interface TreeInterface extends Countable {
     public function put($key, $data);
     public function update($key, $data);
     public function get($key);
+    public function exists($key);
     public function getMin();
     public function getMax();
     public function deleteMin();

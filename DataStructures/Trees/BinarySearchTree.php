@@ -28,16 +28,80 @@ class BinarySearchTree implements TreeInterface {
         return $this->size;
     }
     
-    public function put($key, $data) {
+    public function put($key, $data, $update = false) {
+        $newNode = new Node($key, $data);
+        
+        if($this->root === null) {
+            $this->root = &$newNode;
+            $this->size++;
+            return;
+        }
+        
+        $parentNode = null;
+        $current = &$this->root;
+        while($current !== null) {
+            $parentNode = &$current;
+            if($key < $current->key) {
+                $current = &$current->left;
+            } else if($key > $current->key) {
+                $current = &$current->right;
+            }
+        }
 
+        $newNode = new Node($key, $data, $parentNode);
+        if($key < $parentNode->key) {
+            $parentNode->left = &$newNode;
+        } else {
+            $parentNode->right = &$newNode;
+        }
+
+        $this->size++;
     }
-
+    
     public function update($key, $data) {
 
     }
 
     public function get($key) {
+        $node = $this->root;
+        if($node === null) {
+            return null;
+        }
 
+        while($node !== null) {
+            if($key < $node->key) {
+                $node = $node->left;
+            } else if($key > $node->key) {
+                $node = $node->right;
+            } else {
+                return $node->data;
+            }
+        }
+
+        if($node === null) {
+            return null;
+        }
+
+        return $node->data;
+    }
+
+    public function exists($key) : bool {
+        return $this->_exists($this->root, $key);
+    }
+
+    private function _exists($node, $key) : bool {
+        if($node === null) {
+            return false;
+        }
+
+        $current = $this->root;
+        if($key === $current->key) {
+            return true;
+        } else if($key < $current->key) {
+            return $this->_exists($current->left, $key);
+        } else {
+            return $this->_exists($current->right, $key); 
+        }
     }
 
     public function getMin() {
