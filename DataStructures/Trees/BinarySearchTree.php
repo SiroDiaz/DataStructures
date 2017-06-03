@@ -158,7 +158,7 @@ class BinarySearchTree implements TreeInterface {
     }
     
     public function ceil($key) {
-        
+
     }
     
     /**
@@ -216,6 +216,34 @@ class BinarySearchTree implements TreeInterface {
     }
 
     public function delete($key) {
+        $deleteNode = &$this->search($key);
+        if($deleteNode !== null) {
+            return $this->_delete($deleteNode);
+        }
+        return null;
+    }
+
+    private function replace(Node &$nodeToReplace, Node &$newNode) {
+        if($nodeToReplace->parent === null) {
+            $this->root = &$newNode;
+        } else if($nodeToReplace === $nodeToReplace->parent->left) {
+            $nodeToReplace->parent->left = &$newNode;
+        } else if($nodeToReplace === $nodeToReplace->parent->right) {
+            $nodeToReplace->parent->right = &$newNode;
+        }
+
+        if($newNode !== null) {
+            $newNode->parent = &$nodeToReplace->parent;
+        }
+
+        return $newNode;
+    }
+
+    private function _delete(Node &$node) {
+        if($node !== null) {
+
+        }
+
         return null;
     }
 
