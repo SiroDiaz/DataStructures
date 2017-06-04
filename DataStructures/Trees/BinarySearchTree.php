@@ -223,6 +223,14 @@ class BinarySearchTree implements TreeInterface {
         return null;
     }
 
+    /**
+     * Replaces the node n to remove a new one k and links k with the parent
+     * of n.
+     *
+     * @param Node $nodeToReplace the node to remove.
+     * @param Node $newNode the newNode to link with the $nodeToReplace parent.
+     * @return Node the new linked node.
+     */
     private function replace(Node &$nodeToReplace, Node &$newNode) {
         if($nodeToReplace->parent === null) {
             $this->root = &$newNode;
