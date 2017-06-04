@@ -257,9 +257,10 @@ class BinarySearchTree implements TreeInterface {
      * Replaces the node n to remove a new one k and links k with the parent
      * of n.
      *
-     * @param Node $nodeToReplace the node to remove.
-     * @param Node $newNode the newNode to link with the $nodeToReplace parent.
-     * @return Node the new linked node.
+     * @param DataStructures\Trees\Nodes\BSTNode $nodeToReplace the node to remove.
+     * @param DataStructures\Trees\Nodes\BSTNode|null $newNode the newNode
+     *  to link with the $nodeToReplace parent.
+     * @return DataStructures\Trees\Nodes\BSTNode the new linked node.
      */
     private function replace(&$nodeToReplace, &$newNode) {
         if($nodeToReplace->parent === null) {
@@ -277,6 +278,13 @@ class BinarySearchTree implements TreeInterface {
         return $newNode;
     }
 
+    /**
+     * Deletes the selected node if is not null and returns the node
+     * that replaces the deleted node. Also decrease the size of tree.
+     *
+     * @param DataStructures\Trees\Nodes\BSTNode|null The node to be deleted.
+     * @return the node that replaces the deleted.
+     */
     private function _delete(Node &$node) {
         if($node !== null) {
             $nodeToReturn = null;
