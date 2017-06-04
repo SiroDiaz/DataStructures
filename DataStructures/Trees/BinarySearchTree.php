@@ -71,7 +71,7 @@ class BinarySearchTree implements TreeInterface {
             }
         }
 
-        $newNode = new Node($key, $data, $parentNode);
+        $newNode->parent = &$parentNode;
         if($key < $parentNode->key) {
             $parentNode->left = &$newNode;
         } else {
@@ -350,7 +350,7 @@ class BinarySearchTree implements TreeInterface {
      * Retrieves the node with the specified key.
      *
      * @param int|string $key the key used to store.
-     * @return DataStructures\Trees\Nodes\BSTNode the node or null.
+     * @return DataStructures\Trees\Nodes\BSTNode|null the node or null.
      */
     public function search($key) {
         if($this->root === null) {
