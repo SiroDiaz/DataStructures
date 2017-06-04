@@ -235,6 +235,13 @@ class BinarySearchTree implements TreeInterface {
         return $node;
     }
 
+    /**
+     * Deletes the node with the minimum key and returns it. The most left and more bottom.
+     * 
+     * @param DataStructures\Trees\Nodes\BSTNode|null if null takes the root.
+     * @return DataStructures\Trees\Nodes\BSTNode|null the minimum node or
+     *  null if the tree is empty.
+     */
     public function deleteMin(Node $node = null) {
         $node = $this->getMinNode($node ?? $this->root);
         if($node !== null) {
@@ -243,7 +250,7 @@ class BinarySearchTree implements TreeInterface {
         
         return $node;
     }
-
+    
     public function deleteMax(Node $node = null) {
         $node = $this->getMaxNode($node ?? $this->root);
         if($node !== null) {
@@ -253,6 +260,13 @@ class BinarySearchTree implements TreeInterface {
         return $node;
     }
 
+    /**
+     * Deletes the node with the maximum key and returns it. The most right and more bottom.
+     * 
+     * @param DataStructures\Trees\Nodes\BSTNode|null if null takes the root.
+     * @return DataStructures\Trees\Nodes\BSTNode|null the maximum node or
+     *  null if the tree is empty.
+     */
     public function delete($key) {
         $deleteNode = $this->search($key);
         if($deleteNode !== null) {
