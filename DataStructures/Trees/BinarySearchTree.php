@@ -185,6 +185,20 @@ class BinarySearchTree implements TreeInterface {
     }
 
     /**
+     * Returns the minimum node from a given node in position X.
+     *
+     * @param DataStructures\Trees\Nodes\BSTNode $node the start point.
+     * @return DataStructures\Trees\Nodes\BSTNode|null the minimum node.
+     */
+    private function getMinNode(Node $node) {
+        while($node->left !== null) {
+            $node = $node->left;
+        }
+
+        return $node;
+    }
+
+    /**
      * Gets the node with the maximum key. The most right and more bottom.
      * 
      * @return DataStructures\Trees\Nodes\BSTNode|null the maximum node or
@@ -205,6 +219,20 @@ class BinarySearchTree implements TreeInterface {
         }
 
         return $current;
+    }
+
+    /**
+     * Returns the maximum node from a given node in position X.
+     *
+     * @param DataStructures\Trees\Nodes\BSTNode $node the start point.
+     * @return DataStructures\Trees\Nodes\BSTNode|null the maximum node.
+     */
+    private function getMaxNode(Node $node) {
+        while($node->right !== null) {
+            $node = $node->right;
+        }
+
+        return $node;
     }
 
     public function deleteMin() {
@@ -249,7 +277,14 @@ class BinarySearchTree implements TreeInterface {
 
     private function _delete(Node &$node) {
         if($node !== null) {
-
+            $nodeToReturn = null;
+            if($node->left === null) {
+                $nodeToReturn = $this->replace($node, $node->right);
+            } else if($node->right === null) {
+                $nodeToReturn = $this->replace($node, $node->left);
+            } else {
+                $successorNode = $this->min();
+            }
         }
 
         return null;
