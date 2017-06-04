@@ -121,6 +121,15 @@ class BinarySearchTree implements TreeInterface {
     }
 
     /**
+     * Returns the root node.
+     *
+     * @return DataStructures\Trees\Nodes\BSTNode|null the root node.
+     */
+    public function getRoot() {
+        return $this->root;
+    }
+
+    /**
      * Looks for the node with the given key.
      *
      * @param int|string $key the key used to look for.
