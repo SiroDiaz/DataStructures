@@ -103,4 +103,18 @@ class BinarySearchTreeTest extends TestCase {
         $this->tree->put(3, "three");
         $this->assertEquals(3, $this->tree->max()->key);
     }
+
+    public function testDelete() {
+        $this->tree->put(1, "one");
+        $this->tree->put(2, "two");
+        $this->tree->put(3, "three");
+        $this->assertEquals(1, $this->tree->delete(1)->key);
+        $this->assertEquals(2, $this->tree->size());
+        $this->assertEquals("three", $this->tree->delete(3)->data);
+        $this->assertEquals(1, $this->tree->size());
+        $this->assertEquals(2, $this->tree->delete(2)->key);
+        $this->assertEquals(0, $this->tree->size());
+        $this->assertNull($this->tree->delete(2));
+        $this->assertTrue($this->tree->empty());
+    }
 }

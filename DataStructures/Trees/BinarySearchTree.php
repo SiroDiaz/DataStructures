@@ -244,10 +244,12 @@ class BinarySearchTree implements TreeInterface {
     }
 
     public function delete($key) {
-        $deleteNode = &$this->search($key);
+        $deleteNode = $this->search($key);
         if($deleteNode !== null) {
-            return $this->_delete($deleteNode);
+            $this->_delete($deleteNode);
+            return $deleteNode;
         }
+
         return null;
     }
 
@@ -259,7 +261,7 @@ class BinarySearchTree implements TreeInterface {
      * @param Node $newNode the newNode to link with the $nodeToReplace parent.
      * @return Node the new linked node.
      */
-    private function replace(Node &$nodeToReplace, Node &$newNode) {
+    private function replace(&$nodeToReplace, &$newNode) {
         if($nodeToReplace->parent === null) {
             $this->root = &$newNode;
         } else if($nodeToReplace === $nodeToReplace->parent->left) {
@@ -283,8 +285,21 @@ class BinarySearchTree implements TreeInterface {
             } else if($node->right === null) {
                 $nodeToReturn = $this->replace($node, $node->left);
             } else {
-                $successorNode = $this->min();
+                $successorNode = $this->getMinNode($node->right);
+                if($successorNode->parent !== $node) {
+                    $this->replace($successorNode, $successorNode->right);
+                    $successorNode->right = &$node->right;
+                    $successorNode->right->parent = &$successorNode;
+                }
+
+                $this->replace($node, $successorNode);
+                $successorNode->left = &$node->left;
+                $successorNode->left->parent = &$successorNode;
+                $nodeToReturn = &$successorNode;
             }
+
+            $this->size--;
+            return $nodeToReturn;
         }
 
         return null;
