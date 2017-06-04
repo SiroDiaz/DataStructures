@@ -117,4 +117,36 @@ class BinarySearchTreeTest extends TestCase {
         $this->assertNull($this->tree->delete(2));
         $this->assertTrue($this->tree->empty());
     }
+
+    public function testDeleteMin() {
+        $this->tree->put(1, "one");
+        $this->tree->put(2, "two");
+        $this->tree->put(3, "three");
+        $this->assertEquals(1, $this->tree->deleteMin()->key);
+        $this->assertEquals(2, $this->tree->size());
+        $this->assertEquals(2, $this->tree->deleteMin()->key);
+        $this->assertEquals(1, $this->tree->size());
+        $this->tree->put(100, "hundred");
+        $this->assertEquals(2, $this->tree->size());
+        $this->assertEquals(3, $this->tree->deleteMin()->key);
+        $this->assertEquals(1, $this->tree->size());
+        $this->assertEquals(100, $this->tree->deleteMin()->key);
+        $this->assertEquals(0, $this->tree->size());
+    }
+
+    public function testDeleteMax() {
+        $this->tree->put(1, "one");
+        $this->tree->put(2, "two");
+        $this->tree->put(3, "three");
+        $this->assertEquals(3, $this->tree->deleteMax()->key);
+        $this->assertEquals(2, $this->tree->size());
+        $this->assertEquals(2, $this->tree->deleteMax()->key);
+        $this->assertEquals(1, $this->tree->size());
+        $this->tree->put(100, "hundred");
+        $this->assertEquals(2, $this->tree->size());
+        $this->assertEquals(100, $this->tree->deleteMax()->key);
+        $this->assertEquals(1, $this->tree->size());
+        $this->assertEquals(1, $this->tree->deleteMax()->key);
+        $this->assertEquals(0, $this->tree->size());
+    }
 }

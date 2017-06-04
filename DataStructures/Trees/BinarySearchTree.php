@@ -235,12 +235,22 @@ class BinarySearchTree implements TreeInterface {
         return $node;
     }
 
-    public function deleteMin() {
-
+    public function deleteMin(Node $node = null) {
+        $node = $this->getMinNode($node ?? $this->root);
+        if($node !== null) {
+            $this->_delete($node);
+        }
+        
+        return $node;
     }
 
-    public function deleteMax() {
-        
+    public function deleteMax(Node $node = null) {
+        $node = $this->getMaxNode($node ?? $this->root);
+        if($node !== null) {
+            $this->_delete($node);
+        }
+
+        return $node;
     }
 
     public function delete($key) {
