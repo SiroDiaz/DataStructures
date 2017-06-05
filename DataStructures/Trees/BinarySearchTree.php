@@ -390,35 +390,39 @@ class BinarySearchTree implements TreeInterface {
      * Traverse in preorder. This is: first visit the root, then
      * the left subtree and finally the right subtree.
      */
-    public function preorder() {
-        $this->_preorder($this->root);
+    public function preorder(Callable $callback = null) {
+        $this->_preorder($this->root, $callback);
     }
 
-    private function _preorder($node) {
+    private function _preorder($node, Callable $callback = null) {
         if($node === null) {
             return;
         }
-        echo $node->key . PHP_EOL;
-        $this->_preorder($node->left);
-        $this->_preorder($node->right);
+        if($callback !== null) {
+            call_user_func($callback, $node);
+        }
+        $this->_preorder($node->left, $callback);
+        $this->_preorder($node->right, $callback);
     }
 
     /**
      * Traverse in inorder. This is: first visit the left subtree,
      * then the root and finally the right subtree.
      */
-    public function inorder() {
+    public function inorder(Callable $callback = null) {
         $this->_inorder($this->root);
     }
 
-    private function _inorder($node) {
+    private function _inorder($node, Callable $callback = null) {
         if($node === null) {
             return;
         }
 
-        $this->_inorder($node->left);
-        echo $node->key . PHP_EOL;
-        $this->_inorder($node->right);
+        $this->_inorder($node->left, $callback);
+        if($callback !== null) {
+            call_user_func($callback, $node);
+        }
+        $this->_inorder($node->right, $callback);
     }
 
     /**
@@ -435,7 +439,9 @@ class BinarySearchTree implements TreeInterface {
         }
         $this->_postorder($node->left);
         $this->_postorder($node->right);
-        echo $node->key . PHP_EOL;
+        if($callback !== null) {
+            call_user_func($callback, $node);
+        }
     }
 
     /**

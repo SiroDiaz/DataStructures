@@ -154,7 +154,9 @@ class BinarySearchTreeTest extends TestCase {
         $this->tree->put(2, "two");
         $this->tree->put(1, "one");
         $this->tree->put(3, "three");
-        $this->tree->preorder();
+        $this->tree->preorder(function ($node) {
+            echo $node->key . PHP_EOL;
+        });
         $this->assertTrue(true);
     }
 
@@ -162,7 +164,9 @@ class BinarySearchTreeTest extends TestCase {
         $this->tree->put(2, "two");
         $this->tree->put(1, "one");
         $this->tree->put(3, "three");
-        $this->tree->inorder();
+        $this->tree->inorder(function ($node) {
+            echo $node->key . PHP_EOL;
+        });
         $this->assertTrue(true);
     }
 
@@ -170,7 +174,9 @@ class BinarySearchTreeTest extends TestCase {
         $this->tree->put(2, "two");
         $this->tree->put(1, "one");
         $this->tree->put(3, "three");
-        $this->tree->postorder();
+        $this->tree->postorder(function ($node) {
+            echo $node->key . PHP_EOL;
+        });
         $this->assertTrue(true);
     }
 }
