@@ -164,7 +164,6 @@ class DoublyLinkedList implements ListInterface {
     /**
      * Add a new node in the specified index.
      *
-     * @param integer $index the position.
      * @param mixed $data the data to be stored.
      */
     private function insertEnd($data) {

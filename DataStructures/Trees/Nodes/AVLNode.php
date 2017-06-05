@@ -12,7 +12,7 @@ use DataStructures\Trees\Nodes\BSTNode;
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
 class AVLNode extends BSTNode {
-    public $height;
+    public $height; // the node height
 
     public function __construct($key, $data, $parent = null, $left = null, $right = null) {
         parent::__construct($key, $data, $parent, $left, $right);
