@@ -203,7 +203,7 @@ class BinarySearchTree implements TreeInterface {
         if($node === null) {
             return null;
         }
-        
+
         while($node->left !== null) {
             $node = $node->left;
         }
@@ -240,7 +240,11 @@ class BinarySearchTree implements TreeInterface {
      * @param DataStructures\Trees\Nodes\BSTNode $node the start point.
      * @return DataStructures\Trees\Nodes\BSTNode|null the maximum node.
      */
-    private function getMaxNode(Node $node) {
+    private function getMaxNode(Node $node = null) {
+        if($node === null) {
+            return null;
+        }
+        
         while($node->right !== null) {
             $node = $node->right;
         }
