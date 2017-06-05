@@ -260,6 +260,13 @@ class BinarySearchTree implements TreeInterface {
         return $node;
     }
     
+    /**
+     * Deletes the node with the maximum key and returns it. The most right and more bottom.
+     * 
+     * @param DataStructures\Trees\Nodes\BSTNode|null if null takes the root.
+     * @return DataStructures\Trees\Nodes\BSTNode|null the maximum node or
+     *  null if the tree is empty.
+     */
     public function deleteMax(Node $node = null) {
         $node = $this->getMaxNode($node ?? $this->root);
         if($node !== null) {
@@ -429,16 +436,16 @@ class BinarySearchTree implements TreeInterface {
      * Traverse in postorder. This is: first visit the left subtree,
      * then the right subtree and finally the root.
      */
-    public function postorder() {
-        $this->_postorder($this->root);
+    public function postorder(Callable $callback = null) {
+        $this->_postorder($this->root, $callback);
     }
 
-    private function _postorder($node) {
+    private function _postorder($node, Callable $callback = null) {
         if($node === null) {
             return;
         }
-        $this->_postorder($node->left);
-        $this->_postorder($node->right);
+        $this->_postorder($node->left, $callback);
+        $this->_postorder($node->right, $callback);
         if($callback !== null) {
             call_user_func($callback, $node);
         }
