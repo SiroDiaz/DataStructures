@@ -15,7 +15,7 @@ class BSTNode {
     public $left;   // left subtree
     public $right;  // right subtree
 
-    public function __construct($key, $data, BSTNode $parent = null, BSTNode $left = null, BSTNode $right = null) {
+    public function __construct($key, $data, $parent = null, $left = null, $right = null) {
         $this->key = $key;
         $this->data = $data;
         $this->parent = $parent;

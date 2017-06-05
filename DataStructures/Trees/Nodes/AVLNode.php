@@ -14,7 +14,7 @@ use DataStructures\Trees\Nodes\BSTNode;
 class AVLNode extends BSTNode {
     public $height;
 
-    public function __construct($key, $data, AVLNode $parent = null, AVLNode $left = null, AVLNode $right = null) {
+    public function __construct($key, $data, $parent = null, $left = null, $right = null) {
         parent::__construct($key, $data, $parent, $left, $right);
         $this->height = 0;
     }
