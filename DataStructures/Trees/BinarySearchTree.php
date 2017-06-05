@@ -144,7 +144,7 @@ class BinarySearchTree implements TreeInterface {
      * It's the recursive version of exists method and it's used internally
      * for traverse through a root node.
      *
-     * @param DataStructures\Trees\Nodes\BSTNode $node the root node.
+     * @param DataStructures\Trees\Nodes\BSTNode|null $node the root node.
      * @param int|string $key the key used to look for.
      * @return bool true if exists a node with that key.
      */
@@ -199,7 +199,11 @@ class BinarySearchTree implements TreeInterface {
      * @param DataStructures\Trees\Nodes\BSTNode $node the start point.
      * @return DataStructures\Trees\Nodes\BSTNode|null the minimum node.
      */
-    private function getMinNode(Node $node) {
+    private function getMinNode(Node $node = null) {
+        if($node === null) {
+            return null;
+        }
+        
         while($node->left !== null) {
             $node = $node->left;
         }
