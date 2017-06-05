@@ -452,6 +452,14 @@ class BinarySearchTree implements TreeInterface {
         $this->_postorder($this->root, $callback);
     }
 
+    /**
+     * Private postorder traverse method that is recursive and is called by
+     * the public postorder method.
+     *
+     * @param DataStructures\Trees\Nodes\BSTNode|null $node.
+     * @param Callable|null $callback the callback function to apply to each
+     *  node.
+     */
     private function _postorder($node, Callable $callback = null) {
         if($node === null) {
             return;
