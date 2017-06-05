@@ -26,4 +26,5 @@ interface TreeInterface extends Countable {
     public function delete($key);
     public function search($key);
     public function isLeaf($node);
+    public function isRoot($node);
 }
