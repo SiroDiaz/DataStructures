@@ -376,6 +376,69 @@ class BinarySearchTree implements TreeInterface {
     }
 
     /**
+     * Returns true if is leaf the node.
+     *
+     * @param DataStructures\Trees\Nodes\BSTNode|null $node default to null.
+     * @return true if is leaf the node is not null and their subtrees has no
+     *  pointers to successors.
+     */
+    public function isLeaf($node) {
+        return $node !== null && $node->left === null && $node->right === null;
+    }
+
+    /**
+     * Traverse in preorder. This is: first visit the root, then
+     * the left subtree and finally the right subtree.
+     */
+    public function preorder() {
+        $this->_preorder($this->root);
+    }
+
+    private function _preorder($node) {
+        if($node === null) {
+            return;
+        }
+        echo $node->key . PHP_EOL;
+        $this->_preorder($node->left);
+        $this->_preorder($node->right);
+    }
+
+    /**
+     * Traverse in inorder. This is: first visit the left subtree,
+     * then the root and finally the right subtree.
+     */
+    public function inorder() {
+        $this->_inorder($this->root);
+    }
+
+    private function _inorder($node) {
+        if($node === null) {
+            return;
+        }
+
+        $this->_inorder($node->left);
+        echo $node->key . PHP_EOL;
+        $this->_inorder($node->right);
+    }
+
+    /**
+     * Traverse in postorder. This is: first visit the left subtree,
+     * then the right subtree and finally the root.
+     */
+    public function postorder() {
+        $this->_postorder($this->root);
+    }
+
+    private function _postorder($node) {
+        if($node === null) {
+            return;
+        }
+        $this->_postorder($node->left);
+        $this->_postorder($node->right);
+        echo $node->key . PHP_EOL;
+    }
+
+    /**
      * Binds to count() method. This is equal to make $this->tree->size().
      *
      * @return integer the tree size. 0 if it is empty.
