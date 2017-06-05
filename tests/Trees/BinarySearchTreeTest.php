@@ -190,5 +190,16 @@ class BinarySearchTreeTest extends TestCase {
 
         $this->assertTrue($this->tree->isLeaf($this->tree->search(3)));
         $this->assertFalse($this->tree->isLeaf($this->tree->search(2)));
+        $this->assertTrue($this->tree->isLeaf($this->tree->search(1)));
+    }
+
+    public function testIsRoot() {
+        $this->tree->put(2, "two");
+        $this->tree->put(1, "one");
+        $this->tree->put(3, "three");
+
+        $this->assertTrue($this->tree->isRoot($this->tree->search(2)));
+        $this->assertFalse($this->tree->isRoot($this->tree->search(3)));
+        $this->assertFalse($this->tree->isRoot($this->tree->search(1)));
     }
 }

@@ -386,11 +386,23 @@ class BinarySearchTree implements TreeInterface {
      * Returns true if is leaf the node.
      *
      * @param DataStructures\Trees\Nodes\BSTNode|null $node default to null.
-     * @return true if is leaf the node is not null and their subtrees has no
+     * @return true if is leaf the node, is not null and their subtrees has no
      *  pointers to successors.
      */
     public function isLeaf($node) {
         return $node !== null && $node->left === null && $node->right === null;
+    }
+
+    /**
+     * Checks if a node is root. New nodes that does not point to any other node
+     * also are called a root node.
+     *
+     * @param DataStructures\Trees\Nodes\BSTNode|null $node default to null.
+     * @return true if is root the node, is not null and their subtrees has no
+     *  pointers to successors.
+     */
+    public function isRoot($node) {
+        return $node !== null && $node->parent === null;
     }
 
     /**
