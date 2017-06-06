@@ -16,16 +16,25 @@ class ArrayList implements ListInterface {
         $this->position = 0;
     }
 
+    /**
+     * Add a new node in the specified index.
+     *
+     * @param integer $index the position.
+     * @param mixed $data the data to be stored.
+     */
     public function insert($index, $data) {
-        
+        array_splice($this->data, $index, 0, $data);
     }
     
+    /**
+     * Removes all nodes of the array. It removes from the beginning.
+     */
     public function clear() {
         $this->data = [];
     }
     
     public function get($index) {
-
+        return $this->data[$index];
     }
 
     public function getAll() {
@@ -37,12 +46,22 @@ class ArrayList implements ListInterface {
     }
     
     /**
-     * Removes and returns the last node in the list.
+     * Removes and returns the last item in the array.
      *
      * @return mixed data in node.
      */
     public function pop() {
+        return array_pop($this->data);
+    }
 
+    /**
+     * Adds at the end of the list new node containing
+     * the data to be stored.
+     *
+     * @param mixed $data The data
+     */
+    public function push($data) {
+        $this->data[] = $data;
     }
 
     public function delete($index) {
