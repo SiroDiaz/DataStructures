@@ -13,14 +13,15 @@ class ArrayList implements ListInterface {
     public function __construct() {
         $this->data = [];
         $this->size = 0;
+        $this->position = 0;
     }
 
     public function insert($index, $data) {
-
+        
     }
     
     public function clear() {
-
+        $this->data = [];
     }
     
     public function get($index) {
@@ -32,19 +33,38 @@ class ArrayList implements ListInterface {
     }
 
     public function empty() : bool {
-        return true;
+        return $this->size === 0;
     }
     
+    /**
+     * Removes and returns the last node in the list.
+     *
+     * @return mixed data in node.
+     */
+    public function pop() {
+
+    }
+
     public function delete($index) {
-
+        unset($this->data[$index]);
     }
     
+    /**
+     * Returns the array size.
+     *
+     * @return int the length
+     */
     public function size() : int {
-        return 0;
+        return $this->size;
     }
 
+    /**
+     * Returns array stored in the data attribute.
+     *
+     * @return array data stored in all nodes.
+     */
     public function toArray() : array {
-        return [];
+        return $this->data;
     }
 
     /**
@@ -52,7 +72,7 @@ class ArrayList implements ListInterface {
      */
     public function rewind() {
         $this->position = 0;
-        $this->current = &$this->head;
+        $this->current = $this->data[$this->position];
     }
 
     /**
@@ -61,7 +81,7 @@ class ArrayList implements ListInterface {
      * @return mixed
      */
     public function current() {
-        return $this->current->data;
+        return $this->current;
     }
 
     /**
@@ -79,7 +99,7 @@ class ArrayList implements ListInterface {
      */
     public function next() {
         ++$this->position;
-        $this->current = $this->current->next;
+        $this->current = $this->data[$this->position];
     }
 
     /**
