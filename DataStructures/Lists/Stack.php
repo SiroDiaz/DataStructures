@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * DataStructures for PHP
+ *
+ * @link      https://github.com/SiroDiaz/DataStructures
+ * @copyright Copyright (c) 2017 Siro Díaz
+ * @license   https://github.com/SiroDiaz/DataStructures/blob/master/README.md (MIT License)
+ */
 namespace DataStructures\Lists;
 
 use DataStructures\Lists\Nodes\SimpleLinkedListNode as Node;
@@ -8,16 +14,35 @@ use InvalidArgumentException;
 use Countable;
 
 /**
- * Stack (LIFO) is a singly linked list that inserts and removes at the
- *  beginnig of list. Insert and remove are O(1), size and empty are also O(1).
+ * Stack
+ *
+ * (LIFO) is a singly linked list that inserts and removes at the
+ * beginnig of list. Insert and remove are O(1), size and empty are also O(1).
  *
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
 class Stack implements Countable {
+    /**
+     * @var $head represents the stack head.
+     */
     private $head;
+    /**
+     * @var $size contains the stack size. Increments each time
+     *  that is inserted a new item.
+     */
     private $size;
+    /**
+     * @var $maxSize if 0 it means that stack is unlimited, else it indicates
+     *  the maximum size of the stack.
+     */
     private $maxSize;
 
+    /**
+     * Initializes the stack.
+     *
+     * @param int $maxSize 0 by default. If greater than 0 is limited.
+     * @throws \InvalidArgumentException if size is lower than 0.
+     */
     public function __construct($maxSize = 0) {
         if($maxSize < 0) {
             throw new InvalidArgumentException();
