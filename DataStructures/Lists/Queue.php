@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * DataStructures for PHP
+ *
+ * @link      https://github.com/SiroDiaz/DataStructures
+ * @copyright Copyright (c) 2017 Siro Díaz Palazón
+ * @license   https://github.com/SiroDiaz/DataStructures/blob/master/README.md (MIT License)
+ */
 namespace DataStructures\Lists;
 
 use DataStructures\Lists\Nodes\SimpleLinkedListNode as Node;
@@ -8,6 +14,8 @@ use InvalidArgumentException;
 use Countable;
 
 /**
+ * Queue
+ *
  * Queue (FIFO) is a circular linked list that inserts at the end
  * of list and removes at the beginning. Insert and remove
  * are O(1), size and empty are also O(1).

@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * DataStructures for PHP
+ *
+ * @link      https://github.com/SiroDiaz/DataStructures
+ * @copyright Copyright (c) 2017 Siro Díaz Palazón
+ * @license   https://github.com/SiroDiaz/DataStructures/blob/master/README.md (MIT License)
+ */
 namespace DataStructures\Lists;
 
 use DataStructures\Lists\Nodes\SimpleLinkedListNode as Node;
@@ -8,7 +14,9 @@ use OutOfBoundsException;
 use Iterator;
 
 /**
- * SimpleLinkedList is a single linked list that has
+ * SimpleLinkedList
+ *
+ * SimpleLinkedList is a singly linked list that has
  * a pointer to the next node but last node points to null.
  *
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>

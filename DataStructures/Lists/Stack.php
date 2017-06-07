@@ -3,7 +3,7 @@
  * DataStructures for PHP
  *
  * @link      https://github.com/SiroDiaz/DataStructures
- * @copyright Copyright (c) 2017 Siro Díaz
+ * @copyright Copyright (c) 2017 Siro Díaz Palazón
  * @license   https://github.com/SiroDiaz/DataStructures/blob/master/README.md (MIT License)
  */
 namespace DataStructures\Lists;
@@ -16,7 +16,7 @@ use Countable;
 /**
  * Stack
  *
- * (LIFO) is a singly linked list that inserts and removes at the
+ * Stack (LIFO) is a singly linked list that inserts and removes at the
  * beginnig of list. Insert and remove are O(1), size and empty are also O(1).
  *
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>

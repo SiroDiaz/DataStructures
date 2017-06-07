@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * DataStructures for PHP
+ *
+ * @link      https://github.com/SiroDiaz/DataStructures
+ * @copyright Copyright (c) 2017 Siro Díaz Palazón
+ * @license   https://github.com/SiroDiaz/DataStructures/blob/master/README.md (MIT License)
+ */
 namespace DataStructures\Lists;
 
 use DataStructures\Lists\Nodes\DoublyLinkedListNode as Node;
@@ -7,8 +13,10 @@ use DataStructures\Lists\Interfaces\ListInterface;
 use OutOfBoundsException;
 
 /**
- * SimpleLinkedList is a single linked list that has
- * a pointer to the next node but last node points to null.
+ * DoublyLinkedList
+ *
+ * DoublyLinkedList is a double linked list that has
+ * a pointer to the next and the previous node.
  *
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
