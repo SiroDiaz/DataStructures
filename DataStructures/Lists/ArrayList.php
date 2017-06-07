@@ -27,13 +27,25 @@ class ArrayList implements ListInterface {
     }
     
     /**
-     * Removes all nodes of the array. It removes from the beginning.
+     * Removes all the array items.
      */
     public function clear() {
         $this->data = [];
     }
     
+     /**
+     * Returns the array in the especified index.
+     *
+     * @param integer $index Index that must be greater than 0
+     *  and lower than the list size.
+     * @return mixed The data stored in the given index
+     * @throws OutOfBoundsException if index is out bounds.
+     */
     public function get($index) {
+        if($index < 0 || $index > $this->size - 1) {
+            throw new OutOfBoundsException();
+        }
+
         return $this->data[$index];
     }
 
