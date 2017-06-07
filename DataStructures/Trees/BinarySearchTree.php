@@ -1,11 +1,19 @@
 <?php
-
+/**
+ * DataStructures for PHP
+ *
+ * @link      https://github.com/SiroDiaz/DataStructures
+ * @copyright Copyright (c) 2017 Siro Díaz Palazón
+ * @license   https://github.com/SiroDiaz/DataStructures/blob/master/README.md (MIT License)
+ */
 namespace DataStructures\Trees;
 
 use DataStructures\Trees\Interfaces\TreeInterface;
 use DataStructures\Trees\Nodes\BSTNode as Node;
 /**
- * BinarySearchTree class. Represents a BST actions that can be realized.
+ * BinarySearchTree
+ * 
+ * Represents a BST actions that can be realized.
  * At the beginning root is null and it can grow up to a O(n) in search,
  * delete and insert (in worst case). In best cases it will be O(log n).
  *

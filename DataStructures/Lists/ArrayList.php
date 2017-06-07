@@ -1,9 +1,23 @@
 <?php
-
+/**
+ * DataStructures for PHP
+ *
+ * @link      https://github.com/SiroDiaz/DataStructures
+ * @copyright Copyright (c) 2017 Siro Díaz Palazón
+ * @license   https://github.com/SiroDiaz/DataStructures/blob/master/README.md (MIT License)
+ */
 namespace DataStructures\Lists;
 
 use DataStructures\Lists\Interfaces\ListInterface;
 
+/**
+ * ArrayList
+ *
+ * This class is an implementation of a list based in native arrays.
+ * The access time is, in general, O(1) since all in PHP is a hash table.
+ *
+ * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
+ */
 class ArrayList implements ListInterface {
     private $data;
     private $current;

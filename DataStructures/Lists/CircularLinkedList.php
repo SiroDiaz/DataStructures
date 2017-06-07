@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * DataStructures for PHP
+ *
+ * @link      https://github.com/SiroDiaz/DataStructures
+ * @copyright Copyright (c) 2017 Siro Díaz Palazón
+ * @license   https://github.com/SiroDiaz/DataStructures/blob/master/README.md (MIT License)
+ */
 namespace DataStructures\Lists;
 
 use DataStructures\Lists\Nodes\SimpleLinkedListNode as Node;
@@ -8,6 +14,8 @@ use OutOfBoundsException;
 use Iterator;
 
 /**
+ * CircularLinkedList
+ *
  * CircularLinkedList is a single and circular linked list that has
  * a pointer to the next node and also and last node points to head.
  *
