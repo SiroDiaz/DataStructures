@@ -9,6 +9,7 @@
 namespace DataStructures\Lists;
 
 use DataStructures\Lists\Interfaces\ListInterface;
+use OutOfBoundsException;
 
 /**
  * ArrayList
@@ -38,6 +39,7 @@ class ArrayList implements ListInterface {
      */
     public function insert($index, $data) {
         array_splice($this->data, $index, 0, $data);
+        $this->size++;
     }
     
     /**
@@ -45,6 +47,7 @@ class ArrayList implements ListInterface {
      */
     public function clear() {
         $this->data = [];
+        $this->size = 0;
     }
     
      /**
@@ -63,8 +66,23 @@ class ArrayList implements ListInterface {
         return $this->data[$index];
     }
 
-    public function getAll() {
+    /**
+     * Returns the last node with O(1).
+     *
+     * @return mixed null if the array is empty.
+     */
+    public function getLast() {
+        if(!$this->empty()) {
+            return $this->data[$this->size - 1];
+        }
+        
+        return null;
+    }
 
+    public function getAll() {
+        foreach($this->data as $data) {
+            yield $data;
+        }
     }
 
     public function empty() : bool {
@@ -77,7 +95,7 @@ class ArrayList implements ListInterface {
      * @return mixed data in node.
      */
     public function pop() {
-        return array_pop($this->data);
+        return $this->delete(($this->size === 0) ? 0 : $this->size - 1);
     }
 
     /**
@@ -88,10 +106,36 @@ class ArrayList implements ListInterface {
      */
     public function push($data) {
         $this->data[] = $data;
+        $this->size++;
     }
 
+    /**
+     * Adds at the beginning a node in the list.
+     *
+     * @param mixed $data
+     * @return mixed the data stored.
+     */
+    public function unshift($data) {
+        $this->insert(0, $data);
+    }
+
+    /**
+     * Delete a node in the given position and returns it back.
+     *
+     * @param integer $index the position.
+     * @throws OutOfBoundsException if index is negative
+     *  or is greater than the size of the list.
+     */
     public function delete($index) {
-        unset($this->data[$index]);
+        if($this->size === 0 || $index < 0 || $index > $this->size - 1) {
+            throw new OutOfBoundsException();
+        }
+        
+        $data = $this->data[$index];
+        array_splice($this->data, $index, 1);
+        $this->size--;
+
+        return $data;
     }
     
     /**
@@ -101,6 +145,15 @@ class ArrayList implements ListInterface {
      */
     public function size() : int {
         return $this->size;
+    }
+    
+    /**
+     * Deletes the first node of the list and returns it.
+     *
+     * @return mixed the data.
+     */
+    public function shift() {
+        return $this->delete(0);
     }
 
     /**
@@ -164,19 +217,21 @@ class ArrayList implements ListInterface {
     public function count() {
         return $this->size;
     }
-
+    
     public function offsetSet($offset, $valor) {
         //TODO
+        /*
         if (is_null($offset)) {
             // $this->contenedor[] = $valor;
         } else {
             // $this->contenedor[$offset] = $valor;
         }
+        */
     }
     
     public function offsetExists($offset) {
         //TODO
-        return false;
+        // return false;
         // return isset($this->contenedor[$offset]);
     }
 
@@ -187,7 +242,7 @@ class ArrayList implements ListInterface {
 
     public function offsetGet($offset) {
         //TODO
-        return false;
+        // return false;
         // return isset($this->contenedor[$offset]) ? $this->contenedor[$offset] : null;
     }
 }
