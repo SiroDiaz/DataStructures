@@ -10,6 +10,8 @@ namespace DataStructures\Trees;
 
 use DataStructures\Trees\Interfaces\TreeInterface;
 use DataStructures\Trees\Nodes\BSTNode as Node;
+use DataStructures\Trees\BinaryTreeAbstract;
+
 /**
  * BinarySearchTree
  * 
