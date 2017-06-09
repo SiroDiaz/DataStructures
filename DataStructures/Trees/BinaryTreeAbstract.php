@@ -1,10 +1,24 @@
 <?php
-
+/**
+ * DataStructures for PHP
+ *
+ * @link      https://github.com/SiroDiaz/DataStructures
+ * @copyright Copyright (c) 2017 Siro Díaz Palazón
+ * @license   https://github.com/SiroDiaz/DataStructures/blob/master/README.md (MIT License)
+ */
 namespace DataStructures\Trees;
 
 use DataStructures\Trees\Interfaces\TreeInterface;
 use DataStructures\Trees\Interfaces\BinaryNodeInterface;
 
+/**
+ * BinaryTreeAbstract
+ * 
+ * BinaryTreeAbstract class is an abstract class that implements
+ * common binary trees methods.
+ *
+ * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
+ */
 abstract class BinaryTreeAbstract implements TreeInterface {
     protected $root;
     protected $size;
@@ -27,8 +41,13 @@ abstract class BinaryTreeAbstract implements TreeInterface {
         return $this->size;
     }
 
-    public function put($key, $data){}
-    public function putOrUpdate($key, $data){}
+    public function put($key, $data) {
+
+    }
+
+    public function putOrUpdate($key, $data) {
+
+    }
 
     /**
      * Retrieve the data stored in the tree.

@@ -11,8 +11,9 @@ namespace DataStructures\Trees\Nodes;
 use DataStructures\Trees\Interfaces\BinaryNodeInterface;
 
 /**
- * BSTNode class. Contains all attributes that represent the node for BST
- * and AVL with a pointer to the parent node.
+ * BSTNode
+ *
+ * BSTNode Contains all attributes that represent the node for BST
  *
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
