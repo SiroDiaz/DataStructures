@@ -342,6 +342,97 @@ abstract class BinaryTreeAbstract implements TreeInterface {
     }
 
     /**
+     * Traverse in preorder. This is: first visit the root, then
+     * the left subtree and finally the right subtree.
+     *
+     * @param Callable|null $callback the callback function to apply to each
+     *  node.
+     */
+    public function preorder(Callable $callback = null) {
+        $this->_preorder($this->root, $callback);
+    }
+
+    /**
+     * Private preorder traverse method that is recursive and is called by
+     * the public preorder method.
+     *
+     * @param DataStructures\Trees\Nodes\BSTNode|null $node.
+     * @param Callable|null $callback the callback function to apply to each
+     *  node.
+     */
+    private function _preorder($node, Callable $callback = null) {
+        if($node === null) {
+            return;
+        }
+        if($callback !== null) {
+            call_user_func($callback, $node);
+        }
+        $this->_preorder($node->left, $callback);
+        $this->_preorder($node->right, $callback);
+    }
+
+    /**
+     * Traverse in inorder. This is: first visit the left subtree,
+     * then the root and finally the right subtree.
+     *
+     * @param Callable|null $callback the callback function to apply to each
+     *  node.
+     */
+    public function inorder(Callable $callback = null) {
+        $this->_inorder($this->root);
+    }
+
+    /**
+     * Private inorder traverse method that is recursive and is called by
+     * the public inorder method.
+     *
+     * @param DataStructures\Trees\Nodes\BSTNode|null $node.
+     * @param Callable|null $callback the callback function to apply to each
+     *  node.
+     */
+    private function _inorder($node, Callable $callback = null) {
+        if($node === null) {
+            return;
+        }
+
+        $this->_inorder($node->left, $callback);
+        if($callback !== null) {
+            call_user_func($callback, $node);
+        }
+        $this->_inorder($node->right, $callback);
+    }
+
+    /**
+     * Traverse in postorder. This is: first visit the left subtree,
+     * then the right subtree and finally the root.
+     *
+     * @param Callable|null $callback the callback function to apply to each
+     *  node.
+     */
+    public function postorder(Callable $callback = null) {
+        $this->_postorder($this->root, $callback);
+    }
+
+    /**
+     * Private postorder traverse method that is recursive and is called by
+     * the public postorder method.
+     *
+     * @param DataStructures\Trees\Nodes\BSTNode|null $node.
+     * @param Callable|null $callback the callback function to apply to each
+     *  node.
+     */
+    private function _postorder($node, Callable $callback = null) {
+        if($node === null) {
+            return;
+        }
+        $this->_postorder($node->left, $callback);
+        $this->_postorder($node->right, $callback);
+        if($callback !== null) {
+            call_user_func($callback, $node);
+        }
+    }
+
+    /**
      * Binds to count() method. This is equal to make $this->tree->size().
      *
      * @return integer the tree size. 0 if it is empty.
