@@ -8,4 +8,12 @@
  */
 namespace DataStructures\Trees\Interfaces;
 
+/**
+ * BinaryNodeInterface
+ * 
+ * BinaryNodeInterface is the interface that implements all binary
+ * tree nodes.
+ *
+ * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
+ */
 interface BinaryNodeInterface {}
