@@ -8,13 +8,15 @@
  */
 namespace DataStructures\Trees\Nodes;
 
+use DataStructures\Trees\Interfaces\BinaryNodeInterface;
+
 /**
  * BSTNode class. Contains all attributes that represent the node for BST
  * and AVL with a pointer to the parent node.
  *
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
-class BSTNode {
+class BSTNode implements BinaryNodeInterface {
     public $key;    // key used to insert, remove and retrieve
     public $data;   // associated data
     public $parent; // the parent node
