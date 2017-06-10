@@ -28,6 +28,17 @@ class BinarySearchTree extends BinaryTreeAbstract {
         $this->size = 0;
     }
 
+    /**
+     * Creates a BSTNode.
+     *
+     * @param int|string $key the key used to store.
+     * @param mixed $data the data.
+     * @param DataStructures\Trees\Nodes\BSTNode|null $parent the parent node.
+     * @param DataStructures\Trees\Nodes\BSTNode|null $left the left child node.
+     * @param DataStructures\Trees\Nodes\BSTNode|null $right the right child node.
+     *
+     * @return DataStructures\Trees\Nodes\BSTNode the new node created.
+     */
     public function createNode($key, $data, $parent = null, $left = null, $right = null) {
         return new BSTNode($key, $data, $parent, $left, $right);
     }

@@ -23,6 +23,17 @@ use DataStructures\Trees\Nodes\AVLNode;
  */
 class AVLTree extends BinaryTreeAbstract {
     
+    /**
+     * Creates a AVLNode.
+     *
+     * @param int|string $key the key used to store.
+     * @param mixed $data the data.
+     * @param DataStructures\Trees\Nodes\AVLNode|null $parent the parent node.
+     * @param DataStructures\Trees\Nodes\AVLNode|null $left the left child node.
+     * @param DataStructures\Trees\Nodes\AVLNode|null $right the right child node.
+     *
+     * @return DataStructures\Trees\Nodes\AVLNode the new node created.
+     */
     public function createNode($key, $data, $parent = null, $left = null, $right = null) {
         return new AVLNode($key, $data, $parent, $left, $right);
     }
