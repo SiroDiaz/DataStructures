@@ -9,7 +9,7 @@
 namespace DataStructures\Trees;
 
 use DataStructures\Trees\BinaryTreeAbstract;
-// use DataStructures\Trees\Nodes\AVLNode;
+use DataStructures\Trees\Nodes\AVLNode;
 
 /**
  * AVLTree
@@ -23,4 +23,7 @@ use DataStructures\Trees\BinaryTreeAbstract;
  */
 class AVLTree extends BinaryTreeAbstract {
     
+    public function createNode($key, $data, $parent = null, $left = null, $right = null) {
+        return new AVLNode($key, $data, $parent, $left, $right);
+    }
 }
