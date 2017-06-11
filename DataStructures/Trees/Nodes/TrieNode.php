@@ -8,8 +8,6 @@
  */
 namespace DataStructures\Trees;
 
-use DataStructures\Trees\BinarySearchTree;
-
 /**
  * TrieNode.
  *
@@ -27,7 +25,7 @@ class TrieNode {
     public function __construct($char = '', $isWord = false) {
         $this->char = $char;
         $this->isWord = $isWord;
-        $this->children = new BinarySearchTree();
+        $this->children = [];
         $this->size = 0;
     }
 }
