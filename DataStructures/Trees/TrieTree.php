@@ -17,14 +17,26 @@ namespace DataStructures\Trees;
  *
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
-class TrieTree {
+class TrieTree implements Countable {
     private $root;
     private $numWords;
     private $size;
-
+    
     public function __construct() {
         $this->root = null;
         $this->numWords = 0;
         $this->size = 0;
+    }
+
+    public function numWords() : int {
+        return $this->numWords;
+    }
+
+    public function size() : int {
+        return $this->size;
+    }
+
+    public function count() {
+        return $this->size();
     }
 }
