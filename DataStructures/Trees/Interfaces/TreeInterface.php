@@ -18,13 +18,13 @@ use Countable;
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
 interface TreeInterface extends Countable {
-    public function empty();
-    public function size();
+    public function empty() : bool;
+    public function size() : int;
     public function put($key, $data);
     public function putOrUpdate($key, $data);
     public function get($key);
     public function getRoot();
-    public function exists($key);
+    public function exists($key) : bool;
     public function floor($key);
     public function ceil($key);
     public function min();
@@ -33,6 +33,6 @@ interface TreeInterface extends Countable {
     public function deleteMax();
     public function delete($key);
     public function search($key);
-    public function isLeaf($node);
-    public function isRoot($node);
+    public function isLeaf($node) : bool;
+    public function isRoot($node) : bool;
 }

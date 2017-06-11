@@ -21,7 +21,7 @@ use DataStructures\Trees\Interfaces\BinaryNodeInterface;
  */
 abstract class BinaryTreeAbstract implements TreeInterface {
     protected $root;
-    protected $size;
+    protected $size = 0;
 
     public abstract function createNode($key, $data, $parent = null, $left = null, $right = null);
     /**
@@ -29,7 +29,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
      *
      * @return boolean true if is empty, else false.
      */
-    public function empty() {
+    public function empty() : bool {
         return $this->root === null;
     }
 
@@ -38,7 +38,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
      *
      * @return int the length
      */
-    public function size() {
+    public function size() : int {
         return $this->size;
     }
 
@@ -135,7 +135,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
      * @param int|string $key the key used to look for.
      * @return bool true if was found.
      */
-    public function exists($key){
+    public function exists($key) : bool {
         // $this->_exists($this->root, $key); for recursive search
         if($this->root === null) {
             return false;
@@ -412,7 +412,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
      * @return true if is leaf the node, is not null and their subtrees has no
      *  pointers to successors.
      */
-    public function isLeaf($node) { // BinaryTreeNode
+    public function isLeaf($node) : bool { // BinaryTreeNode
         return ($node !== null && $node->left === null && $node->right === null);
     }
 
@@ -424,7 +424,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
      * @return true if is root the node, is not null and their subtrees has no
      *  pointers to successors.
      */
-    public function isRoot($node) {
+    public function isRoot($node) : bool {
         return $node !== null && $node->parent === null;
     }
 
