@@ -11,8 +11,8 @@ namespace DataStructures\Trees;
 /**
  * TrieNode.
  *
- * The TrieNode class represents the trie node. It uses a BST to store all children
- * nodes in worst case of O(n).
+ * The TrieNode class represents the trie node. It uses an array to store all
+ * children nodes.
  *
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
