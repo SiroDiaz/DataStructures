@@ -41,6 +41,15 @@ class TrieTree implements Countable {
     }
 
     /**
+     * Returns true if the tree is empty. Number of prefixes is 0.
+     *
+     * @return bool true if empty.
+     */
+    public function empty() : bool {
+        return $this->size === 0;
+    }
+
+    /**
      * Returns the number of prefixes that are contained in the trie.
      *
      * @return int the num of prefixes.
