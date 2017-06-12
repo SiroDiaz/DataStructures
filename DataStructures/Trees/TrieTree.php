@@ -51,12 +51,53 @@ class TrieTree implements Countable {
             if(!isset($current->children[$char])) {
                 if($i === mb_strlen($word) - 1) {
                     $current->children[$char] = new TrieNode($char, true);
+                    $current->isWord = true;
+                    $this->numWords++;
                 } else {
                     $current->children[$char] = new TrieNode($char, false);
                 }
+                $this->size++;
+            } else {
+                if($i === mb_strlen($word) - 1) {
+                    if($current->isWord === false) {
+                        $current->isWord = true;
+                        $this->numWords++;
+                    }
+                }
             }
+
             $current = &$current->children[$char];
         }
+    }
+
+    public function contains($word) : bool {
+        $word = trim($word);
+        $wordLength = mb_strlen($word);
+        if($wordLength === 0) {
+            return true;
+        }
+
+        $i = 0;
+        $found = true;
+        $current = $this->root;
+        while($found && $i < $wordLength) {
+            $char = mb_substr($word, $i, 1);
+            if(isset($current->children[$char])) {
+                $current = $current->children[$char];
+            } else {
+                $found = false;
+            }
+        }
+
+        if($found && $current->isWord) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function wordCount() {
+        return $this->numWords;
     }
 
     public function count() {
