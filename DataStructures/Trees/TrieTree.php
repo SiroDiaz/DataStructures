@@ -118,6 +118,43 @@ class TrieTree implements Countable {
         return false;
     }
 
+    public function getWords() : array {
+        return [];
+    }
+
+    /**
+     *
+     */
+    public function startsWith($prefix) : bool {
+        return false;
+    }
+
+    /**
+     * Retrieve the node where ends the prefix especified.
+     *
+     * @param string $prefix The prefix to look for.
+     * @return DataStructures\Trees\Nodes\TrieNode|null null if not found.
+     */
+    private function getNodeFromPrefix($prefix) {
+        if($this->size === 0) {
+            return $this->root;
+        }
+        
+        $i = 0;
+        $current = $this->root;
+        $prefixLength = mb_strlen(trim($prefix));
+        while($i < $prefixLength) {
+            $char = mb_substr($prefix, $i, 1, 'UTF-8');
+            if(!isset($current->children[$char])) {
+                return null;
+            }
+            $current = $current->children[$char];
+            $i++;
+        }
+
+        return $current;
+    }
+
     /**
      * Gets the number of words stored in the tree.
      *
