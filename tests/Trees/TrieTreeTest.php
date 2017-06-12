@@ -39,4 +39,13 @@ class TrieTreeTest extends TestCase {
         $this->assertTrue($this->tree->contains('bye'));
         $this->assertFalse($this->tree->contains('what'));
     }
+
+    public function testStartsWith() {
+        $this->assertFalse($this->tree->startsWith('hello'));
+        $this->tree->add('hello');
+        $this->tree->add('bye');
+        $this->assertTrue($this->tree->startsWith('b'));
+        $this->assertTrue($this->tree->startsWith('hel'));
+        $this->assertFalse($this->tree->startsWith('hellooo'));
+    }
 }

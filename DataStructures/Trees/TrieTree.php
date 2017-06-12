@@ -132,21 +132,24 @@ class TrieTree implements Countable {
     }
 
     /**
+     * Checks if there is any word that starts with a concrete prefix.
      *
+     * @param string $prefix The prefix to look up.
+     * @return true if there are words that start with the especified prefix.
      */
     public function startsWith($prefix) : bool {
-        return false;
+        return $this->getNodeFromPrefix($prefix) !== null;
     }
 
     /**
-     * Retrieve the node where ends the prefix especified.
+     * Retrieves the node where ends the prefix especified.
      *
      * @param string $prefix The prefix to look for.
      * @return DataStructures\Trees\Nodes\TrieNode|null null if not found.
      */
     private function getNodeFromPrefix($prefix) {
         if($this->size === 0) {
-            return $this->root;
+            return null;
         }
         
         $i = 0;
