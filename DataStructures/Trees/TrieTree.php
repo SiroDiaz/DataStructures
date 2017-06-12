@@ -8,6 +8,8 @@
  */
 namespace DataStructures\Trees;
 
+use DataStructures\Trees\Nodes\TrieNode;
+
 /**
  * TrieTree
  *
@@ -23,7 +25,7 @@ class TrieTree implements Countable {
     private $size;
     
     public function __construct() {
-        $this->root = null;
+        $this->root = new TrieNode();
         $this->numWords = 0;
         $this->size = 0;
     }
@@ -34,6 +36,26 @@ class TrieTree implements Countable {
 
     public function size() : int {
         return $this->size;
+    }
+
+    public function add($word) {
+        $word = trim($word);
+        if(mb_strlen($word) === 0) {
+            return;
+        }
+
+        $current = &$this->root;
+        for($i = 0; $i < mb_strlen($word); $i++) {
+            $char = mb_substr($word, $i, 1, 'UTF-8');
+            if(!isset($current->children[$char])) {
+                if($i === mb_strlen($word) - 1) {
+                    $current->children[$char] = new TrieNode($char, true);
+                } else {
+                    $current->children[$char] = new TrieNode($char, false);
+                }
+            }
+            $current = &$current->children[$char];
+        }
     }
 
     public function count() {
