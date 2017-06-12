@@ -107,11 +107,21 @@ class TrieTree implements Countable {
         return false;
     }
 
-    public function wordCount() {
+    /**
+     * Gets the number of words stored in the tree.
+     *
+     * @return int The word count.
+     */
+    public function wordCount() : int {
         return $this->numWords;
     }
 
-    public function count() {
+    /**
+     * Gets the number of prefixes stored in the tree.
+     *
+     * @return int The word count.
+     */
+    public function count() : int {
         return $this->size();
     }
 }

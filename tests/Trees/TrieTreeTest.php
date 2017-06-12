@@ -17,6 +17,8 @@ class TrieTreeTest extends TestCase {
         $this->assertEquals(8, $this->tree->size());
         $this->tree->add('hello');
         $this->assertEquals(8, $this->tree->size());
+        $this->tree->add('hell');
+        $this->assertEquals(8, $this->tree->size());
     }
 
     public function testWordCount() {
@@ -26,5 +28,7 @@ class TrieTreeTest extends TestCase {
         $this->assertEquals(2, $this->tree->wordCount());
         $this->tree->add('hello');
         $this->assertEquals(2, $this->tree->wordCount());
+        $this->tree->add('hell');
+        $this->assertEquals(3, $this->tree->wordCount());
     }
 }
