@@ -31,10 +31,20 @@ class TrieTree implements Countable {
         $this->size = 0;
     }
 
+    /**
+     * Returns the number of words stored in the trie.
+     *
+     * @return int the number of words.
+     */
     public function numWords() : int {
         return $this->numWords;
     }
 
+    /**
+     * Returns the number of prefixes that are contained in the trie.
+     *
+     * @return int the num of prefixes.
+     */
     public function size() : int {
         return $this->size;
     }
@@ -98,6 +108,7 @@ class TrieTree implements Countable {
             } else {
                 $found = false;
             }
+            $i++;
         }
 
         if($found && $current->isWord) {

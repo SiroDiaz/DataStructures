@@ -31,4 +31,12 @@ class TrieTreeTest extends TestCase {
         $this->tree->add('hell');
         $this->assertEquals(3, $this->tree->wordCount());
     }
+
+    public function testContains() {
+        $this->tree->add('hello');
+        $this->assertTrue($this->tree->contains('hello'));
+        $this->tree->add('bye');
+        $this->assertTrue($this->tree->contains('bye'));
+        $this->assertFalse($this->tree->contains('what'));
+    }
 }
