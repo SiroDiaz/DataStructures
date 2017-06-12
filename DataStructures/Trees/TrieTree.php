@@ -9,6 +9,7 @@
 namespace DataStructures\Trees;
 
 use DataStructures\Trees\Nodes\TrieNode;
+use Countable;
 
 /**
  * TrieTree
