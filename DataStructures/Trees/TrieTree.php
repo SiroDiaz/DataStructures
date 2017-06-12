@@ -39,6 +39,11 @@ class TrieTree implements Countable {
         return $this->size;
     }
 
+    /**
+     * Inserts a new word in the tree. If the word exists it doesn't do nothing.
+     *
+     * @param string $word the word to be added.
+     */
     public function add($word) {
         $word = trim($word);
         if(mb_strlen($word) === 0) {
@@ -70,6 +75,12 @@ class TrieTree implements Countable {
         }
     }
 
+    /**
+     * Returns true if the word is stored in the tree.
+     *
+     * @param string $word The word to check if exists.
+     * @param bool true if is contained.
+     */
     public function contains($word) : bool {
         $word = trim($word);
         $wordLength = mb_strlen($word);
