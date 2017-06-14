@@ -20,11 +20,13 @@ class TrieNode {
     public $char;
     public $isWord;
     public $children;
+    public $parent;
 
-    public function __construct($char = '', $isWord = false) {
+    public function __construct($char = '', &$parent = null, $isWord = false) {
         $this->char = $char;
         $this->isWord = $isWord;
         $this->children = [];
+        $this->parent = &$parent;
     }
 
     public function hasChildren() {
