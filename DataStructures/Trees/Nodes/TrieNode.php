@@ -8,6 +8,8 @@
  */
 namespace DataStructures\Trees\Nodes;
 
+use Countable;
+
 /**
  * TrieNode.
  *
@@ -16,7 +18,7 @@ namespace DataStructures\Trees\Nodes;
  *
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
-class TrieNode {
+class TrieNode implements Countable {
     public $char;
     public $isWord;
     public $children;
@@ -29,7 +31,20 @@ class TrieNode {
         $this->parent = &$parent;
     }
 
-    public function hasChildren() {
+    public function hasChildren() : bool {
         return count($this->children) > 0;
+    }
+
+    public function isLeaf() : bool {
+        return $this->parent !== null && $this->hasChildren() === 0;
+    }
+
+    public function isRoot() : bool {
+        return $this->parent === null;
+    }
+
+
+    public function count() {
+        return count($this->children);
     }
 }

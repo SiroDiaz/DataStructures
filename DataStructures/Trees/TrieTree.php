@@ -68,7 +68,7 @@ class TrieTree implements Countable {
                     $current->children[$char] = new TrieNode($char, $current, true);
                     $this->numWords++;
                 } else {
-                    $current->children[$char] = new TrieNode($char, $parent, false);
+                    $current->children[$char] = new TrieNode($char, $current, false);
                 }
                 $this->size++;
             } else {
@@ -132,8 +132,15 @@ class TrieTree implements Countable {
                         if($node->hasChildren()) {
                             $node->isWord = false;
                         } else {
-
+                            $parent = &$node->parent;
+                            // search
+                            while(!$parent->hasChildren()) {
+                                unset($node->parent->children[$char]);
+                            }
+                            $node = null;
                         }
+
+                        $this->numWords--;
                     }
                     $current = $current->children[$char];
                 }
