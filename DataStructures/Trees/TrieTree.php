@@ -32,15 +32,6 @@ class TrieTree implements Countable {
     }
 
     /**
-     * Returns the number of words stored in the trie.
-     *
-     * @return int the number of words.
-     */
-    public function numWords() : int {
-        return $this->numWords;
-    }
-
-    /**
      * Returns true if the tree is empty. Number of prefixes is 0.
      *
      * @return bool true if empty.
@@ -75,7 +66,6 @@ class TrieTree implements Countable {
             if(!isset($current->children[$char])) {
                 if($i === mb_strlen($word) - 1) {
                     $current->children[$char] = new TrieNode($char, true);
-                    $current->isWord = true;
                     $this->numWords++;
                 } else {
                     $current->children[$char] = new TrieNode($char, false);
@@ -83,8 +73,8 @@ class TrieTree implements Countable {
                 $this->size++;
             } else {
                 if($i === mb_strlen($word) - 1) {
-                    if($current->isWord === false) {
-                        $current->isWord = true;
+                    if($current->children[$char]->isWord === false) {
+                        $current->children[$char]->isWord = true;
                         $this->numWords++;
                     }
                 }
@@ -127,6 +117,24 @@ class TrieTree implements Countable {
         return false;
     }
 
+    public function delete($word) {
+        // while not consumidaPalabra($i < mb_strlen($word))
+        // if tiene solo una hija y es fin palabra borrar
+        $wordLength = mb_strlen($word);
+        $i = 0;
+        $current = $this->root;
+        while($i < $wordLength) {
+            /*
+            if()
+            if($current->hasChildren()) {
+
+            }
+            */
+            $current = $current->children[mb_substr($word, $i, 1, 'UTF-8')];
+            $i++;
+        }
+    }
+
     public function getWords() : array {
         return [];
     }
@@ -139,6 +147,38 @@ class TrieTree implements Countable {
      */
     public function startsWith($prefix) : bool {
         return $this->getNodeFromPrefix($prefix) !== null;
+    }
+
+    /**
+     *
+     */
+    public function withPrefix($prefix) : array {
+        $node = $this->getNodeFromPrefix($prefix);
+        $words = [];
+        if($node !== null) {
+            foreach($node->children as $char => $n) {
+                $words = $this->_traverse($node->children[$char], $words, $prefix . $char);
+            }
+            
+        }
+        
+        return $words;
+    }
+
+    private function _traverse(TrieNode $node = null, $words = [], $word) {
+        if(empty($node->children)) {
+            // var_dump($words);
+            return $words;
+        }
+        if($node->isWord) {
+            // var_dump($node);
+            $words[] = $word;
+        }
+
+        foreach($node->children as $char => $n) {
+            return $this->_traverse($node->children[$char], $words, $word . $n->char);
+        }
+        
     }
 
     /**

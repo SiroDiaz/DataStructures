@@ -26,4 +26,8 @@ class TrieNode {
         $this->isWord = $isWord;
         $this->children = [];
     }
+
+    public function hasChildren() {
+        return count($this->children) > 0;
+    }
 }
