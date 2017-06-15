@@ -36,13 +36,12 @@ class TrieNode implements Countable {
     }
 
     public function isLeaf() : bool {
-        return $this->parent !== null && $this->hasChildren() === 0;
+        return $this->parent !== null && $this->hasChildren() === false;
     }
 
     public function isRoot() : bool {
         return $this->parent === null;
     }
-
 
     public function count() {
         return count($this->children);

@@ -132,20 +132,31 @@ class TrieTree implements Countable {
                         if($node->hasChildren()) {
                             $node->isWord = false;
                         } else {
-                            $parent = &$node->parent;
-                            // search
-                            while(!$parent->hasChildren()) {
-                                unset($node->parent->children[$char]);
+                            $parentNode = &$node->parent;
+                            unset($parentNode->children[$char]);
+                            $this->size--;
+                            $j = $i - 1;
+
+                            while($j >= 0 && $parentNode->isLeaf() && !$parentNode->isWord) {
+                                $char = mb_substr($word, $j, 1, 'UTF-8');
+                                $parentNode = &$parentNode->parent;
+                                unset($parentNode->children[$char]);
+                                $this->size--;
+                                $j--;
                             }
-                            $node = null;
                         }
 
                         $this->numWords--;
                     }
-                    $current = $current->children[$char];
                 }
             } else {
                 return;
+            }
+
+            if(isset($current->children[$char])) {
+                $current = $current->children[$char];
+            } else {
+                $current = $current->parent;    //TODO falta eliminar todos los nodos hoja
             }
             $i++;
         }

@@ -49,11 +49,25 @@ class TrieTreeTest extends TestCase {
         $this->assertFalse($this->tree->startsWith('hellooo'));
     }
 
+    //TODO
     public function testWithPrefix() {
         $this->tree->add('hello');
         $this->tree->add('hell');
         $this->tree->add('bye');
         $this->tree->withPrefix('he');
         $this->assertEquals(3, $this->tree->wordCount());
+    }
+
+    public function testDelete() {
+        $this->tree->add('hellou');
+        $this->tree->add('hell');
+        $this->tree->add('yellow');
+        $this->tree->delete('hellou');
+        $this->assertEquals(2, $this->tree->wordCount());
+        $this->assertFalse($this->tree->contains('hellou'));
+        $this->assertTrue($this->tree->contains('hell'));
+        $this->assertTrue($this->tree->contains('yellow'));
+        $this->tree->delete('yellow');
+        $this->assertEquals(4, $this->tree->size());
     }
 }
