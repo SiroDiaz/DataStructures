@@ -70,4 +70,17 @@ class TrieTreeTest extends TestCase {
         $this->tree->delete('yellow');
         $this->assertEquals(4, $this->tree->size());
     }
+
+    public function testClear() {
+        $this->tree->add('hellou');
+        $this->tree->add('hell');
+        $this->tree->add('yellow');
+        $this->assertEquals(3, $this->tree->wordCount());
+        $this->tree->clear();
+        var_dump($this->tree);
+        $this->assertFalse($this->tree->contains('hellou'));
+        $this->assertFalse($this->tree->contains('hell'));
+        $this->assertFalse($this->tree->contains('yellow'));
+        $this->assertEquals(0, $this->tree->size());
+    }
 }

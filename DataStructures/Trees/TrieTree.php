@@ -117,12 +117,14 @@ class TrieTree implements Countable {
         return false;
     }
 
+    /**
+     *
+     */
     public function delete($word) {
-        // while not consumidaPalabra($i < mb_strlen($word))
-        // if tiene solo una hija y es fin palabra borrar
         $wordLength = mb_strlen($word);
         $i = 0;
         $current = $this->root;
+        
         while($i < $wordLength) {
             if($current->hasChildren()) {
                 $char = mb_substr($word, $i, 1, 'UTF-8');
@@ -159,6 +161,26 @@ class TrieTree implements Countable {
                 $current = $current->parent;    //TODO falta eliminar todos los nodos hoja
             }
             $i++;
+        }
+    }
+
+    public function clear() {
+        foreach($this->root->children as $key => &$node) {
+            $this->_clear($node);
+            unset($this->root->children[$key]);
+        }
+
+        $this->size = 0;
+        $this->numWords = 0;
+    }
+
+    private function _clear(TrieNode &$node = null) {
+        foreach($node->children as $char => &$n) {
+            $aux = $node->children[$char];
+            unset($node->children[$char]);
+            $node = null;
+            return $this->_clear($aux);
+            
         }
     }
 
@@ -204,8 +226,7 @@ class TrieTree implements Countable {
 
         foreach($node->children as $char => $n) {
             return $this->_traverse($node->children[$char], $words, $word . $n->char);
-        }
-        
+        }   
     }
 
     /**
