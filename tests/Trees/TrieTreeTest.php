@@ -77,7 +77,6 @@ class TrieTreeTest extends TestCase {
         $this->tree->add('yellow');
         $this->assertEquals(3, $this->tree->wordCount());
         $this->tree->clear();
-        var_dump($this->tree);
         $this->assertFalse($this->tree->contains('hellou'));
         $this->assertFalse($this->tree->contains('hell'));
         $this->assertFalse($this->tree->contains('yellow'));

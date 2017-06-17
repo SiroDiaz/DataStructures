@@ -118,7 +118,9 @@ class TrieTree implements Countable {
     }
 
     /**
+     * Removes a word from the tree.
      *
+     * @param string $word the word to delete if it is contained in the trie.
      */
     public function delete($word) {
         $wordLength = mb_strlen($word);
@@ -158,12 +160,16 @@ class TrieTree implements Countable {
             if(isset($current->children[$char])) {
                 $current = $current->children[$char];
             } else {
-                $current = $current->parent;    //TODO falta eliminar todos los nodos hoja
+                $current = $current->parent;    //TODO need to delete all leaf nodes
             }
             $i++;
         }
     }
 
+    /**
+     * Removes all nodes (and words) in the tree and resets the size
+     * and word count.
+     */
     public function clear() {
         foreach($this->root->children as $key => &$node) {
             $this->_clear($node);
@@ -174,13 +180,19 @@ class TrieTree implements Countable {
         $this->numWords = 0;
     }
 
+    /**
+     * Recursive clear that removes all nodes, included leaf, except
+     * the references to the first children.
+     *
+     * @param DataStructures\Trees\Nodes\TrieNode|null the node to traverse.
+     * @return DataStructures\Trees\Nodes\TrieNode|null the next node to delete.
+     */
     private function _clear(TrieNode &$node = null) {
         foreach($node->children as $char => &$n) {
             $aux = $node->children[$char];
             unset($node->children[$char]);
             $node = null;
             return $this->_clear($aux);
-            
         }
     }
 
