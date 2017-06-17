@@ -211,7 +211,11 @@ class TrieTree implements Countable {
     }
 
     /**
+     * Returns an array with all words that has the especified prefix.
+     * For example, with prefix 'he' it will retrieve: hell, hello, ....
      *
+     * @param string $prefix The prefix that must have all words.
+     * @return array All words that contains the prefix.
      */
     public function withPrefix($prefix) : array {
         $node = $this->getNodeFromPrefix($prefix);
@@ -221,14 +225,17 @@ class TrieTree implements Countable {
                 $words[] = $prefix;
             }
             foreach($node->children as $char => $n) {
-                $words = $this->_traverse($node->children[$char], $words, $prefix . $char);
+                $words = $this->_traverseWithPrefix($node->children[$char], $words, $prefix . $char);
             }
         }
 
         return $words;
     }
 
-    private function _traverse(TrieNode $node = null, $words = [], $word) {
+    /**
+     *
+     */
+    private function _traverseWithPrefix(TrieNode $node = null, $words = [], $word) {
         if($node->isWord) {
             $words[] = $word;
         }
@@ -238,7 +245,7 @@ class TrieTree implements Countable {
         }
 
         foreach($node->children as $char => &$n) {
-            $words = $this->_traverse($node->children[$char], $words, $word . $char);
+            $words = $this->_traverseWithPrefix($node->children[$char], $words, $word . $char);
         }
 
         return $words;
