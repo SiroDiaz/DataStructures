@@ -59,7 +59,7 @@ class TrieTreeTest extends TestCase {
         $withB = $this->tree->withPrefix('b');
         $withBy = $this->tree->withPrefix('by');
         $all = $this->tree->withPrefix('');
-        
+
         $this->assertSame(['hell', 'hello'], $withH);
         $this->assertSame(['bye', 'beyond'], $withB);
         $this->assertSame(['bye'], $withBy);
@@ -90,5 +90,21 @@ class TrieTreeTest extends TestCase {
         $this->assertFalse($this->tree->contains('hell'));
         $this->assertFalse($this->tree->contains('yellow'));
         $this->assertEquals(0, $this->tree->size());
+    }
+
+    public function testGetWords() {
+        $this->assertSame([], $this->tree->getWords());
+        $this->tree->add('hello');
+        $this->tree->add('hell');
+        $this->tree->add('yellow');
+        $this->tree->add('');
+        $this->assertEquals(3, $this->tree->wordCount());
+        $this->assertSame(['hell', 'hello', 'yellow'], $this->tree->getWords());
+        $this->tree->delete('hello');
+        $this->assertSame(['hell', 'yellow'], $this->tree->getWords());
+        $this->tree->delete('hell');
+        $this->assertSame(['yellow'], $this->tree->getWords());
+        $this->tree->delete('yellow');
+        $this->assertSame([], $this->tree->getWords());
     }
 }

@@ -196,8 +196,19 @@ class TrieTree implements Countable {
         }
     }
 
+    /**
+     * Returns an array containing all words stored in the tree.
+     * It starts to search from the root that contains an empty string
+     * using the withPrefix method.
+     *
+     * @return array an empty array if there are not words in the tree.
+     */
     public function getWords() : array {
-        return [];
+        if($this->size === 0) {
+            return [];
+        }
+
+        return $this->withPrefix('');
     }
 
     /**
