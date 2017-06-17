@@ -217,28 +217,31 @@ class TrieTree implements Countable {
         $node = $this->getNodeFromPrefix($prefix);
         $words = [];
         if($node !== null) {
+            if($node->isWord) {
+                $words[] = $prefix;
+            }
             foreach($node->children as $char => $n) {
                 $words = $this->_traverse($node->children[$char], $words, $prefix . $char);
             }
-            
         }
-        
+
         return $words;
     }
 
     private function _traverse(TrieNode $node = null, $words = [], $word) {
-        if(empty($node->children)) {
-            // var_dump($words);
-            return $words;
-        }
         if($node->isWord) {
-            // var_dump($node);
             $words[] = $word;
         }
 
-        foreach($node->children as $char => $n) {
-            return $this->_traverse($node->children[$char], $words, $word . $n->char);
-        }   
+        if(empty($node->children)) {
+            return $words;
+        }
+
+        foreach($node->children as $char => &$n) {
+            $words = $this->_traverse($node->children[$char], $words, $word . $char);
+        }
+
+        return $words;
     }
 
     /**

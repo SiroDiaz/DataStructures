@@ -54,8 +54,17 @@ class TrieTreeTest extends TestCase {
         $this->tree->add('hello');
         $this->tree->add('hell');
         $this->tree->add('bye');
-        $this->tree->withPrefix('he');
-        $this->assertEquals(3, $this->tree->wordCount());
+        $this->tree->add('beyond');
+        $withH = $this->tree->withPrefix('he');
+        $withB = $this->tree->withPrefix('b');
+        $withBy = $this->tree->withPrefix('by');
+        $all = $this->tree->withPrefix('');
+        
+        $this->assertSame(['hell', 'hello'], $withH);
+        $this->assertSame(['bye', 'beyond'], $withB);
+        $this->assertSame(['bye'], $withBy);
+        $this->assertSame(['hell', 'hello', 'bye', 'beyond'], $all);
+        $this->assertEquals(4, $this->tree->wordCount());
     }
 
     public function testDelete() {
