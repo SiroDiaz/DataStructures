@@ -3,11 +3,11 @@ Data structures for PHP >= 7.0.
 
 ## Index
 
-[Install](https://github.com/SiroDiaz/DataStructures#install)
-**[API](https://github.com/SiroDiaz/DataStructures#api)**
-    - [List implementations](https://github.com/SiroDiaz/DataStructures#lists)
-        - [Singly linked list](https://github.com/SiroDiaz/DataStructures#singly-linked-list)
-        - [Singly circular linked list](https://github.com/SiroDiaz/DataStructures#circular-linked-list)
+[Install](https://github.com/SiroDiaz/DataStructures#install)<br>
+**[API](https://github.com/SiroDiaz/DataStructures#api)**<br>
+    - [List implementations](https://github.com/SiroDiaz/DataStructures#lists)<br>
+        - [Singly linked list](https://github.com/SiroDiaz/DataStructures#singly-linked-list)<br>
+        - [Singly circular linked list](https://github.com/SiroDiaz/DataStructures#circular-linked-list)<br>
 
 ## Install
 
@@ -25,6 +25,7 @@ The list data structures supported are the following:
  - *Singly linked list*: **SimpleLinkedList**
  - *Circular singly linked list*: **CircularLinkedList**
  - *Circular doubly linked list*: **DoublyLinkedList**
+ - *Array list*: **ArrayList**
  - *Stack*: **Stack**
  - *Queue*: **Queue**
 
@@ -91,6 +92,42 @@ $myList->push(10);
 echo "Size of : ". $myList->size();
 $myList->unshift(100);
 echo "Item at the beginnig: ". $myList->get(0);
+echo "Last item: ". $myList->getLast();
+```
+
+
+#### Doubly circular linked list
+
+##### Introduction
+Doubly circular linked list is a doubly linked list that each node contained in the list
+contains a pointer to the next and previous node. In the of the first node it is going to point 
+to the last node. It uses some performance tricks for insert, get, and delete operations.
+
+##### Methods
+ - size()
+ - empty()
+ - get($index)
+ - getAll()
+ - getLast()
+ - delete($index)
+ - clear()
+ - pop()
+ - insert($index, $data)
+ - push($data)
+ - unshift($data)
+ - shift()
+ - toArray()
+ 
+##### Example
+```php
+use DataStructures\Lists\DoublyLinkedList;
+
+$myList = new DoublyLinkedList();
+$myList->push(20);
+$myList->push(10);
+echo "Size of : ". $myList->size();
+$myList->unshift(100);
+echo "Item at position 1: ". $myList->get(1);
 echo "Last item: ". $myList->getLast();
 ```
 
