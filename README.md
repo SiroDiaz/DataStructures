@@ -5,9 +5,9 @@ Data structures for PHP >= 7.0.
 
 [Install](https://github.com/SiroDiaz/DataStructures#install)<br>
 **[API](https://github.com/SiroDiaz/DataStructures#api)**<br>
-    - [List implementations](https://github.com/SiroDiaz/DataStructures#lists)<br>
-        - [Singly linked list](https://github.com/SiroDiaz/DataStructures#singly-linked-list)<br>
-        - [Singly circular linked list](https://github.com/SiroDiaz/DataStructures#circular-linked-list)<br>
+*[List implementations](https://github.com/SiroDiaz/DataStructures#lists)*<br>
+- [Singly linked list](https://github.com/SiroDiaz/DataStructures#singly-linked-list)<br>
+- [Singly circular linked list](https://github.com/SiroDiaz/DataStructures#circular-linked-list)<br>
 
 ## Install
 
@@ -117,7 +117,7 @@ to the last node. It uses some performance tricks for insert, get, and delete op
  - unshift($data)
  - shift()
  - toArray()
- 
+
 ##### Example
 ```php
 use DataStructures\Lists\DoublyLinkedList;
