@@ -7,7 +7,8 @@ Via Composer just copy and paste:
 ```sh
 composer require siro-diaz/data-structures:"dev-master"
 ```
-## Lists
+## API
+### Lists
 
 The list data structures supported are the following:
 
@@ -20,13 +21,13 @@ The list data structures supported are the following:
  - *Queue*: **Queue**
 
 
-### Singly linked list
-#### Introduction
+#### Singly linked list
+##### Introduction
 Singly linked list is the simplest linked list that can be created. It has a pointer
 to the next node in the list and the last node points to null.
 All lists except stacks and queues have the same methods because they implements the same
 interface.
-#### Methods
+##### Methods
  - size()
  - empty()
  - get($index)
@@ -39,7 +40,7 @@ interface.
  - unshift($data)
  - shift()
  - toArray()
-#### Example
+##### Example
 ```php
 use DataStructures\Lists\SimpleLinkedList;
 
@@ -49,6 +50,42 @@ echo "Size of : ". $myList->size();
 $myList->unshift(100);
 echo "Item at the beginnig: ". $myList->get(0);
 ```
-## Trees
 
-## Hash tables
+
+#### Circular linked list
+
+##### Introduction
+Circular linked list is a singly linked list that has a pointer to the last and first node. 
+All lists except stacks and queues have the same methods because they implements the same
+interface.
+
+##### Methods
+ - size()
+ - empty()
+ - get($index)
+ - getAll()
+ - getLast()
+ - delete($index)
+ - clear()
+ - pop()
+ - insert($index, $data)
+ - push($data)
+ - unshift($data)
+ - shift()
+ - toArray()
+##### Example
+```php
+use DataStructures\Lists\CircularLinkedList;
+
+$myList = new CircularLinkedList();
+$myList->push(20);
+$myList->push(10);
+echo "Size of : ". $myList->size();
+$myList->unshift(100);
+echo "Item at the beginnig: ". $myList->get(0);
+echo "Last item: ". $myList->getLast();
+```
+
+### Trees
+
+### Hash tables
