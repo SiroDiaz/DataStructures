@@ -56,15 +56,16 @@ class TrieTree implements Countable {
      */
     public function add($word) {
         $word = trim($word);
-        if(mb_strlen($word) === 0) {
+        $wordLength = mb_strlen($word);
+        if($wordLength === 0) {
             return;
         }
 
         $current = &$this->root;
-        for($i = 0; $i < mb_strlen($word); $i++) {
+        for($i = 0; $i < $wordLength; $i++) {
             $char = mb_substr($word, $i, 1, 'UTF-8');
             if(!isset($current->children[$char])) {
-                if($i === mb_strlen($word) - 1) {
+                if($i === $wordLength - 1) {
                     $current->children[$char] = new TrieNode($char, $current, true);
                     $this->numWords++;
                 } else {
@@ -72,7 +73,7 @@ class TrieTree implements Countable {
                 }
                 $this->size++;
             } else {
-                if($i === mb_strlen($word) - 1) {
+                if($i === $wordLength - 1) {
                     if($current->children[$char]->isWord === false) {
                         $current->children[$char]->isWord = true;
                         $this->numWords++;

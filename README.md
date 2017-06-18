@@ -11,6 +11,7 @@ Data structures for PHP >= 7.0.
 - [Doubly circular linked list](https://github.com/SiroDiaz/DataStructures#doubly-circular-linked-list)<br>
 - [Array list](https://github.com/SiroDiaz/DataStructures#array-list)<br>
 - [Stack](https://github.com/SiroDiaz/DataStructures#stack)<br>
+- [Queue](https://github.com/SiroDiaz/DataStructures#queue)<br>
 
 ## Install
 

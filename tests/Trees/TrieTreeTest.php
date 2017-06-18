@@ -49,7 +49,6 @@ class TrieTreeTest extends TestCase {
         $this->assertFalse($this->tree->startsWith('hellooo'));
     }
 
-    //TODO
     public function testWithPrefix() {
         $this->tree->add('hello');
         $this->tree->add('hell');
