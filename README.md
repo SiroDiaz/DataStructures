@@ -4,7 +4,10 @@ Data structures for PHP >= 7.0.
 ## Index
 
 [Install](https://github.com/SiroDiaz/DataStructures#install)
-
+**[API](https://github.com/SiroDiaz/DataStructures#api)**
+    - [List implementations](https://github.com/SiroDiaz/DataStructures#lists)
+        - [Singly linked list](https://github.com/SiroDiaz/DataStructures#singly-linked-list)
+        - [Singly circular linked list](https://github.com/SiroDiaz/DataStructures#circular-linked-list)
 
 ## Install
 
