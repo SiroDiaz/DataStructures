@@ -8,6 +8,7 @@ Data structures for PHP >= 7.0.
 *[List implementations](https://github.com/SiroDiaz/DataStructures#lists)*<br>
 - [Singly linked list](https://github.com/SiroDiaz/DataStructures#singly-linked-list)<br>
 - [Singly circular linked list](https://github.com/SiroDiaz/DataStructures#circular-linked-list)<br>
+- [Doubly circular linked list](https://github.com/SiroDiaz/DataStructures#doubly-circular-linked-list)<br>
 
 ## Install
 
@@ -123,6 +124,42 @@ to the last node. It uses some performance tricks for insert, get, and delete op
 use DataStructures\Lists\DoublyLinkedList;
 
 $myList = new DoublyLinkedList();
+$myList->push(20);
+$myList->push(10);
+echo "Size of : ". $myList->size();
+$myList->unshift(100);
+echo "Item at position 1: ". $myList->get(1);
+echo "Last item: ". $myList->getLast();
+```
+
+#### Array list
+
+##### Introduction
+Array list uses the built in arrays as lists. In PHP all uses hash tables and it give
+array lists some performance advantages in operations like get that will be O(1). 
+Array list auto increments their size internally, without the necessity of increment it
+manually. It is translates in a very easy way to implement this type of list.
+
+##### Methods
+ - size()
+ - empty()
+ - get($index)
+ - getAll()
+ - getLast()
+ - delete($index)
+ - clear()
+ - pop()
+ - insert($index, $data)
+ - push($data)
+ - unshift($data)
+ - shift()
+ - toArray()
+
+##### Example
+```php
+use DataStructures\Lists\ArrayList;
+
+$myList = new ArrayList();
 $myList->push(20);
 $myList->push(10);
 echo "Size of : ". $myList->size();
