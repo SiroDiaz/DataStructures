@@ -1,6 +1,11 @@
 # DataStructures [![Build Status](https://travis-ci.org/SiroDiaz/DataStructures.svg?branch=master)](https://travis-ci.org/SiroDiaz/DataStructures) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/SiroDiaz/DataStructures/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/SiroDiaz/DataStructures/?branch=master) 
 Data structures for PHP >= 7.0.
 
+## Index
+
+[Install](https://github.com/SiroDiaz/DataStructures#install)
+
+
 ## Install
 
 Via Composer just copy and paste:
