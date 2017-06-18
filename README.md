@@ -9,6 +9,7 @@ Data structures for PHP >= 7.0.
 - [Singly linked list](https://github.com/SiroDiaz/DataStructures#singly-linked-list)<br>
 - [Singly circular linked list](https://github.com/SiroDiaz/DataStructures#circular-linked-list)<br>
 - [Doubly circular linked list](https://github.com/SiroDiaz/DataStructures#doubly-circular-linked-list)<br>
+- [Array list](https://github.com/SiroDiaz/DataStructures#array-list)<br>
 
 ## Install
 
@@ -166,6 +167,37 @@ echo "Size of : ". $myList->size();
 $myList->unshift(100);
 echo "Item at position 1: ". $myList->get(1);
 echo "Last item: ". $myList->getLast();
+```
+
+
+#### Stack
+
+##### Introduction
+Stack is a LIFO (Last In First Out) data structure that works like a stack (as its name
+said). Last element that is inserted will be the first in going out. 
+The implementation used in this library allow to especify a maximum size, in other words,
+it can be a limited stack. When limited stack is been used is important check if it is full
+before insert a new element.
+
+##### Methods
+ - size()
+ - empty()
+ - isFull()
+ - peek()
+ - pop()
+ - push($data)
+
+##### Example
+```php
+use DataStructures\Lists\Stack;
+
+$myStack = new Stack(); // unlimited stack.
+// new Stack(5) will contain a maximum of 5 elements.
+$myStack->push(20);
+$myStack->push(10);
+echo "Size of : ". $myStack->size();
+echo "Front element: ". $myStack->peek(1);
+echo "Last element inserted and being removed: ". $myStack->pop();
 ```
 
 ### Trees

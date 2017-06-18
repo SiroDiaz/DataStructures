@@ -114,7 +114,7 @@ class Stack implements Countable {
     }
 
     /**
-     * Gets the element at the front of the queue without removing it.
+     * Gets the element at the front of the stack without removing it.
      *
      * @return mixed
      */
