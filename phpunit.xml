@@ -11,5 +11,8 @@
         <testsuite name="Trees test">
             <directory>./tests/Trees</directory>
         </testsuite>
+        <testsuite name="Sets test">
+            <directory>./tests/Sets</directory>
+        </testsuite>
     </testsuites>
 </phpunit>
