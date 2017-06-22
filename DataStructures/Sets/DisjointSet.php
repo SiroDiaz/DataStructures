@@ -39,7 +39,8 @@ class DisjointSet {
     }
 
     /**
-     * Returns the representative node (the root of $node in the tree).
+     * Returns the representative node (the root of $node in the tree) and
+     * also applies path compression.
      *
      * @param DataStructures\Trees\Nodes\DisjointNode $node the node from
      *  where start to search the root.
