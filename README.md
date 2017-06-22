@@ -1,5 +1,6 @@
 # DataStructures [![Build Status](https://travis-ci.org/SiroDiaz/DataStructures.svg?branch=master)](https://travis-ci.org/SiroDiaz/DataStructures) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/SiroDiaz/DataStructures/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/SiroDiaz/DataStructures/?branch=master) 
-Data structures for PHP >= 7.0.
+Data structures for PHP >= 7.0. **STILL UNDER DEVELOPMENT, DON'T USE IT YET**: any way
+you can see the algorithms and data structures created at this moment.
 
 ## Index
 
