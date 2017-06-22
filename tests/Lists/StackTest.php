@@ -1,5 +1,7 @@
 <?php
 
+namespace DataStructures\Tests\Lists;
+
 use DataStructures\Exceptions\FullException;
 use DataStructures\Lists\Stack;
 use PHPUnit\Framework\TestCase;
@@ -8,7 +10,7 @@ class StackTest extends TestCase {
     private $stack;
 
     public function testContructMaxSize() {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
         $this->stack = new Stack(-1);
     }
     

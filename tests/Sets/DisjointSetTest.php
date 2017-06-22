@@ -1,5 +1,7 @@
 <?php
 
+namespace DataStructures\Tests\Sets;
+
 use DataStructures\Sets\{DisjointNode, DisjointSet};
 use PHPUnit\Framework\TestCase;
 

@@ -1,5 +1,7 @@
 <?php
 
+namespace DataStructures\Tests\Lists;
+
 use DataStructures\Lists\SimpleLinkedList;
 use PHPUnit\Framework\TestCase;
 

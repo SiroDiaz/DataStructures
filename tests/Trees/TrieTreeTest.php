@@ -1,8 +1,9 @@
 <?php
 
+namespace DataStructures\Tests\Trees;
+
 use PHPUnit\Framework\TestCase;
 use DataStructures\Trees\TrieTree;
-
 
 class TrieTreeTest extends TestCase {
     private $tree;

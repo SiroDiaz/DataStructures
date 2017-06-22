@@ -1,5 +1,7 @@
 <?php
 
+namespace DataStructures\Tests\Lists;
+
 use DataStructures\Lists\ArrayList;
 use PHPUnit\Framework\TestCase;
 
@@ -70,7 +72,7 @@ class ArrayListTest extends TestCase {
     }
     
     public function testDeleteException() {
-        $this->expectException(OutOfBoundsException::class);
+        $this->expectException(\OutOfBoundsException::class);
         $this->list->delete(10);
     }
     
@@ -117,7 +119,7 @@ class ArrayListTest extends TestCase {
     }
     
     public function testPopException() {
-        $this->expectException(OutOfBoundsException::class);
+        $this->expectException(\OutOfBoundsException::class);
         $this->list->pop();
     }
     
@@ -153,12 +155,12 @@ class ArrayListTest extends TestCase {
     }
     
     public function testGetWithException() {
-        $this->expectException(OutOfBoundsException::class);
+        $this->expectException(\OutOfBoundsException::class);
         $this->list->get(5);
     }
 
     public function testGetOutOfBound() {
-        $this->expectException(OutOfBoundsException::class);
+        $this->expectException(\OutOfBoundsException::class);
         $this->list->get(-1);
     }
     

@@ -1,5 +1,7 @@
 <?php
 
+namespace DataStructures\Tests\Trees;
+
 use DataStructures\Trees\AVLTree;
 use PHPUnit\Framework\TestCase;
 

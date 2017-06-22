@@ -1,5 +1,7 @@
 <?php
 
+namespace DataStructures\Tests\Lists;
+
 use DataStructures\Lists\CircularLinkedList;
 use PHPUnit\Framework\TestCase;
 
@@ -69,7 +71,7 @@ class CircularLinkedListTest extends TestCase {
     }
     
     public function testDeleteException() {
-        $this->expectException(OutOfBoundsException::class);
+        $this->expectException(\OutOfBoundsException::class);
         $this->list->delete(10);
     }
 
@@ -119,7 +121,7 @@ class CircularLinkedListTest extends TestCase {
     }
 
     public function testPopException() {
-        $this->expectException(OutOfBoundsException::class);
+        $this->expectException(\OutOfBoundsException::class);
         $this->list->pop();
     }
     
@@ -155,12 +157,12 @@ class CircularLinkedListTest extends TestCase {
     }
 
     public function testGetWithException() {
-        $this->expectException(OutOfBoundsException::class);
+        $this->expectException(\OutOfBoundsException::class);
         $this->list->get(5);
     }
 
     public function testGetOutOfBound() {
-        $this->expectException(OutOfBoundsException::class);
+        $this->expectException(\OutOfBoundsException::class);
         $this->list->get(-1);
     }
 

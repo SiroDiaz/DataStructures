@@ -17,5 +17,10 @@
         "psr-4": {
             "DataStructures\\": "DataStructures"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DataStructures\\Tests\\": "tests/"
+        }
     }
 }

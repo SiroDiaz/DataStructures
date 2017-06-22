@@ -1,5 +1,7 @@
 <?php
 
+namespace DataStructures\Tests\Trees;
+
 use DataStructures\Trees\BinarySearchTree;
 use PHPUnit\Framework\TestCase;
 

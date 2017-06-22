@@ -1,5 +1,7 @@
 <?php
 
+namespace DataStructures\Tests\Lists;
+
 use DataStructures\Exceptions\FullException;
 use DataStructures\Lists\Queue;
 use PHPUnit\Framework\TestCase;
@@ -8,7 +10,7 @@ class QueueTest extends TestCase {
     private $queue;
 
     public function testContructMaxSize() {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
         $this->queue = new Queue(-1);
     }
 

@@ -23,7 +23,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
     protected $root;
     protected $size = 0;
 
-    public abstract function createNode($key, $data, $parent = null, $left = null, $right = null);
+    abstract public function createNode($key, $data, $parent = null, $left = null, $right = null);
     /**
      * Checks if the tree is empty.
      *
