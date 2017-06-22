@@ -38,58 +38,63 @@ class AVLTree extends BinaryTreeAbstract {
         return new AVLNode($key, $data, $parent, $left, $right);
     }
 
+    /**
+     * Does a right rotation.
+     * Example, rotate Y
+     *    k2                   k1
+     *   /  \                 /  \
+     *  k1   Z     ==>       X   k2
+     * / \                      /  \
+     *X   Y                    Y    Z
+     *
+     */
     private function rightRotation(AVLNode $node) {
-        $tempParent = &$node->parent;
-        $tempRight = &$node->right;
-        $veryChildren = &$tempRight->left;
+        $aux = $node->right;
+        $node->right = &$aux->left;
+        $aux->left = $node;
 
-        if($tempParent === null) {
-            $this->root = &$tempRight;
-            $tempRight->parent = null;
-        } else {
-            $tempRight->parent = &$tempParent;
-            if($tempRight->key < $tempParent->key) {
-                $tempParent->left = &$tempRight;
-            } else {
-                $tempParent->right = &$tempRight;
-            }
-        }
+        $node->height = 1 + max($node->left->height, $node->right->height);
+        $aux->height = 1 + max($aux->right->height, $node->height);
 
-        $parentRight->left = &$node;
-        $node->parent = &$tempRight;
-        $node->right = &$veryChildren;
+        $node = &$aux;
     }
 
+    /*  Does a right rotation.
+     *    k2                       k1
+     *  /  \                     /  \
+     * X    k1         ==>      k2   Z
+     *     /  \                /  \
+     *    Y    Z              X    Y
+     */
     private function leftRotation(AVLNode $node) {
-        $tempParent = &$node->parent;
-        $tempLeft = &$node->left;
-        $veryChildren = &$tempLeft->right;
+       $aux = $node->left;
+       $node->left = &$aux->right;
+       $aux->right = $node;
 
-        if($tempParent === null) {
-            $this->root = &$tempLeft;
-            $tempLeft->parent = null;
-        } else {
-            $tempLeft->parent = &$tempParent;
-            if($tempLeft->key < $tempParent->key) {
-                $tempParent->left = &$tempLeft;
-            } else {
-                $tempParent->right = &$tempLeft;
-            }
-        }
-    
-        $tempLeft->right = &$node;
-        $node->parent = &$tempLeft;
-        $node->left = &$veryChildren;
+       $node->height = 1 + max($node->left->height, $node->right->height);
+       $aux->height = 1 + max($node->height, $aux->left->height);
+
+       $node = &$aux;
     }
 
+    /**
+     * Double right rotation does first a left rotation of right child node
+     * that detects the imbalance and finally does a right rotation
+     * in the subtree root that detects the imbalance.
+     */
     private function doubleRightRotation(AVLNode $node) {
-        $node->right = $this->rightRotation($node->right);
-        return $this->leftRotation($node);
+        $this->leftRotation($node->right);
+        $this->rightRotation($node);
     }
 
+    /**
+     * Double left rotation does first a right rotation of left child node
+     * that detects the imbalance and finally does a left rotation
+     * in the subtree root that detects the imbalance.
+     */
     private function doubleLeftRotation(AVLNode $node) {
-        $node->left = $this->leftRotation($node->left);
-        return $this->rightRotation($node);
+        $this->rightRotation($node->left);
+        $this->leftRotation($node);
     }
 
     private function updateHeight(AVLNode &$node) {
