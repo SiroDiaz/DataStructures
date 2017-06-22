@@ -3,13 +3,34 @@
     "description": "Data structures for PHP language",
     "type": "library",
     "license": "MIT",
+    "keywords": [
+        "data structure",
+        "AVL",
+        "BST",
+        "trie",
+        "list",
+        "tree",
+        "stack",
+        "hash table",
+        "hash set",
+        "hash map",
+        "disjoint set",
+        "set",
+        "ordered list",
+        "unordered list",
+        "dictionary",
+        "php7",
+        "algorithm"
+    ],
     "authors": [
         {
             "name": "Siro Diaz Palazon",
             "email": "siro_diaz@yahoo.com"
         }
     ],
-    "require": {},
+    "require": {
+        "php": ">=7.0"
+    },
     "require-dev": {
         "phpunit/phpunit": "~5.7"
     },
