@@ -1,19 +1,25 @@
 <?php
-
+/**
+ * DataStructures for PHP
+ *
+ * @link      https://github.com/SiroDiaz/DataStructures
+ * @copyright Copyright (c) 2017 Siro Díaz Palazón
+ * @license   https://github.com/SiroDiaz/DataStructures/blob/master/README.md (MIT License)
+ */
 namespace DataStructures\Sets;
 
-class DisjointNode {
-    public $parent;
-    public $rank;
-    public $data;
+use DataStructures\Trees\Nodes\DisjointNode;
 
-    public function __construct($rank, $data) {
-        $this->parent = null;
-        $this->rank = $rank;
-        $this->data = $data;
-    }
-}
-
+/**
+ * DisjointSet.
+ *
+ * The DisjointSet class represents a disjoint set.
+ * Operations take in worse case a O(n) except makeSet that takes
+ * constant time, O(1).
+ * Basic operations are makeSet, find and union.
+ *
+ * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
+ */
 class DisjointSet {
     public function __construct() {}
 
