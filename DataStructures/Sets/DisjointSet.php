@@ -23,13 +23,28 @@ use DataStructures\Trees\Nodes\DisjointNode;
 class DisjointSet {
     public function __construct() {}
 
-    public function makeSet($data) {
+    /**
+     * Creates a new set/tree with zero children and parents.
+     * Its parent points to itself and the rank is 0 when new
+     * set is created.
+     *
+     * @param mixed $data the data to store.
+     * @return DataStructures\Trees\Nodes\DisjointNode the node created.
+     */
+    public function makeSet($data) : DisjointNode {
         $newSet = new DisjointNode(0, $data);
         $newSet->parent = &$newSet;
 
         return $newSet;
     }
 
+    /**
+     * Returns the representative node (the root of $node in the tree).
+     *
+     * @param DataStructures\Trees\Nodes\DisjointNode $node the node from
+     *  where start to search the root.
+     * @return DataStructures\Trees\Nodes\DisjointNode the parent node.
+     */
     public function find(DisjointNode $node) : DisjointNode {
         if($node->parent !== $node) {
             $node->parent = $this->find($node->parent);
@@ -38,7 +53,18 @@ class DisjointSet {
         return $node->parent;
     }
 
-    public function union($x, $y) {
+    /**
+     * Performs the union of two sets (or trees). First looks for
+     * the root of $x and $y set. Then, if both are in the same tree
+     * finalize the method. Else, depending of the rank, will join a
+     * set to other set (The set with lower rank will be append to higher
+     * one). If both have the same rank it doesn't matter what tree
+     * is joined to the other tree but the rank will increase.
+     *
+     * @param DataStructures\Trees\Nodes\DisjointNode $x The set.
+     * @param DataStructures\Trees\Nodes\DisjointNode $y The other set.
+     */
+    public function union(DisjointNode $x, DisjointNode $y) {
         $rootX = $this->find($x);
         $rootY = $this->find($y);
 
