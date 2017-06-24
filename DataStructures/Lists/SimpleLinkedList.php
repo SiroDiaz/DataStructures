@@ -293,12 +293,11 @@ class SimpleLinkedList implements ListInterface {
         return $this->size;
     }
 
-    public function offsetSet($offset, $valor) {
-        //TODO
+    public function offsetSet($offset, $value) {
         if (is_null($offset)) {
-            // $this->contenedor[] = $valor;
+            $this->insertEnd($value);
         } else {
-            // $this->contenedor[$offset] = $valor;
+            $this->insert($offset, $value);
         }
     }
     
@@ -311,13 +310,10 @@ class SimpleLinkedList implements ListInterface {
     }
 
     public function offsetUnset($offset) {
-        //TODO
-        // unset($this->contenedor[$offset]);
+        $this->delete($offset);
     }
 
     public function offsetGet($offset) {
-        //TODO
-        return false;
-        // return isset($this->contenedor[$offset]) ? $this->contenedor[$offset] : null;
+        return $this->get($offset);
     }
 }
