@@ -205,10 +205,13 @@ class ArrayList implements ListInterface {
     
     public function offsetSet($offset, $value) {
         if (is_null($offset)) {
-            $this->data[] = $value;
-            $this->size++;
+            $offset = $this->size;
+            if($this->size === 0) {
+                $offset = 0;
+            }
+            $this->insert($offset, $value);
         } else {
-            $this->data[$offset] = $value;
+            $this->insert($offset, $value);
         }
     }
     
@@ -221,11 +224,10 @@ class ArrayList implements ListInterface {
     }
 
     public function offsetUnset($offset) {
-        unset($this->data[$offset]);
-        $this->size--;
+        $this->delete($offset);
     }
 
     public function offsetGet($offset) {
-        return $this->offsetExists($offset) ? $this->data[$offset] : null;
+        return $this->get($offset);
     }
 }

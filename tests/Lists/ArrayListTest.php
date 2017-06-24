@@ -244,13 +244,13 @@ class ArrayListTest extends TestCase {
         $this->assertFalse(isset($this->list[2]));
     }
 
-    /*
     public function testOffsetSet() {
         $this->list->push(20);
         $this->list[1] = 30;
-        $this->assertEquals(2, $this->list->size());
+        $this->list[] = 40;
+        $this->list[] = 'string';
+        $this->assertEquals(4, $this->list->size());
     }
-    */
     /*
     public function testIterator() {
         $this->list->push(20);
