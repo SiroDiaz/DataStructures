@@ -213,7 +213,11 @@ class ArrayList implements ListInterface {
     }
     
     public function offsetExists($offset) {
-        return isset($this->data[$offset]);
+        try {
+            return $this->get($offset);
+        } catch(OutOfBoundsException $e) {
+            return false;
+        }
     }
 
     public function offsetUnset($offset) {

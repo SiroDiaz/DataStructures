@@ -303,9 +303,11 @@ class SimpleLinkedList implements ListInterface {
     }
     
     public function offsetExists($offset) {
-        //TODO
-        return false;
-        // return isset($this->contenedor[$offset]);
+        try {
+            return $this->get($offset);
+        } catch(OutOfBoundsException $e) {
+            return false;
+        }
     }
 
     public function offsetUnset($offset) {

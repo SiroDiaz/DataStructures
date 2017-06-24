@@ -453,7 +453,11 @@ class CircularLinkedList implements ListInterface {
     }
     
     public function offsetExists($offset) {
-        return $this->search($offset) !== null;
+        try {
+            return $this->get($offset);
+        } catch(OutOfBoundsException $e) {
+            return false;
+        }
     }
 
     public function offsetUnset($offset) {

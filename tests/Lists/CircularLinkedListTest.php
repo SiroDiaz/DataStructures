@@ -239,12 +239,6 @@ class CircularLinkedListTest extends TestCase {
         $this->list->push(true);
         $this->assertTrue(isset($this->list[0]));
         $this->assertTrue(isset($this->list[1]));
-    }
-
-    public function testIssetFail() {
-        $this->list->push(20);
-        $this->list->push(true);
-        $this->expectException(\OutOfBoundsException::class);
-        isset($this->list[2]);
+        $this->assertFalse(isset($this->list[2]));
     }
 }
