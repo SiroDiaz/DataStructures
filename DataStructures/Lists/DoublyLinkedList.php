@@ -84,7 +84,46 @@ class DoublyLinkedList implements ListInterface {
     }
 
     /**
-     * Returns the last node with O(1).
+     * Gets the node stored in the position especified.
+     * If index is 0 or (size - 1) the method is O(1) else O(n).
+     *
+     * @param integer $index the position.
+     * @throws OutOfBoundsException if it is out of limits (< 0 or > size - 1)
+     * @return DataStructures\Lists\Nodes\DoublyLinkedListNode|null the node stored in $index.
+     */
+    protected function search($index) {
+        if($index < 0 || $index > $this->size - 1) {
+            throw new OutOfBoundsException();
+        }
+
+        if($index === 0) {
+            return $this->head;
+        }
+
+        if($index === $this->size - 1) {
+            return $this->tail;
+        }
+
+        $current = &$this->head;
+        if($index < (int) ceil($this->size / 2)) {
+            $i = 0;
+            while($i < $index) {
+                $current = &$current->next;
+                $i++;
+            }    
+        } else {
+            $i = $this->size;
+            while($i > $index) {
+                $current = &$current->prev;
+                $i--;
+            }
+        }
+
+        return $current;
+    }
+
+    /**
+     * Returns the data in the last node with O(1).
      *
      * @return mixed null if the list is empty.
      */
@@ -93,6 +132,18 @@ class DoublyLinkedList implements ListInterface {
             return null;
         }
         return $this->tail->data;
+    }
+
+    /**
+     * Returns the last node with O(1).
+     *
+     * @return DataStructures\Lists\Nodes\DoublyLinkedListNode|null if the list is empty.
+     */
+    public function searchLast() {
+        if($this->head === null) {
+            return null;
+        }
+        return $this->tail;
     }
     
     /**
@@ -420,29 +471,23 @@ class DoublyLinkedList implements ListInterface {
         return $this->size;
     }
 
-    public function offsetSet($offset, $valor) {
-        //TODO
+    public function offsetSet($offset, $value) {
         if (is_null($offset)) {
-            // $this->contenedor[] = $valor;
+            $this->insertEnd($value);
         } else {
-            // $this->contenedor[$offset] = $valor;
+            $this->insert($offset, $value);
         }
     }
     
     public function offsetExists($offset) {
-        //TODO
-        return false;
-        // return isset($this->contenedor[$offset]);
+        return $this->search($offset) !== null;
     }
 
     public function offsetUnset($offset) {
-        //TODO
-        // unset($this->contenedor[$offset]);
+        $this->delete($offset);
     }
 
     public function offsetGet($offset) {
-        //TODO
-        return false;
-        // return isset($this->contenedor[$offset]) ? $this->contenedor[$offset] : null;
+        return $this->get($offset);
     }
 }

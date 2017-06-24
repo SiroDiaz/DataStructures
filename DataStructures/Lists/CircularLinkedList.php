@@ -10,6 +10,7 @@ namespace DataStructures\Lists;
 
 use DataStructures\Lists\Nodes\SimpleLinkedListNode as Node;
 use DataStructures\Lists\Interfaces\ListInterface;
+use DataStructures\Lists\Traits\CountTrait;
 use OutOfBoundsException;
 use Iterator;
 
@@ -22,6 +23,7 @@ use Iterator;
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
 class CircularLinkedList implements ListInterface {
+    use CountTrait;
     private $head;
     private $tail;
     private $size;
@@ -149,7 +151,7 @@ class CircularLinkedList implements ListInterface {
     }
 
     /**
-     * Returns the last node with O(1).
+     * Returns the last node data with O(1).
      *
      * @return mixed null if the list is empty.
      */
@@ -157,7 +159,21 @@ class CircularLinkedList implements ListInterface {
         if($this->head === null) {
             return null;
         }
+
         return $this->tail->data;
+    }
+
+    /**
+     * Returns the last node with O(1).
+     *
+     * @return mixed null if the list is empty.
+     */
+    protected function searchLast() {
+        if($this->head === null) {
+            return null;
+        }
+
+        return $this->tail;
     }
     
     /**
@@ -189,6 +205,37 @@ class CircularLinkedList implements ListInterface {
         }
 
         return $current->data;
+    }
+
+    /**
+     * Returns the node stored in the given position.
+     * If index is 0 or (size - 1) the method is O(1) else O(n).
+     *
+     * @param integer $index the position.
+     * @throws OutOfBoundsException if it is out of limits (< 0 or > size - 1)
+     * @return DataStructures\Lists\Nodes\SimpleLinkedListNode|null the node stored in $index.
+     */
+    protected function search($index) {
+        if($index < 0 || $index > $this->size - 1) {
+            throw new OutOfBoundsException();
+        }
+
+        if($index === 0) {
+            return $this->head;
+        }
+
+        if($index === $this->size - 1) {
+            return $this->getLast();
+        }
+
+        $i = 0;
+        $current = $this->head;
+        while($i < $index) {
+            $current = $current->next;
+            $i++;
+        }
+
+        return $current;
     }
 
     /**
@@ -397,38 +444,23 @@ class CircularLinkedList implements ListInterface {
         return $this->position < $this->size;
     }
 
-    /**
-     * Binds to count() method. This is equal to make $this->list->size().
-     *
-     * @return integer the list size. 0 if it is empty.
-     */
-    public function count() {
-        return $this->size;
-    }
-
-    public function offsetSet($offset, $valor) {
-        //TODO
+    public function offsetSet($offset, $value) {
         if (is_null($offset)) {
-            // $this->contenedor[] = $valor;
+            $this->insertEnd($value);
         } else {
-            // $this->contenedor[$offset] = $valor;
+            $this->insert($offset, $value);
         }
     }
     
     public function offsetExists($offset) {
-        //TODO
-        return false;
-        // return isset($this->contenedor[$offset]);
+        return $this->search($offset) !== null;
     }
 
     public function offsetUnset($offset) {
-        //TODO
-        // unset($this->contenedor[$offset]);
+        $this->delete($offset);
     }
 
     public function offsetGet($offset) {
-        //TODO
-        return false;
-        // return isset($this->contenedor[$offset]) ? $this->contenedor[$offset] : null;
+        return $this->get($offset);
     }
 }

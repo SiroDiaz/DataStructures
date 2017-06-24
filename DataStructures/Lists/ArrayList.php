@@ -9,6 +9,7 @@
 namespace DataStructures\Lists;
 
 use DataStructures\Lists\Interfaces\ListInterface;
+use DataStructures\Lists\Traits\CountTrait;
 use OutOfBoundsException;
 
 /**
@@ -20,6 +21,8 @@ use OutOfBoundsException;
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
 class ArrayList implements ListInterface {
+    use CountTrait;
+
     private $data;
     private $current;
     private $position;
@@ -139,15 +142,6 @@ class ArrayList implements ListInterface {
     }
     
     /**
-     * Returns the array size.
-     *
-     * @return int the length
-     */
-    public function size() : int {
-        return $this->size;
-    }
-    
-    /**
      * Deletes the first node of the list and returns it.
      *
      * @return mixed the data.
@@ -208,41 +202,26 @@ class ArrayList implements ListInterface {
     public function valid() {
         return $this->position < $this->size;
     }
-
-    /**
-     * Binds to count() method. This is equal to make $this->list->size().
-     *
-     * @return integer the list size. 0 if it is empty.
-     */
-    public function count() {
-        return $this->size;
-    }
     
-    public function offsetSet($offset, $valor) {
-        //TODO
-        /*
+    public function offsetSet($offset, $value) {
         if (is_null($offset)) {
-            // $this->contenedor[] = $valor;
+            $this->data[] = $value;
+            $this->size++;
         } else {
-            // $this->contenedor[$offset] = $valor;
+            $this->data[$offset] = $value;
         }
-        */
     }
     
     public function offsetExists($offset) {
-        //TODO
-        // return false;
-        // return isset($this->contenedor[$offset]);
+        return isset($this->data[$offset]);
     }
 
     public function offsetUnset($offset) {
-        //TODO
-        // unset($this->contenedor[$offset]);
+        unset($this->data[$offset]);
+        $this->size--;
     }
 
     public function offsetGet($offset) {
-        //TODO
-        // return false;
-        // return isset($this->contenedor[$offset]) ? $this->contenedor[$offset] : null;
+        return $this->offsetExists($offset) ? $this->data[$offset] : null;
     }
 }

@@ -8,6 +8,7 @@
  */
 namespace DataStructures\Trees;
 
+use DataStructures\Trees\Traits\CountTrait;
 use DataStructures\Trees\Interfaces\TreeInterface;
 use DataStructures\Trees\Interfaces\BinaryNodeInterface;
 
@@ -20,6 +21,7 @@ use DataStructures\Trees\Interfaces\BinaryNodeInterface;
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
 abstract class BinaryTreeAbstract implements TreeInterface {
+    use CountTrait;
     protected $root;
     protected $size = 0;
 
@@ -517,14 +519,5 @@ abstract class BinaryTreeAbstract implements TreeInterface {
         if($callback !== null) {
             call_user_func($callback, $node);
         }
-    }
-
-    /**
-     * Binds to count() method. This is equal to make $this->tree->size().
-     *
-     * @return integer the tree size. 0 if it is empty.
-     */
-    public function count() {
-        return $this->size;
     }
 }

@@ -206,4 +206,45 @@ class CircularLinkedListTest extends TestCase {
         $this->assertEmpty($this->list->toArray());
         $this->assertEquals(0, $this->list->size());
     }
+    
+    public function testGetAsArray() {
+        $this->list->push(20);
+        $this->list->push(true);
+        $this->list->push(15);
+        $this->list->push(3.14);
+        $this->list->push("string");
+        $this->assertEquals(20, $this->list[0]);
+        $this->assertEquals(true, $this->list[1]);
+        $this->assertEquals(15, $this->list[2]);
+        $this->assertEquals(3.14, $this->list[3]);
+        $this->assertEquals('string', $this->list[4]);
+    }
+
+    public function testOffsetUnset() {
+        $this->list->push(20);
+        $this->list->push(true);
+        $this->list->push(15);
+        $this->list->push(3.14);
+        $this->list->push("string");
+        unset($this->list[0]);
+        unset($this->list[1]);
+        unset($this->list[1]);
+        unset($this->list[1]);
+        unset($this->list[0]);
+        $this->assertEquals(0, $this->list->size());
+    }
+
+    public function testIsset() {
+        $this->list->push(20);
+        $this->list->push(true);
+        $this->assertTrue(isset($this->list[0]));
+        $this->assertTrue(isset($this->list[1]));
+    }
+
+    public function testIssetFail() {
+        $this->list->push(20);
+        $this->list->push(true);
+        $this->expectException(\OutOfBoundsException::class);
+        isset($this->list[2]);
+    }
 }
