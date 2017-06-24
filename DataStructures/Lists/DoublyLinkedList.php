@@ -8,6 +8,7 @@
  */
 namespace DataStructures\Lists;
 
+use DataStructures\Lists\Traits\{CountTrait, ArrayAccessTrait};
 use DataStructures\Lists\Nodes\DoublyLinkedListNode as Node;
 use DataStructures\Lists\Interfaces\ListInterface;
 use OutOfBoundsException;
@@ -21,6 +22,9 @@ use OutOfBoundsException;
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
 class DoublyLinkedList implements ListInterface {
+    use CountTrait;
+    use ArrayAccessTrait;
+
     private $head;
     private $tail;
     private $size;
@@ -167,15 +171,6 @@ class DoublyLinkedList implements ListInterface {
                 $i++;
             }
         }
-    }
-    
-    /**
-     * Checks if the list is empty.
-     *
-     * @return boolean true if is empty, else false.
-     */
-    public function empty() : bool {
-        return $this->size === 0;
     }
 
     /**
@@ -396,15 +391,6 @@ class DoublyLinkedList implements ListInterface {
     }
     
     /**
-     * Returns the list size.
-     *
-     * @return int the length
-     */
-    public function size() : int {
-        return $this->size;
-    }
-    
-    /**
      * Converts/exports the list content into array type.
      *
      * @return array data stored in all nodes.
@@ -460,38 +446,5 @@ class DoublyLinkedList implements ListInterface {
      */
     public function valid() {
         return $this->position < $this->size;
-    }
-
-    /**
-     * Binds to count() method. This is equal to make $this->list->size().
-     *
-     * @return integer the list size. 0 if it is empty.
-     */
-    public function count() {
-        return $this->size;
-    }
-
-    public function offsetSet($offset, $value) {
-        if (is_null($offset)) {
-            $this->insertEnd($value);
-        } else {
-            $this->insert($offset, $value);
-        }
-    }
-    
-    public function offsetExists($offset) {
-        try {
-            return $this->get($offset);
-        } catch(OutOfBoundsException $e) {
-            return false;
-        }
-    }
-
-    public function offsetUnset($offset) {
-        $this->delete($offset);
-    }
-
-    public function offsetGet($offset) {
-        return $this->get($offset);
     }
 }

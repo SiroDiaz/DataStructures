@@ -241,6 +241,14 @@ class DoublyLinkedListTest extends TestCase {
         $this->assertFalse(isset($this->list[2]));
     }
 
+    public function testOffsetSet() {
+        $this->list->push(20);
+        $this->list[1] = 30;
+        $this->list[] = 40;
+        $this->list[] = 'string';
+        $this->assertEquals(4, $this->list->size());
+    }
+
     public function testIterator() {
         $this->list->push(20);
         $this->list->push(true);

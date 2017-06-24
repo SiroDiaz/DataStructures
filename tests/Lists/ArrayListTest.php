@@ -251,6 +251,7 @@ class ArrayListTest extends TestCase {
         $this->list[] = 'string';
         $this->assertEquals(4, $this->list->size());
     }
+    
     /*
     public function testIterator() {
         $this->list->push(20);

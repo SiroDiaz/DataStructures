@@ -8,11 +8,10 @@
  */
 namespace DataStructures\Lists;
 
+use DataStructures\Lists\Traits\{CountTrait, ArrayAccessTrait};
 use DataStructures\Lists\Nodes\SimpleLinkedListNode as Node;
 use DataStructures\Lists\Interfaces\ListInterface;
-use DataStructures\Lists\Traits\CountTrait;
 use OutOfBoundsException;
-use Iterator;
 
 /**
  * CircularLinkedList
@@ -23,7 +22,7 @@ use Iterator;
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
 class CircularLinkedList implements ListInterface {
-    use CountTrait;
+    use CountTrait, ArrayAccessTrait;
     private $head;
     private $tail;
     private $size;
@@ -36,24 +35,6 @@ class CircularLinkedList implements ListInterface {
         $this->size = 0;
         $this->position = 0;
         $this->current = &$this->head;
-    }
-
-    /**
-     * Returns the list size.
-     *
-     * @return int the length
-     */
-    public function size() : int {
-        return $this->size;
-    }
-
-    /**
-     * Checks if the list is empty.
-     *
-     * @return boolean true if is empty, else false.
-     */
-    public function empty() : bool {
-        return $this->size == 0;
     }
 
     /**
@@ -442,29 +423,5 @@ class CircularLinkedList implements ListInterface {
      */
     public function valid() {
         return $this->position < $this->size;
-    }
-
-    public function offsetSet($offset, $value) {
-        if (is_null($offset)) {
-            $this->insertEnd($value);
-        } else {
-            $this->insert($offset, $value);
-        }
-    }
-    
-    public function offsetExists($offset) {
-        try {
-            return $this->get($offset);
-        } catch(OutOfBoundsException $e) {
-            return false;
-        }
-    }
-
-    public function offsetUnset($offset) {
-        $this->delete($offset);
-    }
-
-    public function offsetGet($offset) {
-        return $this->get($offset);
     }
 }

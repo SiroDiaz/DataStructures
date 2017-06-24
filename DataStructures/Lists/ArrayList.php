@@ -9,7 +9,7 @@
 namespace DataStructures\Lists;
 
 use DataStructures\Lists\Interfaces\ListInterface;
-use DataStructures\Lists\Traits\CountTrait;
+use DataStructures\Lists\Traits\{CountTrait, ArrayAccessTrait};
 use OutOfBoundsException;
 
 /**
@@ -22,6 +22,7 @@ use OutOfBoundsException;
  */
 class ArrayList implements ListInterface {
     use CountTrait;
+    use ArrayAccessTrait;
 
     private $data;
     private $current;
@@ -86,10 +87,6 @@ class ArrayList implements ListInterface {
         foreach($this->data as $data) {
             yield $data;
         }
-    }
-
-    public function empty() : bool {
-        return $this->size === 0;
     }
     
     /**
@@ -201,33 +198,5 @@ class ArrayList implements ListInterface {
      */
     public function valid() {
         return $this->position < $this->size;
-    }
-    
-    public function offsetSet($offset, $value) {
-        if (is_null($offset)) {
-            $offset = $this->size;
-            if($this->size === 0) {
-                $offset = 0;
-            }
-            $this->insert($offset, $value);
-        } else {
-            $this->insert($offset, $value);
-        }
-    }
-    
-    public function offsetExists($offset) {
-        try {
-            return $this->get($offset);
-        } catch(OutOfBoundsException $e) {
-            return false;
-        }
-    }
-
-    public function offsetUnset($offset) {
-        $this->delete($offset);
-    }
-
-    public function offsetGet($offset) {
-        return $this->get($offset);
     }
 }
