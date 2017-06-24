@@ -57,34 +57,12 @@ class DoublyLinkedList implements ListInterface {
      * @throws OutOfBoundsException if index is out bounds.
      */
     public function get($index) {
-        if($index < 0 || $index > $this->size - 1) {
-            throw new OutOfBoundsException();
+        $node = $this->search($index);
+        if($node === null) {
+            return null;
         }
 
-        if($index === 0) {
-            return $this->head->data;
-        }
-
-        if($index === $this->size - 1) {
-            return $this->tail->data;
-        }
-
-        $current = &$this->head;
-        if($index < (int) ceil($this->size / 2)) {
-            $i = 0;
-            while($i < $index) {
-                $current = &$current->next;
-                $i++;
-            }    
-        } else {
-            $i = $this->size;
-            while($i > $index) {
-                $current = &$current->prev;
-                $i--;
-            }
-        }
-
-        return $current->data;
+        return $node->data;
     }
 
     /**

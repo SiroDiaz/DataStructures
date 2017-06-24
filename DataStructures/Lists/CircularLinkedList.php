@@ -137,11 +137,9 @@ class CircularLinkedList implements ListInterface {
      * @return mixed null if the list is empty.
      */
     public function getLast() {
-        if($this->head === null) {
-            return null;
-        }
-
-        return $this->tail->data;
+        $node = $this->searchLast();
+        
+        return $node !== null ? $node->data : null;
     }
 
     /**
@@ -166,26 +164,12 @@ class CircularLinkedList implements ListInterface {
      * @return mixed the data stored in $index node.
      */
     public function get($index) {
-        if($index < 0 || $index > $this->size - 1) {
-            throw new OutOfBoundsException();
+        $node = $this->search($index);
+        if($node === null) {
+            return null;
         }
 
-        if($index === 0) {
-            return $this->head->data;
-        }
-
-        if($index === $this->size - 1) {
-            return $this->getLast();
-        }
-
-        $i = 0;
-        $current = $this->head;
-        while($i < $index) {
-            $current = $current->next;
-            $i++;
-        }
-
-        return $current->data;
+        return $node->data;
     }
 
     /**
@@ -206,7 +190,7 @@ class CircularLinkedList implements ListInterface {
         }
 
         if($index === $this->size - 1) {
-            return $this->getLast();
+            return $this->searchLast();
         }
 
         $i = 0;

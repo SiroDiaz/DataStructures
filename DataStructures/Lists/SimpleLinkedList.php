@@ -68,10 +68,25 @@ class SimpleLinkedList implements ListInterface {
      * @throws OutOfBoundsException if index is out bounds.
      */
     public function get($index) {
+        $node = $this->search($index);
+        if($node === null) {
+            return null;
+        }
+
+        return $node->data;
+    }
+
+    /**
+     * Returns the node stored in the given position.
+     *
+     * @param integer $index the position.
+     * @throws OutOfBoundsException if it is out of limits (< 0 or > size - 1)
+     * @return DataStructures\Lists\Nodes\SimpleLinkedListNode|null the node stored in $index.
+     */
+    protected function search($index) {
         if($index > $this->size - 1 || $index < 0) {
             throw new OutOfBoundsException();
-        }
-        
+        }   
 
         $current = $this->head;
         $i = 0;
@@ -80,7 +95,7 @@ class SimpleLinkedList implements ListInterface {
             $i++;
         }
 
-        return $current->data;
+        return $current;
     }
 
     /**
