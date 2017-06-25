@@ -292,11 +292,10 @@ class CircularLinkedList implements ListInterface {
             $i++;
         }
 
-        $temp = $current;
         $prev->next = &$current->next;
         $this->size--;
 
-        return $temp->data;
+        return $current->data;
     }
 
     /**
