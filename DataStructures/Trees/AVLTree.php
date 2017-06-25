@@ -96,9 +96,4 @@ class AVLTree extends BinaryTreeAbstract {
         $this->rightRotation($node->left);
         $this->leftRotation($node);
     }
-
-    private function updateHeight(AVLNode &$node) {
-        $leftHeight = ($node->left === null) ? -1 : $node->left->height;
-        $rightHeight = ($node->right === null) ? -1 : $node->right->height;
-    }
 }
