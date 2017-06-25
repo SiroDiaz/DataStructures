@@ -9,7 +9,7 @@
 namespace DataStructures\Lists;
 
 use DataStructures\Lists\Traits\{CountTrait, ArrayAccessTrait};
-use DataStructures\Lists\Nodes\SimpleLinkedListNode as Node;
+use DataStructures\Lists\Nodes\SimpleLinkedListNode;
 use DataStructures\Lists\Interfaces\ListInterface;
 use OutOfBoundsException;
 
@@ -65,7 +65,7 @@ class CircularLinkedList implements ListInterface {
      * @param mixed $data
      */
     private function insertBeginning($data) {
-        $newNode = new Node($data);
+        $newNode = new SimpleLinkedListNode($data);
         if($this->head === null) {
             $newNode->next = &$this->head;
             $this->head = &$newNode;
@@ -84,7 +84,7 @@ class CircularLinkedList implements ListInterface {
      * @param mixed $data the data to be stored.
      */
     private function insertEnd($data) {
-        $newNode = new Node($data);
+        $newNode = new SimpleLinkedListNode($data);
         $this->tail->next = &$newNode;
         $newNode->next = &$this->head;
         $this->tail = &$newNode;
@@ -97,7 +97,7 @@ class CircularLinkedList implements ListInterface {
      * @param mixed $data the data to be stored.
      */
     private function insertAt($index, $data) {
-        $newNode = new Node($data);
+        $newNode = new SimpleLinkedListNode($data);
         $current = $this->head;
         $prev = null;
         $i = 0;
@@ -178,7 +178,7 @@ class CircularLinkedList implements ListInterface {
      *
      * @param integer $index the position.
      * @throws OutOfBoundsException if it is out of limits (< 0 or > size - 1)
-     * @return DataStructures\Lists\Nodes\SimpleLinkedListNode|null the node stored in $index.
+     * @return DataStructures\Lists\Nodes\SimpleLinkedListNode the node stored in $index.
      */
     protected function search($index) {
         if($index < 0 || $index > $this->size - 1) {
