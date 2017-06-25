@@ -138,7 +138,7 @@ class CircularLinkedList implements ListInterface {
      */
     public function getLast() {
         $node = $this->searchLast();
-        
+
         return $node !== null ? $node->data : null;
     }
 
@@ -294,7 +294,6 @@ class CircularLinkedList implements ListInterface {
 
         $temp = $current;
         $prev->next = &$current->next;
-        $current = null;
         $this->size--;
 
         return $temp->data;
