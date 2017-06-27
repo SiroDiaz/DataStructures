@@ -110,8 +110,8 @@ class AVLTree extends BinaryTreeAbstract {
      * Case Right-Left.
      */
     private function doubleRightRotation(AVLNode $node) {
-        $this->leftRotation($node->right);
-        $this->rightRotation($node);
+        $this->rightRotation($node->right);
+        $this->leftRotation($node);
     }
 
     /**
@@ -121,8 +121,8 @@ class AVLTree extends BinaryTreeAbstract {
      * Case Left-Right.
      */
     private function doubleLeftRotation(AVLNode $node) {
-        $this->rightRotation($node->left);
-        $this->leftRotation($node);
+        $this->leftRotation($node->right);
+        $this->rightRotation($node);
     }
 
     public function put($key, $data, $update = false) {
