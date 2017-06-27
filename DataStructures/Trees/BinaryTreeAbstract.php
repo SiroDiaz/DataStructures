@@ -83,8 +83,9 @@ abstract class BinaryTreeAbstract implements TreeInterface {
         } else {
             $parentNode->right = &$newNode;
         }
-
         $this->size++;
+
+        return $newNode;
     }
     
     /**

@@ -49,14 +49,7 @@ class AVLTree extends BinaryTreeAbstract {
      *
      */
     private function rightRotation(AVLNode $node) {
-        $aux = $node->right;
-        $node->right = &$aux->left;
-        $aux->left = $node;
-
-        $node->height = 1 + max($node->left->height, $node->right->height);
-        $aux->height = 1 + max($aux->right->height, $node->height);
-
-        $node = &$aux;
+        
     }
 
     /*  Does a right rotation.
@@ -67,20 +60,33 @@ class AVLTree extends BinaryTreeAbstract {
      *    Y    Z              X    Y
      */
     private function leftRotation(AVLNode $node) {
-       $aux = $node->left;
-       $node->left = &$aux->right;
-       $aux->right = $node;
+        $temp = &$node->right;
+        if($node->parent !== null) {
+            if($node->parent->right === $node) {
+                $node->parent->right = &$node;
+            } else {
+                $node->parent->left = &$node;
+            }
+        }
+        $temp->parent = &$node->parent;
+        $node->parent = &$temp;
+        $node->right = $temp->left;
+        if($node->right !== null) {
+            $node->right->parent = &$node;
+        }
+        $temp->left = &$node;
 
-       $node->height = 1 + max($node->left->height, $node->right->height);
-       $aux->height = 1 + max($node->height, $aux->left->height);
+        $this->adjustHeight($node);
+        $this->adjustHeight($temp);
 
-       $node = &$aux;
+        return $temp;
     }
 
     /**
      * Double right rotation does first a left rotation of right child node
      * that detects the imbalance and finally does a right rotation
      * in the subtree root that detects the imbalance.
+     * Case Right-Left.
      */
     private function doubleRightRotation(AVLNode $node) {
         $this->leftRotation($node->right);
@@ -91,9 +97,18 @@ class AVLTree extends BinaryTreeAbstract {
      * Double left rotation does first a right rotation of left child node
      * that detects the imbalance and finally does a left rotation
      * in the subtree root that detects the imbalance.
+     * Case Left-Right.
      */
     private function doubleLeftRotation(AVLNode $node) {
         $this->rightRotation($node->left);
         $this->leftRotation($node);
+    }
+
+    public function put($key, $data, $update = false) {
+        $nodeInserted = parent::put($key, $data, $update);
+    }
+
+    private function adjustHeight(AVLNode $node) {
+        $node->height = 1 + max($node->left->height, $node->right->height);
     }
 }
