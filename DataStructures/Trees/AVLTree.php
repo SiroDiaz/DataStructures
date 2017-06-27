@@ -62,6 +62,9 @@ class AVLTree extends BinaryTreeAbstract {
         $temp->parent = &$node->parent;
         $node->parent = &$temp;
         $node->left = $temp->right;
+        if($node->left !== null) {
+            $node->left->parent = &$node;
+        }
         $temp->right = &$node;
 
         $this->adjustHeight($node);
