@@ -72,6 +72,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
             } else {
                 if($update) {
                     $current->data = $data;
+                    return $newNode;
                 }
                 return;
             }

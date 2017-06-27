@@ -48,7 +48,31 @@ class AVLTree extends BinaryTreeAbstract {
      *X   Y                    Y    Z
      *
      */
-    private function rightRotation(AVLNode $node) {
+    private function rightRotation(AVLNode &$node) {
+        $temp = &$node->left;
+        $temp->parent = &$node->parent;
+
+        $node->left = &$temp->right;
+        if ($node->left !== null) {
+            $node->left->parent = &$snode;
+        }
+
+        $temp->right = &$node;
+        $node->parent = &$temp;
+
+        // temp took over node's place so now its parent should point to temp
+        if ($temp->parent !== null) {
+            if ($node === $temp->parent->left) {
+                $temp->parent->left = &$temp;
+            } else {
+                $temp->parent->right = &$temp;
+            }
+        } else {
+            $this->root = &$temp;
+        }
+        
+        return $temp;
+        /*
         $temp = &$node->left;
 
         if($node->parent !== null) {
@@ -71,16 +95,39 @@ class AVLTree extends BinaryTreeAbstract {
         $this->adjustHeight($temp);
 
         return $temp;
+        */
     }
 
-    /*  Does a right rotation.
-     *    k2                       k1
-     *  /  \                     /  \
-     * X    k1         ==>      k2   Z
-     *     /  \                /  \
-     *    Y    Z              X    Y
+    /*
+     * Does a right rotation.
      */
-    private function leftRotation(AVLNode $node) {
+    private function leftRotation(AVLNode &$node) {
+
+        $temp = &$node->right;
+        $temp->parent = &$node->parent;
+
+        $node->right = &$temp->left;
+
+        if ($node->right !== null) {
+            $node->right->parent = &$node;
+        }
+
+        $temp->left = &$node;
+        $node->parent = &$temp;
+
+        // temp took over node's place so now its parent should point to temp
+        if ($temp->parent !== null) {
+            if ($node == $temp->parent->left) {
+                $temp->parent->left = &$temp;
+            } else {
+                $temp->parent->right = &$temp;
+            }
+        } else {
+            $this->root = &$temp;
+        }
+        
+        return $temp;
+        /*
         $temp = &$node->right;
         if($node->parent !== null) {
             if($node->parent->right === $node) {
@@ -96,11 +143,11 @@ class AVLTree extends BinaryTreeAbstract {
             $node->right->parent = &$node;
         }
         $temp->left = &$node;
+        */
+        // $this->adjustHeight($node);
+        // $this->adjustHeight($temp);
 
-        $this->adjustHeight($node);
-        $this->adjustHeight($temp);
-
-        return $temp;
+        // return $temp;
     }
 
     /**
@@ -109,9 +156,9 @@ class AVLTree extends BinaryTreeAbstract {
      * in the subtree root that detects the imbalance.
      * Case Right-Left.
      */
-    private function doubleRightRotation(AVLNode $node) {
-        $this->rightRotation($node->right);
-        $this->leftRotation($node);
+    private function doubleRightRotation(AVLNode &$node) {
+        $this->leftRotation($node->left);
+        return $this->rightRotation($node);
     }
 
     /**
@@ -120,16 +167,69 @@ class AVLTree extends BinaryTreeAbstract {
      * in the subtree root that detects the imbalance.
      * Case Left-Right.
      */
-    private function doubleLeftRotation(AVLNode $node) {
+    private function doubleLeftRotation(AVLNode &$node) {
         $this->leftRotation($node->right);
-        $this->rightRotation($node);
+        return $this->rightRotation($node);
     }
 
+    /**
+     *
+     */
     public function put($key, $data, $update = false) {
         $nodeInserted = parent::put($key, $data, $update);
+        $this->rebalance($nodeInserted);
+
+        return $nodeInserted;
     }
 
-    private function adjustHeight(AVLNode $node) {
-        $node->height = 1 + max($node->left->height, $node->right->height);
+    /**
+     *
+     */
+    public function delete($key) {
+        $nodeRemoved = parent::delete($key);
+
+        return $nodeRemoved;
+    }
+
+    private function rebalance(&$node) {
+        while($node !== null) {
+            $parent = &$node->parent;
+
+            $leftHeight = ($node->left === null) ? 0 : $node->left->height;
+            $rightHeight = ($node->right === null) ? 0 : $node->right->height;
+            $nodeBalance = $rightHeight - $leftHeight;
+
+            if($nodeBalance >= 2) {
+                if($node->right->right !== null) {
+                    $this->leftRotation($node);
+                    return;
+                } else {
+                    $this->doubleLeftRotation($node);
+                    return;
+                }
+            } else if($nodeBalance <= -2) {
+                if($node->left->left !== null) {
+                    $this->rightRotation($node);
+                    return;
+                } else {
+                    $this->doubleRightRotation($node);
+                    return;
+                }
+            } else {
+                $this->adjustHeight($node);
+            }
+
+            $node = &$parent;
+        }
+    }
+
+    /**
+     *
+     */
+    private function adjustHeight(&$node) {
+        $leftHeight = ($node->left === null) ? 0 : $node->left->height;
+        $rightHeight = ($node->right === null) ? 0 : $node->right->height;
+        
+        $node->height = 1 + max($leftHeight, $rightHeight);
     }
 }

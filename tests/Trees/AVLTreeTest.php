@@ -21,6 +21,11 @@ class AVLTreeTest extends TestCase {
         $this->assertEquals("Clara", $this->tree->get(19));
         $this->assertEquals("Elisa", $this->tree->get(51));
         $this->assertNull($this->tree->get(100));
+
+        $this->tree->put(17, "Carmen");
+        $this->tree->put(18, "Celia");
+        $this->assertEquals("Carmen", $this->tree->get(17));
+        $this->assertEquals("Celia", $this->tree->get(18));
     }
 
     public function testPutWithUpdate() {
