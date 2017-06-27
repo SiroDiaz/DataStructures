@@ -40,13 +40,10 @@ class AVLTree extends BinaryTreeAbstract {
 
     /**
      * Does a right rotation.
-     * Example, rotate Y
-     *    k2                   k1
-     *   /  \                 /  \
-     *  k1   Z     ==>       X   k2
-     * / \                      /  \
-     *X   Y                    Y    Z
-     *
+     * 
+     * @param DataStructures\Trees\Nodes\AVLNode $node The node to be
+     * rotated.
+     * @return DataStructures\Trees\Nodes\AVLNode
      */
     private function rightRotation(AVLNode &$node) {
         $temp = &$node->left;
@@ -72,34 +69,14 @@ class AVLTree extends BinaryTreeAbstract {
         }
         
         return $temp;
-        /*
-        $temp = &$node->left;
-
-        if($node->parent !== null) {
-            if($node->parent->right !== null) {
-                $node->parent->right = &$temp;
-            } else {
-                $node->parent->left = &$temp;
-            }
-        }
-
-        $temp->parent = &$node->parent;
-        $node->parent = &$temp;
-        $node->left = $temp->right;
-        if($node->left !== null) {
-            $node->left->parent = &$node;
-        }
-        $temp->right = &$node;
-
-        $this->adjustHeight($node);
-        $this->adjustHeight($temp);
-
-        return $temp;
-        */
     }
 
-    /*
+    /**
      * Does a right rotation.
+     *
+     * @param DataStructures\Trees\Nodes\AVLNode $node The node to be
+     * rotated.
+     * @return DataStructures\Trees\Nodes\AVLNode
      */
     private function leftRotation(AVLNode &$node) {
 
@@ -127,27 +104,6 @@ class AVLTree extends BinaryTreeAbstract {
         }
         
         return $temp;
-        /*
-        $temp = &$node->right;
-        if($node->parent !== null) {
-            if($node->parent->right === $node) {
-                $node->parent->right = &$node;
-            } else {
-                $node->parent->left = &$node;
-            }
-        }
-        $temp->parent = &$node->parent;
-        $node->parent = &$temp;
-        $node->right = $temp->left;
-        if($node->right !== null) {
-            $node->right->parent = &$node;
-        }
-        $temp->left = &$node;
-        */
-        // $this->adjustHeight($node);
-        // $this->adjustHeight($temp);
-
-        // return $temp;
     }
 
     /**
@@ -155,6 +111,10 @@ class AVLTree extends BinaryTreeAbstract {
      * that detects the imbalance and finally does a right rotation
      * in the subtree root that detects the imbalance.
      * Case Right-Left.
+     *
+     * @param DataStructures\Trees\Nodes\AVLNode $node The node to be
+     * rotated.
+     * @return DataStructures\Trees\Nodes\AVLNode
      */
     private function doubleRightRotation(AVLNode &$node) {
         $this->leftRotation($node->left);
@@ -166,6 +126,10 @@ class AVLTree extends BinaryTreeAbstract {
      * that detects the imbalance and finally does a left rotation
      * in the subtree root that detects the imbalance.
      * Case Left-Right.
+     *
+     * @param DataStructures\Trees\Nodes\AVLNode $node The node to be
+     * rotated.
+     * @return DataStructures\Trees\Nodes\AVLNode
      */
     private function doubleLeftRotation(AVLNode &$node) {
         $this->leftRotation($node->right);
@@ -173,7 +137,7 @@ class AVLTree extends BinaryTreeAbstract {
     }
 
     /**
-     *
+     * {@inheritDoc}
      */
     public function put($key, $data, $update = false) {
         $nodeInserted = parent::put($key, $data, $update);
@@ -183,7 +147,7 @@ class AVLTree extends BinaryTreeAbstract {
     }
 
     /**
-     *
+     * {@inheritDoc}
      */
     public function delete($key) {
         $nodeRemoved = parent::delete($key);
@@ -191,6 +155,9 @@ class AVLTree extends BinaryTreeAbstract {
         return $nodeRemoved;
     }
 
+    /**
+     *
+     */
     private function rebalance(&$node) {
         while($node !== null) {
             $parent = &$node->parent;
