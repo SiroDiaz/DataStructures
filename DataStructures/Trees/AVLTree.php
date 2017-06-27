@@ -49,7 +49,25 @@ class AVLTree extends BinaryTreeAbstract {
      *
      */
     private function rightRotation(AVLNode $node) {
-        
+        $temp = &$node->left;
+
+        if($node->parent !== null) {
+            if($node->parent->right !== null) {
+                $node->parent->right = &$temp;
+            } else {
+                $node->parent->left = &$temp;
+            }
+        }
+
+        $temp->parent = &$node->parent;
+        $node->parent = &$temp;
+        $node->left = $temp->right;
+        $temp->right = &$node;
+
+        $this->adjustHeight($node);
+        $this->adjustHeight($temp);
+
+        return $temp;
     }
 
     /*  Does a right rotation.
