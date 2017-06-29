@@ -125,6 +125,43 @@ class AVLTreeTest extends TestCase {
         $this->assertTrue($this->tree->empty());
     }
 
+    public function testDeleteWithbalance() {
+        $this->tree->put(1, "Clara");
+        $this->tree->put(0, "Siro");
+        $this->tree->put(2, "Elisa");
+        $this->tree->put(3, "Pepe");
+
+        $this->tree->delete(0);
+        $this->tree->preorder(function($node) {
+            // echo $node->data;
+        });
+        $this->assertNull($this->tree->search(0));
+
+        $this->tree->put(0, "Jose");
+        $this->tree->delete(3);
+        /*
+        $this->tree->preorder(function($node) {
+            echo $node->data;
+        });
+        */
+        $this->assertNull($this->tree->search(3));
+    }
+
+    public function testDeleteWithRLRotation() {
+        $this->tree->put(1, "Clara");
+        $this->tree->put(0, "Siro");
+        $this->tree->put(3, "Elisa");
+        $this->tree->put(2, "Pepe");
+
+        $this->tree->delete(0);
+        /*
+        $this->tree->preorder(function($node) {
+            echo $node->data;
+        });
+        */
+        $this->assertNull($this->tree->search(0));
+    }
+
     public function testDeleteMin() {
         $this->tree->put(1, "one");
         $this->tree->put(2, "two");

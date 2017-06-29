@@ -132,8 +132,8 @@ class AVLTree extends BinaryTreeAbstract {
      * @return DataStructures\Trees\Nodes\AVLNode
      */
     private function doubleLeftRotation(AVLNode &$node) {
-        $this->leftRotation($node->right);
-        return $this->rightRotation($node);
+        $this->rightRotation($node->right);
+        return $this->leftRotation($node);
     }
 
     /**
@@ -150,9 +150,24 @@ class AVLTree extends BinaryTreeAbstract {
      * {@inheritDoc}
      */
     public function delete($key) {
-        $nodeRemoved = parent::delete($key);
+        $nodeDelete = $this->search($key);
+        if($nodeDelete !== null) {
+            $successorNode = parent::delete($key);
+            if($successorNode !== null) {
+                $minimumNode = ($successorNode->right !== null) ?
+                    $this->getMinNode($successorNode->right) : $successorNode;
+                
+                $this->recomputeHeight($minimumNode);
+                $this->rebalance($minimumNode);
+            } else {
+                $this->recomputeHeight($nodeDelete->parent);
+                $this->rebalance($nodeDelete->parent);
+            }
 
-        return $nodeRemoved;
+            return $successorNode;
+        }
+        
+        return null;
     }
 
     /**
@@ -188,6 +203,25 @@ class AVLTree extends BinaryTreeAbstract {
 
             $node = &$parent;
         }
+    }
+
+    private function recomputeHeight($node) {
+        while($node !== null) {
+            $node->height = $this->maxHeight($node->left, $node->right) + 1;
+            $node = &$node->parent;
+        }
+    }
+
+    private function maxHeight($node1, $node2) {
+        if($node1 !== null && $node2 !== null) {
+            return $node1->height > $node2->height ? $node1->height : $node2->height;
+        } else if($node1 === null) {
+            return $node2 !== null ? $node2->height : 0;
+        } else if($node2 === null) {
+            return $node1 !== null ? $node1->height : 0;
+        }
+
+        return 0;
     }
 
     /**
