@@ -51,7 +51,7 @@ class AVLTree extends BinaryTreeAbstract {
 
         $node->left = &$temp->right;
         if ($node->left !== null) {
-            $node->left->parent = &$snode;
+            $node->left->parent = &$node;
         }
 
         $temp->right = &$node;
