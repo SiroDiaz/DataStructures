@@ -125,7 +125,7 @@ class AVLTreeTest extends TestCase {
         $this->assertTrue($this->tree->empty());
     }
 
-    public function testDeleteWithbalance() {
+    public function testDeleteWithBalance() {
         $this->tree->put(1, "Clara");
         $this->tree->put(0, "Siro");
         $this->tree->put(2, "Elisa");
@@ -144,6 +144,20 @@ class AVLTreeTest extends TestCase {
             echo $node->data;
         });
         */
+        $this->assertNull($this->tree->search(3));
+    }
+
+    public function testDeleteWithBalanceWorstCase() {
+        $this->tree->put(3, 3);
+        $this->tree->put(2, 2);
+        $this->tree->put(7, 7);
+        $this->tree->put(4, 4);
+        $this->tree->put(8, 8);
+
+        $this->tree->delete(3);
+        $this->tree->preorder(function($node) {
+            // echo $node->data;
+        });
         $this->assertNull($this->tree->search(3));
     }
 

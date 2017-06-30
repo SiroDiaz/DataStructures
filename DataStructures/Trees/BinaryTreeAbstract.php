@@ -241,7 +241,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
      * @param DataStructures\Trees\Nodes\BSTNode $node the start point.
      * @return DataStructures\Trees\Nodes\BSTNode|null the minimum node.
      */
-    private function getMinNode(BinaryNodeInterface $node = null) {
+    protected function getMinNode(BinaryNodeInterface $node = null) {
         if($node === null) {
             return null;
         }
