@@ -259,7 +259,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
      * @param DataStructures\Trees\Nodes\BSTNode $node the start point.
      * @return DataStructures\Trees\Nodes\BSTNode|null the maximum node.
      */
-    private function getMaxNode(BinaryNodeInterface $node = null) {
+    protected function getMaxNode(BinaryNodeInterface $node = null) {
         if($node === null) {
             return null;
         }
