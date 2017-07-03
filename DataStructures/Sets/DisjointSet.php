@@ -21,7 +21,11 @@ use DataStructures\Trees\Nodes\DisjointNode;
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
 class DisjointSet {
-    public function __construct() {}
+    private $subsets;
+
+    public function __construct() {
+        $this->subsets = [];
+    }
 
     /**
      * Creates a new set/tree with zero children and parents.
