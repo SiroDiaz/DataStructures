@@ -21,7 +21,7 @@ use DataStructures\Trees\Nodes\DisjointNode;
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
 class DisjointSet {
-    private $subsets;
+    public $subsets;
 
     public function __construct() {
         $this->subsets = [];
@@ -36,8 +36,8 @@ class DisjointSet {
      * @return DataStructures\Trees\Nodes\DisjointNode the node created.
      */
     public function makeSet($data) : DisjointNode {
-        $newSet = new DisjointNode(0, $data);
-        $newSet->parent = &$newSet;
+        $newSet = new DisjointNode($data);
+        $this->subsets[] = $newSet;
 
         return $newSet;
     }
@@ -50,12 +50,13 @@ class DisjointSet {
      *  where start to search the root.
      * @return DataStructures\Trees\Nodes\DisjointNode the parent node.
      */
-    public function find(DisjointNode $node) : DisjointNode {
-        if($node->parent !== $node) {
-            $node->parent = $this->find($node->parent);
+    public function find($vertex) {
+        if($this->subsets[$vertex]->parent <= 0) {
+            return $vertex;
         }
 
-        return $node->parent;
+        $this->subsets[$vertex]->parent = $this->find($this->subsets[$vertex]->parent);
+        return $this->subsets[$vertex]->parent;
     }
 
     /**
@@ -69,21 +70,15 @@ class DisjointSet {
      * @param DataStructures\Trees\Nodes\DisjointNode $x The set.
      * @param DataStructures\Trees\Nodes\DisjointNode $y The other set.
      */
-    public function union(DisjointNode $x, DisjointNode $y) {
-        $rootX = $this->find($x);
-        $rootY = $this->find($y);
-
-        if($rootX === $rootY) {
-            return;
-        }
-
-        if($rootX->rank < $rootY->rank) {
-            $rootX->parent = &$rootY;
-        } else if($rootX->rank > $rootY->rank) {
-            $rootY->parent = &$rootX;
+    public function union($vertex1, $vertex2) {
+        if($this->subsets[$vertex2]->parent < $this->subsets[$vertex1]->parent) {
+            $this->subsets[$vertex1]->parent = $vertex2;
         } else {
-            $rootX->parent = &$rootY;
-            $rootY->rank++;
+            if($this->subsets[$vertex1]->parent === $this->subsets[$vertex2]->parent) {
+                $this->subsets[$vertex1]->parent--;
+            }
+
+            $this->subsets[$vertex2]->parent = $vertex1;
         }
     }
 }

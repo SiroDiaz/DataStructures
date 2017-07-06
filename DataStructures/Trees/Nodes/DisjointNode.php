@@ -21,12 +21,10 @@ namespace DataStructures\Trees\Nodes;
  */
 class DisjointNode {
     public $parent;
-    public $rank;
     public $data;
 
-    public function __construct($rank, $data) {
-        $this->parent = null;
-        $this->rank = $rank;
+    public function __construct($data) {
+        $this->parent = 0;
         $this->data = $data;
     }
 }
