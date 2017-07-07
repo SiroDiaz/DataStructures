@@ -24,7 +24,7 @@ class DisjointNode {
     public $data;
 
     public function __construct($data) {
-        $this->parent = 0;
+        $this->parent = null;
         $this->data = $data;
     }
 }

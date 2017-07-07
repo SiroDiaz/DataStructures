@@ -51,7 +51,7 @@ class DisjointSet {
      * @return DataStructures\Trees\Nodes\DisjointNode the parent node.
      */
     public function find($vertex) {
-        if($this->subsets[$vertex]->parent <= 0) {
+        if($this->subsets[$vertex]->parent === null || $this->subsets[$vertex]->parent < 0) {
             return $vertex;
         }
 
@@ -75,7 +75,11 @@ class DisjointSet {
             $this->subsets[$vertex1]->parent = $vertex2;
         } else {
             if($this->subsets[$vertex1]->parent === $this->subsets[$vertex2]->parent) {
-                $this->subsets[$vertex1]->parent--;
+                if($this->subsets[$vertex1]->parent === null) {
+                    $this->subsets[$vertex1]->parent = -1;
+                } else {
+                    $this->subsets[$vertex1]->parent--;
+                }
             }
 
             $this->subsets[$vertex2]->parent = $vertex1;

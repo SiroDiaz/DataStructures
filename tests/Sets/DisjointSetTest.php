@@ -26,14 +26,16 @@ class DisjointSetTest extends TestCase {
         $this->set->makeSet('goodbye');
         $this->set->makeSet([true, 3.14]);
 
-        $this->set->union(0, 1);        
-        $this->set->union(0, 0);
-
+        $this->set->union(0, 1);
         $this->assertEquals(0, $this->set->find(0));
         $this->set->union(0, 1);
         $this->assertEquals(2, $this->set->find(2));
         $this->set->union(1, 2);
-        var_dump($this->set->subsets);
-        exit();
+        $this->set->find(2);
+
+        $this->set->makeSet(3.14);
+        $this->assertEquals(3, $this->set->find(3));
+        $this->set->union(2, 3);
+        $this->assertEquals(0, $this->set->find(3));
     }
 }
