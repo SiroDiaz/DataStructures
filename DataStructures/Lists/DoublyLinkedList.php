@@ -127,6 +127,27 @@ class DoublyLinkedList implements ListInterface {
         }
         return $this->tail;
     }
+
+    /**
+     *
+     */
+    public function contains($data) : bool {
+        if($this->empty()) {
+            return false;
+        }
+
+        $current = $this->head->next;
+        $prev = $this->head;
+        while($current !== $this->head) {
+            if($prev->data === $data) {
+                return true;
+            }
+            $prev = $current;
+            $current = $current->next;
+        }
+
+        return false;
+    }
     
     /**
      * Generator for retrieve all nodes stored.

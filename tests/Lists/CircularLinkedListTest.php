@@ -142,6 +142,18 @@ class CircularLinkedListTest extends TestCase {
         $this->assertEquals(999, $this->list->get(2));
         $this->assertEquals($this->list->getLast(), 999);
     }
+
+    public function testContains() {
+        $this->assertFalse($this->list->contains(999));
+        $this->list->unshift(999);
+        $this->assertTrue($this->list->contains(999));
+        $this->list->unshift(888);
+        $this->assertTrue($this->list->contains(888));
+        $this->list->unshift(777);
+        $this->assertTrue($this->list->contains(777));
+        $this->list->pop();
+        $this->assertFalse($this->list->contains(999));
+    }
     
     public function testGet() {
         $this->list->push(20);

@@ -25,7 +25,7 @@ interface ListInterface extends ArrayAccess, Iterator, Countable {
     // Removes all of the elements from this list (optional operation).
     public function clear();
     // Returns true if this list contains the specified element.
-    // public function contains($data);
+    public function contains($data) : bool;
     public function get($index);
     public function getAll();
     // Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.

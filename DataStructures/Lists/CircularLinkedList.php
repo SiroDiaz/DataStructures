@@ -204,6 +204,27 @@ class CircularLinkedList implements ListInterface {
     }
 
     /**
+     *
+     */
+    public function contains($data) : bool {
+        if($this->empty()) {
+            return false;
+        }
+
+        $current = $this->head->next;
+        $prev = $this->head;
+        while($current !== $this->head) {
+            if($prev->data === $data) {
+                return true;
+            }
+            $prev = $current;
+            $current = $current->next;
+        }
+
+        return false;
+    }
+
+    /**
      * Generator for retrieve all nodes stored.
      * 
      * @return null if the head is null (or list is empty)

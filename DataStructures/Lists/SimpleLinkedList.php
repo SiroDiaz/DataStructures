@@ -116,6 +116,25 @@ class SimpleLinkedList implements ListInterface {
     }
 
     /**
+     *
+     */
+    public function contains($data) : bool {
+        if($this->empty()) {
+            return false;
+        }
+
+        $current = $this->head;
+        while($current !== null) {
+            if($current->data === $data) {
+                return true;
+            }
+            $current = $current->next;
+        }
+
+        return false;
+    }
+
+    /**
      * Insert a node in the specified list position.
      *
      * @param integer $index position

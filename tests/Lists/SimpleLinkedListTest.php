@@ -123,6 +123,18 @@ class SimpleLinkedListTest extends TestCase {
         $this->assertSame([20, true, 15, 3.14, "string"], $data);
     }
 
+    public function testContains() {
+        $this->assertFalse($this->list->contains(999));
+        $this->list->unshift(999);
+        $this->assertTrue($this->list->contains(999));
+        $this->list->unshift(888);
+        $this->assertTrue($this->list->contains(888));
+        $this->list->unshift(777);
+        $this->assertTrue($this->list->contains(777));
+        $this->list->pop();
+        $this->assertFalse($this->list->contains(999));
+    }
+
     public function testToArray() {
         $this->list->push(20);
         $this->list->push(true);

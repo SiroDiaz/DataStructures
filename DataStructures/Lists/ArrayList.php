@@ -110,6 +110,13 @@ class ArrayList implements ListInterface {
     }
 
     /**
+     *
+     */
+    public function contains($data) : bool {
+        return in_array($data, $this->data);
+    }
+
+    /**
      * Adds at the beginning a node in the list.
      *
      * @param mixed $data
