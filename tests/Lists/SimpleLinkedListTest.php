@@ -81,8 +81,20 @@ class SimpleLinkedListTest extends TestCase {
     }
 
     public function testPop() {
-        //TODO 
-        $this->assertTrue(true);
+        $this->list->push(20);
+        $this->list->push(true);
+        $this->list->push(15);
+        $this->list->push(3.14);
+        $this->list->push("string");
+        
+        $this->assertEquals("string", $this->list->pop());
+        $this->assertEquals(3.14, $this->list->pop());
+        $this->list->insert(1, ['hello']);
+        $this->assertEquals(15, $this->list->pop());
+        $this->assertTrue($this->list->pop());
+        $this->assertSame($this->list->pop(), ['hello']);
+        $this->assertSame($this->list->pop(), 20);
+        $this->assertTrue($this->list->empty());
     }
 
     public function testUnshift() {

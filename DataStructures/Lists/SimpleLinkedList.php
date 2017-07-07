@@ -202,7 +202,14 @@ class SimpleLinkedList implements ListInterface {
             $prev = $current;
             $current = $current->next;
         }
-        $prev->next = $current->next;
+
+        if($index === $this->size - 1) {
+            $prev->next = null;
+            $this->size--;
+            return $current->data;
+        } else {
+            $prev->next = $current->next;
+        }
         $this->size--;
 
         return $prev->data;

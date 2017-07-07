@@ -21,7 +21,7 @@ use DataStructures\Trees\Nodes\DisjointNode;
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
 class DisjointSet {
-    public $subsets;
+    private $subsets;
 
     public function __construct() {
         $this->subsets = [];
