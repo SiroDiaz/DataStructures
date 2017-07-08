@@ -193,6 +193,21 @@ class ArrayListTest extends TestCase {
         $this->list->pop();
         $this->assertFalse($this->list->contains(999));
     }
+
+    public function testIndexOf() {
+        $this->assertFalse($this->list->indexOf(999));
+        $this->list->unshift(999);
+        $this->assertEquals(0, $this->list->indexOf(999));
+        $this->list->unshift(888);
+        $this->assertEquals(0, $this->list->indexOf(888));
+        $this->assertEquals(1, $this->list->indexOf(999));
+        $this->list->unshift(777);
+        $this->assertEquals(0, $this->list->indexOf(777));
+        $this->assertEquals(1, $this->list->indexOf(888));
+        $this->assertEquals(2, $this->list->indexOf(999));
+        $this->list->pop();
+        $this->assertFalse($this->list->indexOf(999));
+    }
     
     public function testToArray() {
         $this->list->push(20);

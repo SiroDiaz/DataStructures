@@ -29,7 +29,7 @@ interface ListInterface extends ArrayAccess, Iterator, Countable {
     public function get($index);
     public function getAll();
     // Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
-    // public function indexOf($data);
+    public function indexOf($data);
     public function empty() : bool;
     // Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element.
     // public function lastIndexOf(Object o)

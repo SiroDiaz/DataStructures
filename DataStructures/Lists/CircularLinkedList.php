@@ -22,7 +22,7 @@ use OutOfBoundsException;
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
 class CircularLinkedList implements ListInterface {
-    use CountTrait, ArrayAccessTrait;
+    use ArrayAccessTrait;
     private $head;
     private $tail;
     private $size;
@@ -55,7 +55,7 @@ class CircularLinkedList implements ListInterface {
         } else if($index > 0 && $index < $this->size) {
             $this->insertAt($index, $data);
         }
-        
+        $this->current = &$this->head;
         $this->size++;
     }
 
@@ -72,7 +72,7 @@ class CircularLinkedList implements ListInterface {
             $this->tail = &$newNode;
         } else {
             $this->tail->next = &$newNode;
-            $newNode->next = &$this->head;
+            $newNode->next = $this->head;
             $this->head = &$newNode;
         }
     }
@@ -207,7 +207,7 @@ class CircularLinkedList implements ListInterface {
      *
      */
     public function contains($data) : bool {
-        if($this->empty()) {
+        if($this->size === 0) {
             return false;
         }
 
@@ -222,6 +222,38 @@ class CircularLinkedList implements ListInterface {
         }
 
         return false;
+    }
+
+    /**
+     *
+     */
+    public function indexOf($data) {
+        if($this->head === null) {
+            return false;
+        }
+        
+        $current = $this->head;
+        $i = 0;
+        
+        while($i < $this->size) {
+            if($current->data == $data) {
+                return $i;
+            }
+
+            $current = $current->next;
+            $i++;
+        }
+
+        return false;
+        /*
+        foreach($this as $index => $val) {
+            if($data === $val) {
+                return $index;
+            }
+        }
+
+        return false;
+        */
     }
 
     /**
@@ -426,5 +458,32 @@ class CircularLinkedList implements ListInterface {
      */
     public function valid() {
         return $this->position < $this->size;
+    }
+
+    /**
+     * Binds to count() method. This is equal to make $this->tree->size().
+     *
+     * @return integer the tree size. 0 if it is empty.
+     */
+    public function count() {
+        return $this->size;
+    }
+
+    /**
+     * Returns the array size.
+     *
+     * @return int the length
+     */
+    public function size() : int {
+        return $this->size;
+    }
+
+    /**
+     * Checks if the list is empty.
+     *
+     * @return boolean true if is empty, else false.
+     */
+    public function empty() : bool {
+        return $this->size === 0;
     }
 }

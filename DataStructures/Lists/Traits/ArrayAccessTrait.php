@@ -21,8 +21,6 @@ use OutOfBoundsException;
 trait ArrayAccessTrait {
     abstract public function get($index);
     abstract public function delete($index);
-
-    private $size;
     
     public function offsetSet($offset, $value) {
         if (is_null($offset)) {

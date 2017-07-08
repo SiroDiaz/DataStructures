@@ -23,7 +23,7 @@ use Iterator;
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
 class SimpleLinkedList implements ListInterface {
-    use CountTrait, ArrayAccessTrait;
+    use ArrayAccessTrait;
     
     private $head;
     private $size;
@@ -135,6 +135,29 @@ class SimpleLinkedList implements ListInterface {
     }
 
     /**
+     *
+     */
+    public function indexOf($data) {
+        if($this->head === null) {
+            return false;
+        }
+        
+        $current = $this->head;
+        $i = 0;
+        
+        while($i < $this->size) {
+            if($current->data == $data) {
+                return $i;
+            }
+
+            $current = $current->next;
+            $i++;
+        }
+
+        return false;
+    }
+
+    /**
      * Insert a node in the specified list position.
      *
      * @param integer $index position
@@ -150,7 +173,7 @@ class SimpleLinkedList implements ListInterface {
             $aux = $this->head;
             $this->head = &$newNode;
             $newNode->next = &$aux;
-            $this->current = &$this->head;
+            $this->current = $this->head;
         } else {
             $i = 0;
             $current = $this->head;
@@ -308,5 +331,32 @@ class SimpleLinkedList implements ListInterface {
      */
     public function valid() {
         return $this->current !== null;
+    }
+
+    /**
+     * Binds to count() method. This is equal to make $this->tree->size().
+     *
+     * @return integer the tree size. 0 if it is empty.
+     */
+    public function count() {
+        return $this->size;
+    }
+
+    /**
+     * Returns the array size.
+     *
+     * @return int the length
+     */
+    public function size() : int {
+        return $this->size;
+    }
+
+    /**
+     * Checks if the list is empty.
+     *
+     * @return boolean true if is empty, else false.
+     */
+    public function empty() : bool {
+        return $this->size === 0;
     }
 }
