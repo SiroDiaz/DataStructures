@@ -245,15 +245,29 @@ class CircularLinkedList implements ListInterface {
         }
 
         return false;
-        /*
-        foreach($this as $index => $val) {
-            if($data === $val) {
-                return $index;
+    }
+
+    /**
+     *
+     */
+    public function lastIndexOf($data) {
+        if($this->head === null) {
+            return false;
+        }
+        
+        $current = $this->head;
+        $i = 0;
+        $pos = false;
+        while($i < $this->size) {
+            if($current->data == $data) {
+                $pos = $i;
             }
+
+            $current = $current->next;
+            $i++;
         }
 
-        return false;
-        */
+        return $pos;
     }
 
     /**

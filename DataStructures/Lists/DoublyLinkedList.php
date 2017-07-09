@@ -170,6 +170,29 @@ class DoublyLinkedList implements ListInterface {
 
         return false;
     }
+
+    /**
+     *
+     */
+    public function lastIndexOf($data) {
+        if($this->head === null) {
+            return false;
+        }
+        
+        $current = $this->head;
+        $i = 0;
+        $pos = false;
+        while($i < $this->size) {
+            if($current->data == $data) {
+                $pos = $i;
+            }
+
+            $current = $current->next;
+            $i++;
+        }
+
+        return $pos;
+    }
     
     /**
      * Generator for retrieve all nodes stored.

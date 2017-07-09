@@ -261,6 +261,22 @@ class DoublyLinkedListTest extends TestCase {
         $this->assertFalse($this->list->indexOf(999));
     }
 
+    public function testLastIndexOf() {
+        $this->assertFalse($this->list->lastIndexOf(999));
+        $this->list->unshift(999);
+        $this->assertEquals(0, $this->list->lastIndexOf(999));
+        $this->list->unshift(888);
+
+        $this->assertEquals(0, $this->list->lastIndexOf(888));
+        $this->assertEquals(1, $this->list->lastIndexOf(999));
+        $this->list->unshift(999);
+        $this->assertFalse($this->list->lastIndexOf(777));
+        $this->assertEquals(1, $this->list->lastIndexOf(888));
+        $this->assertEquals(2, $this->list->lastIndexOf(999));
+        $this->list->pop();
+        $this->assertEquals(0, $this->list->lastIndexOf(999));
+    }
+
     public function testIsset() {
         $this->list->push(20);
         $this->list->push(true);

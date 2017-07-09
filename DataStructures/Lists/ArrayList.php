@@ -120,7 +120,20 @@ class ArrayList implements ListInterface {
      *
      */
     public function indexOf($data) {
-        return array_search($data, $this->data);
+        return array_search($data, $this->data, true);
+    }
+
+    /**
+     *
+     */
+    public function lastIndexOf($data) {
+        for($i = $this->size - 1; $i >= 0; $i--) {
+            if($this->data[$i] === $data) {
+                return $i;
+            }
+        }
+
+        return false;
     }
 
     /**

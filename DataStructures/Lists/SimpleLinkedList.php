@@ -158,6 +158,29 @@ class SimpleLinkedList implements ListInterface {
     }
 
     /**
+     *
+     */
+    public function lastIndexOf($data) {
+        if($this->head === null) {
+            return false;
+        }
+        
+        $current = $this->head;
+        $i = 0;
+        $pos = false;
+        while($i < $this->size) {
+            if($current->data == $data) {
+                $pos = $i;
+            }
+
+            $current = $current->next;
+            $i++;
+        }
+
+        return $pos;
+    }
+
+    /**
      * Insert a node in the specified list position.
      *
      * @param integer $index position
