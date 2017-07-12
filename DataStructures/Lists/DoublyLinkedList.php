@@ -160,7 +160,7 @@ class DoublyLinkedList implements ListInterface {
         $i = 0;
         
         while($i < $this->size) {
-            if($current->data == $data) {
+            if($current->data === $data) {
                 return $i;
             }
 
@@ -192,6 +192,42 @@ class DoublyLinkedList implements ListInterface {
         }
 
         return $pos;
+    }
+
+    /**
+     *
+     */
+    public function remove($data) {
+        $current = &$this->head;
+        $i = 0;
+        
+        if($this->head === null) {
+            return null;
+        }
+
+        if($this->head->data === $data) {
+            $aux = $this->head->prev;
+            $this->head = &$this->head->next;
+            $this->head->prev = &$this->tail;
+            // $this->tail->next = &$this->head;
+            $this->size--;
+            
+            return $data;
+        }
+
+        while($i < $this->size) {
+            if($current->data === $data) {
+                echo $this->head->prev->data;
+                $current->prev = &$current->next;
+                $current = null;
+                $this->size--;
+                return $data;
+            }
+
+            $current = $current->next;
+        }
+
+        return null;
     }
     
     /**

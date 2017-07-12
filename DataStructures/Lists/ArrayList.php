@@ -137,6 +137,19 @@ class ArrayList implements ListInterface {
     }
 
     /**
+     *
+     */
+    public function remove($data) {
+        $i = 0;
+        
+        while($i < $this->size) {
+            $i++;
+        }
+
+        return null;
+    }
+
+    /**
      * Adds at the beginning a node in the list.
      *
      * @param mixed $data

@@ -35,7 +35,7 @@ interface ListInterface extends ArrayAccess, Iterator, Countable {
     public function lastIndexOf($data);
     public function delete($index);
     // Removes the first occurrence of the specified element from this list, if it is present (optional operation).
-    // public function delete($data);
+    public function remove($data);
     // Removes from this list all of its elements that are contained in the specified collection (optional operation).
     // public function deleteAll(ListInterface $list);
     // public function set($index, $newValue);

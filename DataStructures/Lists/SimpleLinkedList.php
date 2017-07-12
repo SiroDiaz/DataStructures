@@ -181,6 +181,34 @@ class SimpleLinkedList implements ListInterface {
     }
 
     /**
+     *
+     */
+    public function remove($data) {
+        $current = &$this->head;
+        $i = 0;
+        
+        if($this->head === null) {
+            return null;
+        }
+
+        if($this->head->data === $data) {
+            $this->size--;
+            return $data;
+        }
+
+        while($i < $this->size) {
+            if($current->data === $data) {
+                $this->size--;
+                return $data;
+            }
+
+            $current = $current->next;
+        }
+
+        return null;
+    }
+
+    /**
      * Insert a node in the specified list position.
      *
      * @param integer $index position

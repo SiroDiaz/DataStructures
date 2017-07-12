@@ -271,6 +271,27 @@ class CircularLinkedList implements ListInterface {
     }
 
     /**
+     *
+     */
+    public function remove($data) {
+        $current = $this->head;
+        $prev = $this->tail;
+        $i = 0;
+        
+        while($i < $this->size) {
+            if($pev->data === $data) {
+                $prev->next = &$current->next;
+                return $current->data;
+            }
+
+            $prev = $current;
+            $current = $current->next;
+        }
+
+        return null;
+    }
+
+    /**
      * Generator for retrieve all nodes stored.
      * 
      * @return null if the head is null (or list is empty)
