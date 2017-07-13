@@ -206,7 +206,6 @@ class DoublyLinkedList implements ListInterface {
         }
 
         if($this->head->data === $data) {
-            $aux = $this->head->prev;
             $this->head = &$this->head->next;
             $this->head->prev = &$this->tail;
             $this->size--;
