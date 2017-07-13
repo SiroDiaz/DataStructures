@@ -146,7 +146,7 @@ class SimpleLinkedList implements ListInterface {
         $i = 0;
         
         while($i < $this->size) {
-            if($current->data == $data) {
+            if($current->data === $data) {
                 return $i;
             }
 
@@ -185,6 +185,7 @@ class SimpleLinkedList implements ListInterface {
      */
     public function remove($data) {
         $current = &$this->head;
+        $prev = null;
         $i = 0;
         
         if($this->head === null) {
@@ -192,16 +193,20 @@ class SimpleLinkedList implements ListInterface {
         }
 
         if($this->head->data === $data) {
+            $this->head = &$this->head->next;
             $this->size--;
             return $data;
         }
-
+        
         while($i < $this->size) {
             if($current->data === $data) {
+                $prev->next = &$current->next;
                 $this->size--;
+
                 return $data;
             }
 
+            $prev = $current;
             $current = $current->next;
         }
 
