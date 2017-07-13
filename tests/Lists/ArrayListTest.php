@@ -224,6 +224,17 @@ class ArrayListTest extends TestCase {
         $this->list->pop();
         $this->assertEquals(0, $this->list->lastIndexOf(999));
     }
+
+    public function testRemove() {
+        $this->assertNull($this->list->remove('string'));
+        $this->list->push(3.14);
+        $this->list->push(true);
+        $this->list->push('string');
+        $this->list->push(3.14);
+        $this->assertEquals(3.14, $this->list->remove(3.14));
+        $this->assertTrue($this->list->contains(3.14));
+        $this->assertEquals(2, $this->list->indexOf(3.14));
+    }
     
     public function testToArray() {
         $this->list->push(20);

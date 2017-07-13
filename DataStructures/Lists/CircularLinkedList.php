@@ -217,8 +217,13 @@ class CircularLinkedList implements ListInterface {
             if($prev->data === $data) {
                 return true;
             }
+            
             $prev = $current;
             $current = $current->next;
+        }
+
+        if($prev->data === $data) {
+            return true;
         }
 
         return false;
@@ -236,7 +241,7 @@ class CircularLinkedList implements ListInterface {
         $i = 0;
         
         while($i < $this->size) {
-            if($current->data == $data) {
+            if($current->data === $data) {
                 return $i;
             }
 
@@ -259,14 +264,14 @@ class CircularLinkedList implements ListInterface {
         $i = 0;
         $pos = false;
         while($i < $this->size) {
-            if($current->data == $data) {
+            if($current->data === $data) {
                 $pos = $i;
             }
 
             $current = $current->next;
             $i++;
         }
-
+        
         return $pos;
     }
 
@@ -278,9 +283,21 @@ class CircularLinkedList implements ListInterface {
         $prev = $this->tail;
         $i = 0;
         
+        if($this->head === null) {
+            return null;
+        }
+
+        if($this->head->data === $data) {
+            $this->head = &$this->head->next;
+            $this->tail->next = &$this->head;
+            $this->size--;
+            return $current->data;
+        }
         while($i < $this->size) {
-            if($pev->data === $data) {
+            if($prev->data === $data) {
                 $prev->next = &$current->next;
+                $this->size--;
+
                 return $current->data;
             }
 

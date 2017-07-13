@@ -151,8 +151,10 @@ class CircularLinkedListTest extends TestCase {
         $this->assertTrue($this->list->contains(888));
         $this->list->unshift(777);
         $this->assertTrue($this->list->contains(777));
+        $this->list->push(1000000);
+        $this->assertTrue($this->list->contains(1000000));
         $this->list->pop();
-        $this->assertFalse($this->list->contains(999));
+        $this->assertFalse($this->list->contains(1000000));
     }
 
     public function testIndexOf() {
@@ -169,6 +171,17 @@ class CircularLinkedListTest extends TestCase {
         $this->assertEquals(2, $this->list->indexOf(999));
         $this->list->pop();
         $this->assertFalse($this->list->indexOf(999));
+    }
+
+    public function testRemove() {
+        $this->assertNull($this->list->remove('string'));
+        $this->list->push(3.14);
+        $this->list->push(true);
+        $this->list->push('string');
+        $this->list->push(3.14);
+        $this->assertEquals(3.14, $this->list->remove(3.14));
+        $this->assertTrue($this->list->contains(3.14));
+        $this->assertEquals(2, $this->list->indexOf(3.14));
     }
 
     public function testLastIndexOf() {

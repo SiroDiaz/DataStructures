@@ -21,7 +21,6 @@ use OutOfBoundsException;
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
 class ArrayList implements ListInterface {
-    use CountTrait;
     use ArrayAccessTrait;
 
     private $data;
@@ -143,6 +142,13 @@ class ArrayList implements ListInterface {
         $i = 0;
         
         while($i < $this->size) {
+            if($this->data[$i] === $data) {
+                $aux = $this->data[$i];
+                array_splice($this->data, $i, 1);
+                
+                return $aux;
+            }
+
             $i++;
         }
 
