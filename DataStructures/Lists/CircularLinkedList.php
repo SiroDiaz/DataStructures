@@ -11,6 +11,7 @@ namespace DataStructures\Lists;
 use DataStructures\Lists\Traits\{CountTrait, ArrayAccessTrait};
 use DataStructures\Lists\Nodes\SimpleLinkedListNode;
 use DataStructures\Lists\Interfaces\ListInterface;
+use DataStructures\Lists\ListAbstract;
 use OutOfBoundsException;
 
 /**
@@ -21,11 +22,10 @@ use OutOfBoundsException;
  *
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
-class CircularLinkedList implements ListInterface {
+class CircularLinkedList extends ListAbstract {
     use ArrayAccessTrait;
     private $head;
     private $tail;
-    private $size;
     private $current;
     private $position;
 
@@ -510,32 +510,5 @@ class CircularLinkedList implements ListInterface {
      */
     public function valid() {
         return $this->position < $this->size;
-    }
-
-    /**
-     * Binds to count() method. This is equal to make $this->tree->size().
-     *
-     * @return integer the tree size. 0 if it is empty.
-     */
-    public function count() {
-        return $this->size;
-    }
-
-    /**
-     * Returns the array size.
-     *
-     * @return int the length
-     */
-    public function size() : int {
-        return $this->size;
-    }
-
-    /**
-     * Checks if the list is empty.
-     *
-     * @return boolean true if is empty, else false.
-     */
-    public function empty() : bool {
-        return $this->size === 0;
     }
 }
