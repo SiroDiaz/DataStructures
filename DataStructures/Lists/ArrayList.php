@@ -43,6 +43,12 @@ class ArrayList extends ListAbstract {
         array_splice($this->data, $index, 0, $data);
         $this->size++;
     }
+
+    protected function insertAt($index, $data) {}
+
+    protected function insertEnd($data) {}
+
+    protected function insertBeginning($data) {}
     
     /**
      * Removes all the array items.

@@ -250,33 +250,11 @@ class DoublyLinkedList extends ListAbstract {
     }
 
     /**
-     * Inserts data in the specified position.
-     *
-     * @param integer $index the position.
-     * @param mixed $data the data to store.
-     */
-    public function insert($index, $data) {
-        if($index < 0) {
-            throw new OutOfBoundsException();
-        }
-
-        if($index === 0) {
-            $this->insertBeginning($data);
-        } else if($index >= $this->size) {
-            $this->insertEnd($data);
-        } else if($index > 0 && $index < $this->size) {
-            $this->insertAt($index, $data);
-        }
-        
-        $this->size++;
-    }
-
-    /**
      * Inserts at the beginning of the list.
      *
      * @param mixed $data
      */
-    private function insertBeginning($data) {
+    protected function insertBeginning($data) {
         $newNode = new DoublyLinkedListNode($data);
         if($this->head === null) {
             $newNode->next = &$this->head;
@@ -296,7 +274,7 @@ class DoublyLinkedList extends ListAbstract {
      *
      * @param mixed $data the data to be stored.
      */
-    private function insertEnd($data) {
+    protected function insertEnd($data) {
         $newNode = new DoublyLinkedListNode($data);
         $this->tail->next = &$newNode;
         $newNode->next = &$this->head;
@@ -311,7 +289,7 @@ class DoublyLinkedList extends ListAbstract {
      * @param integer $index the position.
      * @param mixed $data the data to be stored.
      */
-    private function insertAt($index, $data) {
+    protected function insertAt($index, $data) {
         $newNode = new DoublyLinkedListNode($data);
         $current = $this->head;
         $prev = null;

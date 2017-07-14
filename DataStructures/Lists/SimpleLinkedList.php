@@ -190,28 +190,6 @@ class SimpleLinkedList extends ListAbstract {
     }
 
     /**
-     * Insert a node in the specified list position.
-     *
-     * @param integer $index position
-     * @param mixed $data data to be saved
-     */
-    public function insert($index, $data) {
-        if($index < 0) {
-            throw new OutOfBoundsException();
-        }
-
-        if($index === 0) {
-            $this->insertBeginning($data);
-        } else if($index >= $this->size) {
-            $this->insertEnd($data);
-        } else if($index > 0 && $index < $this->size) {
-            $this->insertAt($index, $data);
-        }
-        
-        $this->size++;
-    }
-
-    /**
      * Add a new node in the specified index.
      *
      * @param integer $index the position.

@@ -8,6 +8,40 @@ abstract class ListAbstract implements ListInterface {
     protected $size;
 
     /**
+     * Insert a node in the specified list position.
+     *
+     * @param integer $index position
+     * @param mixed $data data to be saved
+     */
+    public function insert($index, $data) {
+        if($index < 0) {
+            throw new OutOfBoundsException();
+        }
+
+        if($index === 0) {
+            $this->insertBeginning($data);
+        } else if($index >= $this->size) {
+            $this->insertEnd($data);
+        } else if($index > 0 && $index < $this->size) {
+            $this->insertAt($index, $data);
+        }
+        
+        $this->size++;
+    }
+
+    /**
+     * Add a new node in the specified index.
+     *
+     * @param integer $index the position.
+     * @param mixed $data the data to be stored.
+     */
+    protected abstract function insertAt($index, $data);
+
+    protected abstract function insertEnd($data);
+
+    protected abstract function insertBeginning($data);
+
+    /**
      * Binds to count() method. This is equal to make $this->tree->size().
      *
      * @return integer the tree size. 0 if it is empty.

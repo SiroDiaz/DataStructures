@@ -36,34 +36,13 @@ class CircularLinkedList extends ListAbstract {
         $this->current = &$this->head;
     }
 
-    /**
-     * Inserts data in the specified position.
-     *
-     * @param integer $index the position.
-     * @param mixed $data the data to store.
-     */
-    public function insert($index, $data) {
-        if($index < 0) {
-            throw new OutOfBoundsException();
-        }
-
-        if($index === 0) {
-            $this->insertBeginning($data);
-        } else if($index >= $this->size) {
-            $this->insertEnd($data);
-        } else if($index > 0 && $index < $this->size) {
-            $this->insertAt($index, $data);
-        }
-        $this->current = &$this->head;
-        $this->size++;
-    }
-
+    
     /**
      * Inserts at the beginning of the list.
      *
      * @param mixed $data
      */
-    private function insertBeginning($data) {
+    protected function insertBeginning($data) {
         $newNode = new SimpleLinkedListNode($data);
         if($this->head === null) {
             $newNode->next = &$this->head;
@@ -82,7 +61,7 @@ class CircularLinkedList extends ListAbstract {
      * @param integer $index the position.
      * @param mixed $data the data to be stored.
      */
-    private function insertEnd($data) {
+    protected function insertEnd($data) {
         $newNode = new SimpleLinkedListNode($data);
         $this->tail->next = &$newNode;
         $newNode->next = &$this->head;
@@ -95,7 +74,7 @@ class CircularLinkedList extends ListAbstract {
      * @param integer $index the position.
      * @param mixed $data the data to be stored.
      */
-    private function insertAt($index, $data) {
+    protected function insertAt($index, $data) {
         $newNode = new SimpleLinkedListNode($data);
         $current = $this->head;
         $prev = null;
