@@ -86,26 +86,6 @@ class ArrayList extends ListAbstract {
             yield $data;
         }
     }
-    
-    /**
-     * Removes and returns the last item in the array.
-     *
-     * @return mixed data in node.
-     */
-    public function pop() {
-        return $this->delete(($this->size === 0) ? 0 : $this->size - 1);
-    }
-
-    /**
-     * Adds at the end of the list new node containing
-     * the data to be stored.
-     *
-     * @param mixed $data The data
-     */
-    public function push($data) {
-        $this->data[] = $data;
-        $this->size++;
-    }
 
     /**
      * {@inheritDoc}
@@ -153,16 +133,6 @@ class ArrayList extends ListAbstract {
     }
 
     /**
-     * Adds at the beginning a node in the list.
-     *
-     * @param mixed $data
-     * @return mixed the data stored.
-     */
-    public function unshift($data) {
-        $this->insert(0, $data);
-    }
-
-    /**
      * Delete a node in the given position and returns it back.
      *
      * @param integer $index the position.
@@ -179,15 +149,6 @@ class ArrayList extends ListAbstract {
         $this->size--;
 
         return $data;
-    }
-    
-    /**
-     * Deletes the first node of the list and returns it.
-     *
-     * @return mixed the data.
-     */
-    public function shift() {
-        return $this->delete(0);
     }
 
     /**

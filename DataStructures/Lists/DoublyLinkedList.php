@@ -9,7 +9,7 @@
 namespace DataStructures\Lists;
 
 use DataStructures\Lists\Traits\{CountTrait, ArrayAccessTrait};
-use DataStructures\Lists\Nodes\DoublyLinkedListNode as Node;
+use DataStructures\Lists\Nodes\DoublyLinkedListNode;
 use DataStructures\Lists\ListAbstract;
 use OutOfBoundsException;
 
@@ -277,7 +277,7 @@ class DoublyLinkedList extends ListAbstract {
      * @param mixed $data
      */
     private function insertBeginning($data) {
-        $newNode = new Node($data);
+        $newNode = new DoublyLinkedListNode($data);
         if($this->head === null) {
             $newNode->next = &$this->head;
             $newNode->prev = &$this->head;
@@ -297,7 +297,7 @@ class DoublyLinkedList extends ListAbstract {
      * @param mixed $data the data to be stored.
      */
     private function insertEnd($data) {
-        $newNode = new Node($data);
+        $newNode = new DoublyLinkedListNode($data);
         $this->tail->next = &$newNode;
         $newNode->next = &$this->head;
         $newNode->prev = &$this->tail;
@@ -312,7 +312,7 @@ class DoublyLinkedList extends ListAbstract {
      * @param mixed $data the data to be stored.
      */
     private function insertAt($index, $data) {
-        $newNode = new Node($data);
+        $newNode = new DoublyLinkedListNode($data);
         $current = $this->head;
         $prev = null;
         $i = 0;
@@ -326,26 +326,6 @@ class DoublyLinkedList extends ListAbstract {
         $newNode->prev = &$prev;
         $newNode->next = &$current;
         $current->prev = &$newNode;
-    }
-
-    /**
-     * Adds at the end of the list new node containing
-     * the data to be stored.
-     *
-     * @param mixed $data The data
-     */
-    public function push($data) {
-        $this->insert($this->size, $data);
-    }
-
-    /**
-     * Adds at the beginning a node in the list.
-     *
-     * @param mixed $data
-     * @return mixed the data stored.
-     */
-    public function unshift($data) {
-        $this->insert(0, $data);
     }
     
     /**
@@ -446,24 +426,6 @@ class DoublyLinkedList extends ListAbstract {
         $this->size--;
 
         return $temp->data;
-    }
-
-    /**
-     * Deletes the first node of the list and returns it.
-     *
-     * @return mixed the data.
-     */
-    public function shift() {
-        return $this->delete(0);
-    }
-
-    /**
-     * Removes and returns the last node in the list.
-     *
-     * @return mixed data in node.
-     */
-    public function pop() {
-        return $this->delete($this->size - 1);
     }
     
     /**
