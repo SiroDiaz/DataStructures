@@ -230,7 +230,12 @@ class CircularLinkedList implements ListInterface {
     }
 
     /**
+     * Returns the first position where is stored the element.
+     * It is a O(n) complexity.
      *
+     * @param mixed $data The data used to compare.
+     * @return mixed Returns a boolean (false) if there is no matches.
+     *  Else return a value between 0 and the list length minus one.
      */
     public function indexOf($data) {
         if($this->head === null) {
@@ -253,7 +258,12 @@ class CircularLinkedList implements ListInterface {
     }
 
     /**
+     * Returns the last position where is stored the element.
+     * It is a O(n) complexity.
      *
+     * @param mixed $data The data used to compare.
+     * @return mixed Returns a boolean (false) if there is no matches.
+     *  Else return a value between 0 and the list length minus one.
      */
     public function lastIndexOf($data) {
         if($this->head === null) {
@@ -276,7 +286,10 @@ class CircularLinkedList implements ListInterface {
     }
 
     /**
+     * Removes the first node with the same value.
      *
+     * @param mixed $data The data used to compare.
+     * @return the element removed.
      */
     public function remove($data) {
         $current = $this->head;

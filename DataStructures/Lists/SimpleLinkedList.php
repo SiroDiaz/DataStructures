@@ -116,7 +116,7 @@ class SimpleLinkedList implements ListInterface {
     }
 
     /**
-     *
+     * {@inheritDoc}
      */
     public function contains($data) : bool {
         if($this->empty()) {
@@ -135,7 +135,7 @@ class SimpleLinkedList implements ListInterface {
     }
 
     /**
-     *
+     * {@inheritDoc}
      */
     public function indexOf($data) {
         if($this->head === null) {
@@ -158,7 +158,7 @@ class SimpleLinkedList implements ListInterface {
     }
 
     /**
-     *
+     * {@inheritDoc}
      */
     public function lastIndexOf($data) {
         if($this->head === null) {
@@ -181,7 +181,7 @@ class SimpleLinkedList implements ListInterface {
     }
 
     /**
-     *
+     * {@inheritDoc}
      */
     public function remove($data) {
         $current = &$this->head;

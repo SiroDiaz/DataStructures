@@ -109,21 +109,21 @@ class ArrayList implements ListInterface {
     }
 
     /**
-     *
+     * {@inheritDoc}
      */
     public function contains($data) : bool {
         return in_array($data, $this->data);
     }
 
     /**
-     *
+     * {@inheritDoc}
      */
     public function indexOf($data) {
         return array_search($data, $this->data, true);
     }
 
     /**
-     *
+     * {@inheritDoc}
      */
     public function lastIndexOf($data) {
         for($i = $this->size - 1; $i >= 0; $i--) {
@@ -136,7 +136,7 @@ class ArrayList implements ListInterface {
     }
 
     /**
-     *
+     * {@inheritDoc}
      */
     public function remove($data) {
         $i = 0;
@@ -148,10 +148,8 @@ class ArrayList implements ListInterface {
                 
                 return $aux;
             }
-
             $i++;
         }
-
         return null;
     }
 

@@ -24,17 +24,49 @@ interface ListInterface extends ArrayAccess, Iterator, Countable {
     // public function addAll(array $data, $index = 0);
     // Removes all of the elements from this list (optional operation).
     public function clear();
-    // Returns true if this list contains the specified element.
+    /**
+     * Returns true if this list contains the specified element.
+     * It is a O(n) complexity.
+     *
+     * @param mixed $data The data to search.
+     * @return boolean true if is contained, else false.
+     */
     public function contains($data) : bool;
+    
     public function get($index);
     public function getAll();
-    // Returns the index of the first occurrence of the specified element in this list, or false if this list does not contain the element.
+    
+    /**
+     * Returns the index of the first occurrence of the specified element in this list,
+     * or false if this list does not contain the element.
+     * It is a O(n) complexity.
+     *
+     * @param mixed $data The data used to compare.
+     * @return mixed Returns a boolean (false) if there is no matches.
+     *  Else return a value between 0 and the list length minus one.
+     */
     public function indexOf($data);
     public function empty() : bool;
-    // Returns the index of the last occurrence of the specified element in this list, or false if this list does not contain the element.
+    
+    /**
+     * Returns the index of the last occurrence of the specified element in this list,
+     * or false if this list does not contain the element.
+     * It is a O(n) complexity.
+     *
+     * @param mixed $data The data used to compare.
+     * @return mixed Returns a boolean (false) if there is no matches.
+     *  Else return a value between 0 and the list length minus one.
+     */
     public function lastIndexOf($data);
     public function delete($index);
-    // Removes the first occurrence of the specified element from this list, if it is present (optional operation).
+    
+    /**
+     * Removes the first occurrence of the specified element from this list,
+     * if it is present (optional operation).
+     *
+     * @param mixed $data The data used to compare.
+     * @return the element removed.
+     */
     public function remove($data);
     // Removes from this list all of its elements that are contained in the specified collection (optional operation).
     // public function deleteAll(ListInterface $list);
