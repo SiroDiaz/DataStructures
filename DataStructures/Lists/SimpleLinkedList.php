@@ -9,8 +9,7 @@
 namespace DataStructures\Lists;
 
 use DataStructures\Lists\Traits\{CountTrait, ArrayAccessTrait};
-use DataStructures\Lists\Nodes\SimpleLinkedListNode as Node;
-use DataStructures\Lists\Interfaces\ListInterface;
+use DataStructures\Lists\Nodes\SimpleLinkedListNode;
 use OutOfBoundsException;
 use Iterator;
 
@@ -22,11 +21,10 @@ use Iterator;
  *
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
-class SimpleLinkedList implements ListInterface {
+class SimpleLinkedList extends ListAbstract {
     use ArrayAccessTrait;
     
     private $head;
-    private $size;
     private $position;
     private $current;
 
@@ -44,7 +42,7 @@ class SimpleLinkedList implements ListInterface {
      * @param mixed $data The data
      */
     public function push($data) {
-        $newNode = new Node($data);
+        $newNode = new SimpleLinkedListNode($data);
         if($this->head === null) {
             $this->head = &$newNode;
             $this->current = &$this->head;
@@ -224,7 +222,7 @@ class SimpleLinkedList implements ListInterface {
             return $this->push($data);
         }
 
-        $newNode = new Node($data);
+        $newNode = new SimpleLinkedListNode($data);
         if($index === 0) {
             $aux = $this->head;
             $this->head = &$newNode;
@@ -387,32 +385,5 @@ class SimpleLinkedList implements ListInterface {
      */
     public function valid() {
         return $this->current !== null;
-    }
-
-    /**
-     * Binds to count() method. This is equal to make $this->tree->size().
-     *
-     * @return integer the tree size. 0 if it is empty.
-     */
-    public function count() {
-        return $this->size;
-    }
-
-    /**
-     * Returns the array size.
-     *
-     * @return int the length
-     */
-    public function size() : int {
-        return $this->size;
-    }
-
-    /**
-     * Checks if the list is empty.
-     *
-     * @return boolean true if is empty, else false.
-     */
-    public function empty() : bool {
-        return $this->size === 0;
     }
 }

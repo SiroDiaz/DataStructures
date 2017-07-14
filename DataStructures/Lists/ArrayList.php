@@ -8,7 +8,6 @@
  */
 namespace DataStructures\Lists;
 
-use DataStructures\Lists\Interfaces\ListInterface;
 use DataStructures\Lists\Traits\{CountTrait, ArrayAccessTrait};
 use DataStructures\Lists\ListAbstract;
 use OutOfBoundsException;

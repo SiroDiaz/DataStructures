@@ -10,7 +10,6 @@ namespace DataStructures\Lists;
 
 use DataStructures\Lists\Traits\{CountTrait, ArrayAccessTrait};
 use DataStructures\Lists\Nodes\SimpleLinkedListNode;
-use DataStructures\Lists\Interfaces\ListInterface;
 use DataStructures\Lists\ListAbstract;
 use OutOfBoundsException;
 
