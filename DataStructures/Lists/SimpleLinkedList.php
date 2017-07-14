@@ -36,28 +36,6 @@ class SimpleLinkedList extends ListAbstract {
     }
 
     /**
-     * Adds at the end of the list new node containing
-     * the data to be stored.
-     *
-     * @param mixed $data The data
-     */
-    public function push($data) {
-        $newNode = new SimpleLinkedListNode($data);
-        if($this->head === null) {
-            $this->head = &$newNode;
-            $this->current = &$this->head;
-        } else {
-            $current = $this->head;
-            while($current->next !== null) {
-                $current = $current->next;
-            }
-            $current->next = &$newNode;
-        }
-
-        $this->size++;
-    }
-
-    /**
      * Gets the data stored in the position especified.
      *
      * @param integer $index Index that must be greater than 0
@@ -84,7 +62,7 @@ class SimpleLinkedList extends ListAbstract {
     protected function search($index) {
         if($index > $this->size - 1 || $index < 0) {
             throw new OutOfBoundsException();
-        }   
+        }
 
         $current = $this->head;
         $i = 0;
@@ -218,31 +196,64 @@ class SimpleLinkedList extends ListAbstract {
      * @param mixed $data data to be saved
      */
     public function insert($index, $data) {
-        if($this->head === null) {
-            return $this->push($data);
+        if($index < 0) {
+            throw new OutOfBoundsException();
         }
 
-        $newNode = new SimpleLinkedListNode($data);
         if($index === 0) {
-            $aux = $this->head;
-            $this->head = &$newNode;
-            $newNode->next = &$aux;
-            $this->current = $this->head;
-        } else {
-            $i = 0;
-            $current = $this->head;
-            $prev = $current;
-            while($i < $index && $current->next !== null) {
-                $prev = $current;
-                $current = $current->next;
-                $i++;
-            }
-
-            $prev->next = &$newNode;
-            $newNode->next = &$current;
+            $this->insertBeginning($data);
+        } else if($index >= $this->size) {
+            $this->insertEnd($data);
+        } else if($index > 0 && $index < $this->size) {
+            $this->insertAt($index, $data);
         }
-
+        
         $this->size++;
+    }
+
+    /**
+     * Add a new node in the specified index.
+     *
+     * @param integer $index the position.
+     * @param mixed $data the data to be stored.
+     */
+    protected function insertAt($index, $data) {
+        $newNode = new SimpleLinkedListNode($data);
+        $current = $this->head;
+        $prev = null;
+        $i = 0;
+        while($i < $index) {
+            $prev = $current;
+            $current = $current->next;
+            $i++;
+        }
+        
+        $prev->next = &$newNode;
+        $newNode->next = &$current;
+    }
+
+    protected function insertEnd($data) {
+        $newNode = new SimpleLinkedListNode($data);
+        if($this->head === null) {
+            $this->head = &$newNode;
+            $this->current = &$this->head;
+        } else {
+            $current = $this->head;
+            while($current->next !== null) {
+                $current = $current->next;
+            }
+            $current->next = &$newNode;
+        }
+    }
+
+    protected function insertBeginning($data) {
+        $newNode = new SimpleLinkedListNode($data);
+        if($this->head === null) {
+            $this->head = &$newNode;
+        } else {
+            $newNode->next = $this->head;
+            $this->head = &$newNode;
+        }
     }
 
     /**
@@ -293,15 +304,6 @@ class SimpleLinkedList extends ListAbstract {
     }
 
     /**
-     * Removes and returns the last node in the list.
-     *
-     * @return mixed data in node.
-     */
-    public function pop() {
-        return $this->delete($this->size - 1);
-    }
-
-    /**
      * Remove all nodes of the list using shift.
      */
     public function clear() {
@@ -322,25 +324,6 @@ class SimpleLinkedList extends ListAbstract {
         }
 
         return $arr;
-    }
-
-    /**
-     * Adds at the beginning a node in the list.
-     *
-     * @param mixed $data
-     * @return mixed the data stored.
-     */
-    public function unshift($data) {
-        $this->insert(0, $data);
-    }
-
-    /**
-     * Deletes the first node of the list and returns it.
-     *
-     * @return mixed the data.
-     */
-    public function shift() {
-        return $this->delete(0);
     }
 
     /**
