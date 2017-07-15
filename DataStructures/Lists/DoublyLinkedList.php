@@ -36,15 +36,6 @@ class DoublyLinkedList extends ListAbstract {
         $this->position = 0;
         $this->current = &$this->head;
     }
-
-    /**
-     * Removes all nodes of the list. It removes from the beginning.
-     */
-    public function clear() {
-        while($this->head !== null) {
-            $this->shift();
-        }
-    }
     
     /**
      * Gets the data stored in the position especified.
@@ -250,9 +241,7 @@ class DoublyLinkedList extends ListAbstract {
     }
 
     /**
-     * Inserts at the beginning of the list.
-     *
-     * @param mixed $data
+     * {@inheritDoc}
      */
     protected function insertBeginning($data) {
         $newNode = new DoublyLinkedListNode($data);
@@ -269,11 +258,6 @@ class DoublyLinkedList extends ListAbstract {
         }
     }
 
-    /**
-     * Add a new node in the specified index.
-     *
-     * @param mixed $data the data to be stored.
-     */
     protected function insertEnd($data) {
         $newNode = new DoublyLinkedListNode($data);
         $this->tail->next = &$newNode;

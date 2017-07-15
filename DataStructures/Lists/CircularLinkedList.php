@@ -386,15 +386,6 @@ class CircularLinkedList extends ListAbstract {
     }
 
     /**
-     * Removes all nodes of the list. It removes from the beginning.
-     */
-    public function clear() {
-        while($this->head !== null) {
-            $this->shift();
-        }
-    }
-
-    /**
      * Converts/exports the list content into array type.
      *
      * @return array data stored in all nodes.

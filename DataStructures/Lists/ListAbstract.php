@@ -37,9 +37,28 @@ abstract class ListAbstract implements ListInterface {
      */
     protected abstract function insertAt($index, $data);
 
+    /**
+     * Add a new node in the specified index.
+     *
+     * @param mixed $data the data to be stored.
+     */
     protected abstract function insertEnd($data);
 
+    /**
+     * Inserts at the beginning of the list.
+     *
+     * @param mixed $data
+     */
     protected abstract function insertBeginning($data);
+
+    /**
+     * Removes all nodes of the list. It removes from the beginning.
+     */
+    public function clear() {
+        while($this->head !== null) {
+            $this->shift();
+        }
+    }
 
     /**
      * Binds to count() method. This is equal to make $this->tree->size().

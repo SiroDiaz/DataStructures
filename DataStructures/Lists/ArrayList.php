@@ -34,20 +34,26 @@ class ArrayList extends ListAbstract {
     }
 
     /**
-     * Add a new node in the specified index.
-     *
-     * @param integer $index the position.
-     * @param mixed $data the data to be stored.
+     * {@inheritDoc}
      */
     public function insert($index, $data) {
         array_splice($this->data, $index, 0, $data);
         $this->size++;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     protected function insertAt($index, $data) {}
 
+    /**
+     * {@inheritDoc}
+     */
     protected function insertEnd($data) {}
 
+    /**
+     * {@inheritDoc}
+     */
     protected function insertBeginning($data) {}
     
     /**

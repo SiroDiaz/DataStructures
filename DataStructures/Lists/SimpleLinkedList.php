@@ -224,6 +224,9 @@ class SimpleLinkedList extends ListAbstract {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     protected function insertBeginning($data) {
         $newNode = new SimpleLinkedListNode($data);
         if($this->head === null) {
@@ -279,15 +282,6 @@ class SimpleLinkedList extends ListAbstract {
         $this->size--;
 
         return $prev->data;
-    }
-
-    /**
-     * Remove all nodes of the list using shift.
-     */
-    public function clear() {
-        while($this->head !== null) {
-            $this->shift();
-        }
     }
 
     /**
