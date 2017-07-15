@@ -23,7 +23,7 @@ use OutOfBoundsException;
  */
 class CircularLinkedList extends ListAbstract {
     use ArrayAccessTrait;
-    private $head;
+    protected $head;
     private $tail;
     private $current;
     private $position;

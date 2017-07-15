@@ -24,7 +24,7 @@ use Iterator;
 class SimpleLinkedList extends ListAbstract {
     use ArrayAccessTrait;
     
-    private $head;
+    protected $head;
     private $position;
     private $current;
 

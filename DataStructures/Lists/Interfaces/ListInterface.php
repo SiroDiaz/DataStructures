@@ -69,6 +69,8 @@ interface ListInterface extends ArrayAccess, Iterator, Countable {
      */
     public function remove($data);
     // Removes from this list all of its elements that are contained in the specified collection (optional operation).
+    // public function removeAll(ListInterface $list);
+    // Removes from this list all of its elements that are contained in the specified collection (optional operation).
     // public function deleteAll(ListInterface $list);
     // public function set($index, $newValue);
     // Replaces the element at the specified position in this list with the specified element (optional operation).

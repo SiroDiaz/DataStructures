@@ -24,7 +24,7 @@ use OutOfBoundsException;
 class DoublyLinkedList extends ListAbstract {
     use ArrayAccessTrait;
 
-    private $head;
+    protected $head;
     private $tail;
     private $position;
     private $current;
@@ -306,15 +306,6 @@ class DoublyLinkedList extends ListAbstract {
         if($this->head === null) {
             return null;
         }
-        
-        // if only there is an element
-        if($this->head->next === $this->head) {
-            $temp = $this->head;
-            $this->head = null;
-            $this->size--;
-
-            return $temp->data;
-        }
 
         if($index === 0) {
             return $this->deleteBeginning();
@@ -331,11 +322,17 @@ class DoublyLinkedList extends ListAbstract {
      * @return mixed the data stored in the node.
      */
     private function deleteBeginning() {
-        $temp = $this->head;
-        $this->head = &$this->head->next;
-        $this->tail->next = &$this->head;
+        // if only there is an element
+        if($this->head->next === $this->head) {
+            $temp = $this->head;
+            $this->head = null;
+        } else {
+            $temp = $this->head;
+            $this->head = &$this->head->next;
+            $this->tail->next = &$this->head;
+            
+        }
         $this->size--;
-
         return $temp->data;
     }
 
