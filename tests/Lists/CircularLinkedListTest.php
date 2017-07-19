@@ -248,6 +248,7 @@ class CircularLinkedListTest extends TestCase {
         $this->list->push(3.14);
         $this->list->push("string");
         $this->list->pop();
+        
         $nodes = $this->list->toArray();
         $this->assertCount(4, $nodes);
         $this->assertSame([20, true, 15, 3.14], $nodes);
@@ -259,6 +260,7 @@ class CircularLinkedListTest extends TestCase {
         $this->list->push(15);
         $this->list->push(3.14);
         $this->list->push("string");
+        
         $this->list->clear();
         $this->assertEmpty($this->list->toArray());
         $this->assertEquals(0, $this->list->size());

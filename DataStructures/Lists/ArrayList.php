@@ -163,6 +163,12 @@ class ArrayList extends ListAbstract {
         return $data;
     }
 
+    protected function deleteBeginning() {}
+
+    protected function deleteAt($index) {}
+
+    protected function deleteEnd() {}
+
     /**
      * Returns array stored in the data attribute.
      *

@@ -289,39 +289,13 @@ class DoublyLinkedList extends ListAbstract {
         $newNode->next = &$current;
         $current->prev = &$newNode;
     }
-    
-    /**
-     * Delete a node in the given position and returns it back.
-     *
-     * @param integer $index the position.
-     * @throws OutOfBoundsException if index is negative
-     *  or is greater than the size of the list.
-     */
-    public function delete($index) {
-        if($index < 0 || ($index > 0 && $index > $this->size - 1)) {
-            throw new OutOfBoundsException();
-        }
-
-        // if the list is empty
-        if($this->head === null) {
-            return null;
-        }
-
-        if($index === 0) {
-            return $this->deleteBeginning();
-        } else if($index === $this->size - 1) {
-            return $this->deleteEnd();
-        } else {
-            return $this->deleteAt($index);
-        }
-    }
 
     /**
      * Deletes at the beginnig of the list and returns the data stored.
      *
      * @return mixed the data stored in the node.
      */
-    private function deleteBeginning() {
+    protected function deleteBeginning() {
         // if only there is an element
         if($this->head->next === $this->head) {
             $temp = $this->head;
@@ -332,7 +306,6 @@ class DoublyLinkedList extends ListAbstract {
             $this->tail->next = &$this->head;
             
         }
-        $this->size--;
         return $temp->data;
     }
 
@@ -342,7 +315,7 @@ class DoublyLinkedList extends ListAbstract {
      * @param integer $index the position.
      * @return mixed the data stored in the node.
      */
-    private function deleteAt($index) {
+    protected function deleteAt($index) {
         $i = 0;
         $prev = $this->head;
         $current = $this->head;
@@ -357,7 +330,6 @@ class DoublyLinkedList extends ListAbstract {
         $prev->next = &$current->next;
         $current->next->prev = &$pre;
         $current = null;
-        $this->size--;
 
         return $temp->data;
     }
@@ -367,7 +339,7 @@ class DoublyLinkedList extends ListAbstract {
      *
      * @return mixed the data stored in the node.
      */
-    private function deleteEnd() {
+    protected function deleteEnd() {
         $prev = $this->head;
         $current = $this->head;
         
@@ -381,8 +353,6 @@ class DoublyLinkedList extends ListAbstract {
         $this->head->prev = &$prev;
         $this->tail = &$prev;
         $current = null;
-
-        $this->size--;
 
         return $temp->data;
     }

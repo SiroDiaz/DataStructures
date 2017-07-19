@@ -3,6 +3,7 @@
 namespace DataStructures\Lists;
 
 use DataStructures\Lists\Interfaces\ListInterface;
+use OutOfBoundsException;
 
 abstract class ListAbstract implements ListInterface {
     protected $size;
@@ -124,4 +125,40 @@ abstract class ListAbstract implements ListInterface {
     public function pop() {
         return $this->delete($this->size - 1);
     }
+
+    /**
+     * Delete a node in the given position and returns it back.
+     *
+     * @param integer $index the position.
+     * @throws OutOfBoundsException if index is negative
+     *  or is greater than the size of the list.
+     */
+    public function delete($index) {
+        if($index < 0 || ($index > 0 && $index > $this->size - 1)) {
+            throw new OutOfBoundsException();
+        }
+
+        // if the list is empty
+        if($this->empty()) {
+            return null;
+        }
+        
+        $nodeData = null;
+        if($index === 0) {
+            $nodeData = $this->deleteBeginning();
+        } else if($index === $this->size - 1) {
+            $nodeData = $this->deleteEnd();
+        } else {
+            $nodeData = $this->deleteAt($index);
+        }
+
+        $this->size--;
+        return $nodeData;
+    }
+
+    protected abstract function deleteBeginning();
+
+    protected abstract function deleteAt($index);
+
+    protected abstract function deleteEnd();
 }

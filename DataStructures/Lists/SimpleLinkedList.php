@@ -284,6 +284,12 @@ class SimpleLinkedList extends ListAbstract {
         return $prev->data;
     }
 
+    protected function deleteBeginning() {}
+
+    protected function deleteAt($index) {}
+
+    protected function deleteEnd() {}
+
     /**
      * Converts/exports the list content into array type.
      *
