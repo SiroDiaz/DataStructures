@@ -241,8 +241,10 @@ class DoublyLinkedListTest extends TestCase {
         $this->assertTrue($this->list->contains(888));
         $this->list->unshift(777);
         $this->assertTrue($this->list->contains(777));
+        $this->list->push(1000000);
+        $this->assertTrue($this->list->contains(1000000));
         $this->list->pop();
-        $this->assertFalse($this->list->contains(999));
+        $this->assertFalse($this->list->contains(1000000));
     }
 
     public function testIndexOf() {
