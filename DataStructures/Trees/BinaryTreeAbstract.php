@@ -127,7 +127,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
     /**
      * Returns the root node.
      *
-     * @return DataStructures\Trees\Nodes\BSTNode|null the root node.
+     * @return DataStructures\Trees\Nodes\BinaryNodeInterface|null the root node.
      */
     public function getRoot(){
         return $this->root;
@@ -168,7 +168,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
      * It's the recursive version of exists method and it's used internally
      * for traverse through a root node.
      *
-     * @param DataStructures\Trees\Nodes\BSTNode|null $node the root node.
+     * @param DataStructures\Trees\Nodes\BinaryNodeInterface|null $node the root node.
      * @param int|string $key the key used to look for.
      * @return bool true if exists a node with that key.
      */
@@ -192,7 +192,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
     /**
      * Gets the node with the minimum key. The most left and more bottom.
      * 
-     * @return DataStructures\Trees\Nodes\BSTNode|null the minum node or
+     * @return DataStructures\Trees\Nodes\BinaryNodeInterface|null the minum node or
      *  null if the tree is empty.
      */
     public function min() {
@@ -215,7 +215,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
     /**
      * Gets the node with the maximum key. The most right and more bottom.
      * 
-     * @return DataStructures\Trees\Nodes\BSTNode|null the maximum node or
+     * @return DataStructures\Trees\Nodes\BinaryNodeInterface|null the maximum node or
      *  null if the tree is empty.
      */
     public function max() {
@@ -238,8 +238,8 @@ abstract class BinaryTreeAbstract implements TreeInterface {
     /**
      * Returns the minimum node from a given node in position X.
      *
-     * @param DataStructures\Trees\Nodes\BSTNode $node the start point.
-     * @return DataStructures\Trees\Nodes\BSTNode|null the minimum node.
+     * @param DataStructures\Trees\Nodes\BinaryNodeInterface $node the start point.
+     * @return DataStructures\Trees\Nodes\BinaryNodeInterface|null the minimum node.
      */
     protected function getMinNode(BinaryNodeInterface $node = null) {
         if($node === null) {
@@ -256,8 +256,8 @@ abstract class BinaryTreeAbstract implements TreeInterface {
     /**
      * Returns the maximum node from a given node in position X.
      *
-     * @param DataStructures\Trees\Nodes\BSTNode $node the start point.
-     * @return DataStructures\Trees\Nodes\BSTNode|null the maximum node.
+     * @param DataStructures\Trees\Nodes\BinaryNodeInterface $node the start point.
+     * @return DataStructures\Trees\Nodes\BinaryNodeInterface|null the maximum node.
      */
     protected function getMaxNode(BinaryNodeInterface $node = null) {
         if($node === null) {
@@ -274,8 +274,8 @@ abstract class BinaryTreeAbstract implements TreeInterface {
     /**
      * Deletes the node with the minimum key and returns it. The most left and more bottom.
      * 
-     * @param DataStructures\Trees\Nodes\BSTNode|null if null takes the root.
-     * @return DataStructures\Trees\Nodes\BSTNode|null the minimum node or
+     * @param DataStructures\Trees\Nodes\BinaryNodeInterface|null if null takes the root.
+     * @return DataStructures\Trees\Nodes\BinaryNodeInterface|null the minimum node or
      *  null if the tree is empty.
      */
     public function deleteMin(BinaryNodeInterface $node = null) {
@@ -290,8 +290,8 @@ abstract class BinaryTreeAbstract implements TreeInterface {
     /**
      * Deletes the node with the maximum key and returns it. The most right and more bottom.
      * 
-     * @param DataStructures\Trees\Nodes\BSTNode|null if null takes the root.
-     * @return DataStructures\Trees\Nodes\BSTNode|null the maximum node or
+     * @param DataStructures\Trees\Nodes\BinaryNodeInterface|null if null takes the root.
+     * @return DataStructures\Trees\Nodes\BinaryNodeInterface|null the maximum node or
      *  null if the tree is empty.
      */
     public function deleteMax(BinaryNodeInterface $node = null) {
@@ -306,8 +306,8 @@ abstract class BinaryTreeAbstract implements TreeInterface {
     /**
      * Deletes the node with the maximum key and returns it. The most right and more bottom.
      * 
-     * @param DataStructures\Trees\Nodes\BSTNode|null if null takes the root.
-     * @return DataStructures\Trees\Nodes\BSTNode|null the maximum node or
+     * @param DataStructures\Trees\Nodes\BinaryNodeInterface|null if null takes the root.
+     * @return DataStructures\Trees\Nodes\BinaryNodeInterface|null the maximum node or
      *  null if the tree is empty.
      */
     public function delete($key) {
@@ -324,7 +324,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
      * Deletes the selected node if is not null and returns the node
      * that replaces the deleted node. Also decrease the size of tree.
      *
-     * @param DataStructures\Trees\Nodes\BSTNode|null The node to be deleted.
+     * @param DataStructures\Trees\Nodes\BinaryNodeInterface|null The node to be deleted.
      * @return the node that replaces the deleted.
      */
     protected function _delete(BinaryNodeInterface &$node) {
@@ -359,10 +359,10 @@ abstract class BinaryTreeAbstract implements TreeInterface {
      * Replaces the node n to remove a new one k and links k with the parent
      * of n.
      *
-     * @param DataStructures\Trees\Nodes\BSTNode $nodeToReplace the node to remove.
-     * @param DataStructures\Trees\Nodes\BSTNode|null $newNode the newNode
+     * @param DataStructures\Trees\Nodes\BinaryNodeInterface $nodeToReplace the node to remove.
+     * @param DataStructures\Trees\Nodes\BinaryNodeInterface|null $newNode the newNode
      *  to link with the $nodeToReplace parent.
-     * @return DataStructures\Trees\Nodes\BSTNode the new linked node.
+     * @return DataStructures\Trees\Nodes\BinaryNodeInterface the new linked node.
      */
     protected function replace(&$nodeToReplace, &$newNode) {
         if($nodeToReplace->parent === null) {
@@ -384,7 +384,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
      * Retrieves the node with the specified key.
      *
      * @param int|string $key the key used to store.
-     * @return DataStructures\Trees\Nodes\BSTNode|null the node or null.
+     * @return DataStructures\Trees\Nodes\BinaryNodeInterface|null the node or null.
      */
     public function search($key) {
         if($this->root === null) {
@@ -412,7 +412,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
     /**
      * Returns true if is leaf the node.
      *
-     * @param DataStructures\Trees\Nodes\BSTNode|null $node default to null.
+     * @param DataStructures\Trees\Nodes\BinaryNodeInterface|null $node default to null.
      * @return true if is leaf the node, is not null and their subtrees has no
      *  pointers to successors.
      */
@@ -424,7 +424,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
      * Checks if a node is root. New nodes that does not point to any other node
      * also are called a root node.
      *
-     * @param DataStructures\Trees\Nodes\BSTNode|null $node default to null.
+     * @param DataStructures\Trees\Nodes\BinaryNodeInterface|null $node default to null.
      * @return true if is root the node, is not null and their subtrees has no
      *  pointers to successors.
      */
@@ -447,7 +447,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
      * Private preorder traverse method that is recursive and is called by
      * the public preorder method.
      *
-     * @param DataStructures\Trees\Nodes\BSTNode|null $node.
+     * @param DataStructures\Trees\Nodes\BinaryNodeInterface|null $node.
      * @param Callable|null $callback the callback function to apply to each
      *  node.
      */
@@ -477,7 +477,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
      * Private inorder traverse method that is recursive and is called by
      * the public inorder method.
      *
-     * @param DataStructures\Trees\Nodes\BSTNode|null $node.
+     * @param DataStructures\Trees\Nodes\BinaryNodeInterface|null $node.
      * @param Callable|null $callback the callback function to apply to each
      *  node.
      */
@@ -508,7 +508,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
      * Private postorder traverse method that is recursive and is called by
      * the public postorder method.
      *
-     * @param DataStructures\Trees\Nodes\BSTNode|null $node.
+     * @param DataStructures\Trees\Nodes\BinaryNodeInterface|null $node.
      * @param Callable|null $callback the callback function to apply to each
      *  node.
      */
