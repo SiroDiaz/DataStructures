@@ -163,10 +163,19 @@ class ArrayList extends ListAbstract {
         return $data;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     protected function deleteBeginning() {}
 
+    /**
+     * {@inheritDoc}
+     */
     protected function deleteAt($index) {}
 
+    /**
+     * {@inheritDoc}
+     */
     protected function deleteEnd() {}
 
     /**
@@ -192,6 +201,7 @@ class ArrayList extends ListAbstract {
      * @return mixed
      */
     public function current() {
+        $this->current = $this->data[$this->position];
         return $this->current;
     }
 
@@ -210,7 +220,6 @@ class ArrayList extends ListAbstract {
      */
     public function next() {
         ++$this->position;
-        $this->current = $this->data[$this->position];
     }
 
     /**
@@ -219,6 +228,6 @@ class ArrayList extends ListAbstract {
      * @return boolean true if pointer is not last, else false.
      */
     public function valid() {
-        return $this->position < $this->size;
+        return isset($this->data[$this->position]);
     }
 }

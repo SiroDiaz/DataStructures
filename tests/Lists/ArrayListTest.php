@@ -306,7 +306,6 @@ class ArrayListTest extends TestCase {
         $this->assertEquals(4, $this->list->size());
     }
     
-    /*
     public function testIterator() {
         $this->list->push(20);
         $this->list->push(true);
@@ -323,11 +322,9 @@ class ArrayListTest extends TestCase {
         }
         
         foreach($this->list as $index => $val) {
-            echo $index ." ----- ". $val . PHP_EOL;
             $result[] = $val;
         }
 
         $this->assertSame($expectedResult, $result);
     }
-    */
 }
