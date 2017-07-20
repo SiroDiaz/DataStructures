@@ -121,6 +121,16 @@ class SimpleLinkedListTest extends TestCase {
         $this->assertTrue(true);
     }
 
+    public function testGetLast() {
+        $this->assertNull($this->list->getLast());
+        $this->list->push(true);
+        $this->list->push(50);
+        $this->list->push("string");
+        $this->assertEquals("string", $this->list->getLast());
+        $this->list->push([]);
+        $this->assertEquals([], $this->list->getLast());
+    }
+
     public function testGetAll() {
         $this->list->push(20);
         $this->list->push(true);

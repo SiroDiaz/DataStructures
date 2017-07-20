@@ -75,6 +75,30 @@ class SimpleLinkedList extends ListAbstract {
     }
 
     /**
+     *
+     */
+    public function getLast() {
+        $lastNode = $this->searchLast();
+        return $lastNode === null ? null : $lastNode->data;
+    }
+
+    /**
+     *
+     */
+    public function searchLast() {
+        if($this->head === null) {
+            return null;
+        }
+
+        $current = $this->head;
+        while($current->next !== null) {
+            $current = $current->next;
+        }
+
+        return $current;
+    }
+
+    /**
      * Generator for retrieve all nodes stored.
      * 
      * @return null if the head is null (or list is empty)
