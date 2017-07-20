@@ -135,11 +135,7 @@ class DoublyLinkedList extends ListAbstract {
             $current = $current->next;
         }
 
-        if($prev->data === $data) {
-            return true;
-        }
-
-        return false;
+        return $prev->data === $data;
     }
 
     /**
