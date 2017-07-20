@@ -290,19 +290,7 @@ class SimpleLinkedList extends ListAbstract {
 
     protected function deleteEnd() {}
 
-    /**
-     * Converts/exports the list content into array type.
-     *
-     * @return array data stored in all nodes.
-     */
-    public function toArray() : array {
-        $arr = [];
-        foreach($this->getAll() as $node) {
-            $arr[] = $node;
-        }
-
-        return $arr;
-    }
+    
 
     /**
      * Reset the cursor position.

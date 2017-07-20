@@ -156,9 +156,39 @@ abstract class ListAbstract implements ListInterface {
         return $nodeData;
     }
 
+    /**
+     * Deletes at the beginnig of the list and returns the data stored.
+     *
+     * @return mixed the data stored in the node.
+     */
     protected abstract function deleteBeginning();
 
+    /**
+     * Deletes at the specified position and returns the data stored.
+     *
+     * @param integer $index the position.
+     * @return mixed the data stored in the node.
+     */
     protected abstract function deleteAt($index);
 
+    /**
+     * Deletes at the end of the list and returns the data stored.
+     *
+     * @return mixed the data stored in the node.
+     */
     protected abstract function deleteEnd();
+
+    /**
+     * Converts/exports the list content into array type.
+     *
+     * @return array data stored in all nodes.
+     */
+    public function toArray() : array {
+        $arr = [];
+        foreach($this->getAll() as $node) {
+            $arr[] = $node;
+        }
+
+        return $arr;
+    }
 }

@@ -290,9 +290,7 @@ class CircularLinkedList extends ListAbstract {
     }
 
     /**
-     * Deletes at the beginnig of the list and returns the data stored.
-     *
-     * @return mixed the data stored in the node.
+     * {@inheritDoc}
      */
     protected function deleteBeginning() {
         // if only there is an element
@@ -310,10 +308,7 @@ class CircularLinkedList extends ListAbstract {
     }
 
     /**
-     * Deletes at the specified position and returns the data stored.
-     *
-     * @param integer $index the position.
-     * @return mixed the data stored in the node.
+     * {@inheritDoc}
      */
     protected function deleteAt($index) {
         $i = 0;
@@ -332,9 +327,7 @@ class CircularLinkedList extends ListAbstract {
     }
 
     /**
-     * Deletes at the end of the list and returns the data stored.
-     *
-     * @return mixed the data stored in the node.
+     * {@inheritDoc}
      */
     protected function deleteEnd() {
         $prev = $this->head;
@@ -351,20 +344,6 @@ class CircularLinkedList extends ListAbstract {
         $current = null;
 
         return $temp->data;
-    }
-
-    /**
-     * Converts/exports the list content into array type.
-     *
-     * @return array data stored in all nodes.
-     */
-    public function toArray() : array {
-        $arr = [];
-        foreach($this->getAll() as $node) {
-            $arr[] = $node;
-        }
-
-        return $arr;
     }
 
     public function clear() {
