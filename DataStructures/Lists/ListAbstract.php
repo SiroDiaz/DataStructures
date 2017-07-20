@@ -1,10 +1,25 @@
 <?php
-
+/**
+ * DataStructures for PHP
+ *
+ * @link      https://github.com/SiroDiaz/DataStructures
+ * @copyright Copyright (c) 2017 Siro Díaz Palazón
+ * @license   https://github.com/SiroDiaz/DataStructures/blob/master/README.md (MIT License)
+ */
 namespace DataStructures\Lists;
 
 use DataStructures\Lists\Interfaces\ListInterface;
 use OutOfBoundsException;
 
+/**
+ * ListAbstract
+ *
+ * ListAbstract is a superclass that implements common operations in lists.
+ * Also define abstract methods that are designed for implement a template method
+ * design pattern.
+ * 
+ * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
+ */
 abstract class ListAbstract implements ListInterface {
     protected $size;
 
@@ -215,7 +230,7 @@ abstract class ListAbstract implements ListInterface {
      *
      * @param integer $index the position.
      * @throws OutOfBoundsException if it is out of limits (< 0 or > size - 1)
-     * @return DataStructures\Lists\Nodes\DoublyLinkedListNode|null the node stored in $index.
+     * @return DataStructures\Lists\Nodes\SimpleLinkedListNode|null the node stored in $index.
      */
     protected abstract function search($index);
 }
