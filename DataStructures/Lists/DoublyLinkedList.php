@@ -36,23 +36,6 @@ class DoublyLinkedList extends ListAbstract {
         $this->position = 0;
         $this->current = &$this->head;
     }
-    
-    /**
-     * Gets the data stored in the position especified.
-     *
-     * @param integer $index Index that must be greater than 0
-     *  and lower than the list size.
-     * @return mixed The data stored in the given index
-     * @throws OutOfBoundsException if index is out bounds.
-     */
-    public function get($index) {
-        $node = $this->search($index);
-        if($node === null) {
-            return null;
-        }
-
-        return $node->data;
-    }
 
     /**
      * Gets the node stored in the position especified.

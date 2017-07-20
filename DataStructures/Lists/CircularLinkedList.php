@@ -112,23 +112,6 @@ class CircularLinkedList extends ListAbstract {
 
         return $this->tail;
     }
-    
-    /**
-     * Returns the data stored in the given position.
-     * If index is 0 or size - 1 the method is O(1) else O(n).
-     *
-     * @param integer $index the position.
-     * @throws OutOfBoundsException if it is out of limits (< 0 or > size - 1)
-     * @return mixed the data stored in $index node.
-     */
-    public function get($index) {
-        $node = $this->search($index);
-        if($node === null) {
-            return null;
-        }
-
-        return $node->data;
-    }
 
     /**
      * Returns the node stored in the given position.

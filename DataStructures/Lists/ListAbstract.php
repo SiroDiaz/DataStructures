@@ -191,4 +191,31 @@ abstract class ListAbstract implements ListInterface {
 
         return $arr;
     }
+
+    /**
+     * Gets the data stored in the position especified.
+     *
+     * @param integer $index Index that must be greater than 0
+     *  and lower than the list size.
+     * @return mixed The data stored in the given index
+     * @throws OutOfBoundsException if index is out bounds.
+     */
+    public function get($index) {
+        $node = $this->search($index);
+        if($node === null) {
+            return null;
+        }
+
+        return $node->data;
+    }
+
+    /**
+     * Gets the node stored in the position especified.
+     * If index is 0 or (size - 1) the method is O(1) else O(n).
+     *
+     * @param integer $index the position.
+     * @throws OutOfBoundsException if it is out of limits (< 0 or > size - 1)
+     * @return DataStructures\Lists\Nodes\DoublyLinkedListNode|null the node stored in $index.
+     */
+    protected abstract function search($index);
 }

@@ -80,6 +80,8 @@ class ArrayList extends ListAbstract {
         return $this->data[$index];
     }
 
+    protected function search($index) {}
+
     /**
      * Returns the last node with O(1).
      *
