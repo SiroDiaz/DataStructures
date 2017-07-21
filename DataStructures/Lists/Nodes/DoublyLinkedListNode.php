@@ -17,8 +17,4 @@ use DataStructures\Lists\Nodes\SimpleLinkedListNode;
  */
 class DoublyLinkedListNode extends SimpleLinkedListNode {
     public $prev = null;
-
-    public function __construct($data) {
-        parent::__construct($data);
-    }
 }
