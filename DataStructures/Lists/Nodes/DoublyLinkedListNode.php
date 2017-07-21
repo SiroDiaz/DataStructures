@@ -16,10 +16,9 @@ use DataStructures\Lists\Nodes\SimpleLinkedListNode;
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
 class DoublyLinkedListNode extends SimpleLinkedListNode {
-    public $prev;
+    public $prev = null;
 
     public function __construct($data) {
         parent::__construct($data);
-        $this->prev = null;
     }
 }
