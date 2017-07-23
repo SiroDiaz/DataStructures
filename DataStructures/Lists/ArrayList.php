@@ -65,12 +65,9 @@ class ArrayList extends ListAbstract {
     }
     
      /**
-     * Returns the array in the especified index.
-     *
-     * @param integer $index Index that must be greater than 0
-     *  and lower than the list size.
-     * @return mixed The data stored in the given index
-     * @throws OutOfBoundsException if index is out bounds.
+     * It execution time is O(1) because arrays in PHP are
+     * hashtables.
+     * {@inheritDoc}
      */
     public function get($index) {
         if($index < 0 || $index > $this->size - 1) {
