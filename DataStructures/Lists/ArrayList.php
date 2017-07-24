@@ -80,9 +80,7 @@ class ArrayList extends ListAbstract {
     protected function search($index) {}
 
     /**
-     * Returns the last node with O(1).
-     *
-     * @return mixed null if the array is empty.
+     * {@inheritDoc}
      */
     public function getLast() {
         if(!$this->empty()) {

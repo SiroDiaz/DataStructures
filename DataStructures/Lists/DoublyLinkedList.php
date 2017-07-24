@@ -77,18 +77,6 @@ class DoublyLinkedList extends ListAbstract {
     }
 
     /**
-     * Returns the data in the last node with O(1).
-     *
-     * @return mixed null if the list is empty.
-     */
-    public function getLast() {
-        if($this->head === null) {
-            return null;
-        }
-        return $this->tail->data;
-    }
-
-    /**
      * Returns the last node with O(1).
      *
      * @return DataStructures\Lists\Nodes\DoublyLinkedListNode|null if the list is empty.

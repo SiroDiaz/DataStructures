@@ -56,14 +56,6 @@ class SimpleLinkedList extends ListAbstract {
     /**
      *
      */
-    public function getLast() {
-        $lastNode = $this->searchLast();
-        return $lastNode === null ? null : $lastNode->data;
-    }
-
-    /**
-     *
-     */
     public function searchLast() {
         if($this->head === null) {
             return null;

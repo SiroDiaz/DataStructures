@@ -90,17 +90,6 @@ class CircularLinkedList extends ListAbstract {
     }
 
     /**
-     * Returns the last node data with O(1).
-     *
-     * @return mixed null if the list is empty.
-     */
-    public function getLast() {
-        $node = $this->searchLast();
-
-        return $node !== null ? $node->data : null;
-    }
-
-    /**
      * Returns the last node with O(1).
      *
      * @return mixed null if the list is empty.

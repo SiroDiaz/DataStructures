@@ -225,6 +225,14 @@ abstract class ListAbstract implements ListInterface {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function getLast() {
+        $lastNode = $this->searchLast();
+        return $lastNode === null ? null : $lastNode->data;
+    }
+
+    /**
      * Gets the node stored in the position especified.
      * If index is 0 or (size - 1) the method is O(1) else O(n).
      *

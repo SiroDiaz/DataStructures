@@ -37,6 +37,14 @@ interface ListInterface extends ArrayAccess, Iterator, Countable {
     public function getAll();
     
     /**
+     * Depending the type of the list it returns the last node with O(1)
+     * in case of doubly linked list, and in case of simply linked list in O(N).
+     *
+     * @return mixed null if the array is empty.
+     */
+    public function getLast();
+    
+    /**
      * Returns the index of the first occurrence of the specified element in this list,
      * or false if this list does not contain the element.
      * It is a O(n) complexity.
