@@ -217,9 +217,6 @@ abstract class ListAbstract implements ListInterface {
      */
     public function get($index) {
         $node = $this->search($index);
-        if($node === null) {
-            return null;
-        }
 
         return $node->data;
     }

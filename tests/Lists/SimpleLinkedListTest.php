@@ -113,13 +113,33 @@ class SimpleLinkedListTest extends TestCase {
         $this->assertEquals(999, $this->list->get(2));
     }
 
+    public function testGetEmpty() {
+        $this->expectException(\OutOfBoundsException::class);
+        $this->list->get('anything');
+    }
+
     public function testGet() {
         $this->list->push(20);
         $this->list->push(true);
         $this->list->push(15);
         $this->list->push(3.14);
         $this->list->push("string");
-        $this->assertTrue(true);
+        $this->assertEquals(20, $this->list->get(0));
+        $this->assertTrue($this->list->get(1));
+        $this->assertEquals(15, $this->list->get(2));
+        $this->assertEquals(3.14, $this->list->get(3));
+        $this->assertEquals('string', $this->list->get(4));
+    }
+
+    public function testGetAfterClear() {
+        $this->list->push(20);
+        $this->list->push(true);
+        $this->list->push(15);
+        $this->list->push(3.14);
+        $this->list->push("string");
+        $this->list->clear();
+        $this->expectException(\OutOfBoundsException::class);
+        $this->list->get(0);
     }
 
     public function testGetLast() {
