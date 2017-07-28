@@ -24,7 +24,7 @@ use OutOfBoundsException;
 class ArrayList extends ListAbstract {
     use ArrayAccessTrait;
 
-    public $data;
+    private $data;
     private $current;
     private $position;
 
