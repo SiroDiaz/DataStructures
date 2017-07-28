@@ -10,6 +10,7 @@ namespace DataStructures\Lists;
 
 use DataStructures\Lists\Traits\{CountTrait, ArrayAccessTrait};
 use DataStructures\Lists\ListAbstract;
+use DataStructures\Exceptions\NotFoundException;
 use OutOfBoundsException;
 
 /**
@@ -23,7 +24,7 @@ use OutOfBoundsException;
 class ArrayList extends ListAbstract {
     use ArrayAccessTrait;
 
-    private $data;
+    public $data;
     private $current;
     private $position;
 
@@ -127,18 +128,22 @@ class ArrayList extends ListAbstract {
      * {@inheritDoc}
      */
     public function remove($data) {
-        $i = 0;
+        if($this->empty()) {
+            throw new NotFoundException();
+        }
         
+        $i = 0;
         while($i < $this->size) {
             if($this->data[$i] === $data) {
                 $aux = $this->data[$i];
                 array_splice($this->data, $i, 1);
-                
+                $this->size--;
                 return $aux;
             }
             $i++;
         }
-        return null;
+        
+        throw new NotFoundException();
     }
 
     /**

@@ -11,6 +11,7 @@ namespace DataStructures\Lists;
 use DataStructures\Lists\Traits\{CountTrait, ArrayAccessTrait};
 use DataStructures\Lists\Nodes\SimpleLinkedListNode;
 use DataStructures\Lists\ListAbstract;
+use DataStructures\Exceptions\NotFoundException;
 use OutOfBoundsException;
 
 /**
@@ -214,7 +215,7 @@ class CircularLinkedList extends ListAbstract {
         $i = 0;
         
         if($this->head === null) {
-            return null;
+            throw new NotFoundException();
         }
 
         if($this->head->data === $data) {
@@ -223,6 +224,7 @@ class CircularLinkedList extends ListAbstract {
             $this->size--;
             return $current->data;
         }
+
         while($i < $this->size) {
             if($prev->data === $data) {
                 $prev->next = &$current->next;
@@ -235,7 +237,7 @@ class CircularLinkedList extends ListAbstract {
             $current = $current->next;
         }
 
-        return null;
+        throw new NotFoundException();
     }
 
     /**

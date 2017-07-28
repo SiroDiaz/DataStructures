@@ -3,6 +3,7 @@
 namespace DataStructures\Tests\Lists;
 
 use DataStructures\Lists\CircularLinkedList;
+use DataStructures\Exceptions\NotFoundException;
 use PHPUnit\Framework\TestCase;
 
 class CircularLinkedListTest extends TestCase {
@@ -173,15 +174,35 @@ class CircularLinkedListTest extends TestCase {
         $this->assertFalse($this->list->indexOf(999));
     }
 
+    public function testRemoveEmpty() {
+        $this->expectException(NotFoundException::class);
+        $this->list->remove('string');
+    }
+    
     public function testRemove() {
-        $this->assertNull($this->list->remove('string'));
         $this->list->push(3.14);
         $this->list->push(true);
         $this->list->push('string');
         $this->list->push(3.14);
+        
         $this->assertEquals(3.14, $this->list->remove(3.14));
         $this->assertTrue($this->list->contains(3.14));
         $this->assertEquals(2, $this->list->indexOf(3.14));
+    }
+
+    public function testRemoveAllAndWhenEmpty() {
+        $this->expectException(NotFoundException::class);
+        $this->list->push(3.14);
+        $this->list->push(true);
+        $this->list->push('string');
+        $this->list->push(3.14);
+        
+        $this->list->remove(3.14);
+        $this->list->remove(true);
+        $this->list->remove('string');
+        $this->list->remove(3.14);
+
+        $this->list->remove('string');
     }
 
     public function testLastIndexOf() {

@@ -3,6 +3,7 @@
 namespace DataStructures\Tests\Lists;
 
 use DataStructures\Lists\ArrayList;
+use DataStructures\Exceptions\NotFoundException;
 use PHPUnit\Framework\TestCase;
 
 class ArrayListTest extends TestCase {
@@ -40,6 +41,7 @@ class ArrayListTest extends TestCase {
     }
 
     public function testGetLast() {
+        // TODO change assert null
         $this->assertNull($this->list->getLast());
         $this->list->push(true);
         $this->list->push(50);
@@ -142,6 +144,7 @@ class ArrayListTest extends TestCase {
     }
     
     public function testGet() {
+        // TODO add NotFoundException
         $this->list->push(20);
         $this->list->push(true);
         $this->list->push(15);
@@ -165,6 +168,7 @@ class ArrayListTest extends TestCase {
     }
     
     public function testGetAll() {
+        // TODO change assert null
         foreach($this->list->getAll() as $node) {
             $this->assertNull($node);
         }
@@ -225,8 +229,12 @@ class ArrayListTest extends TestCase {
         $this->assertEquals(0, $this->list->lastIndexOf(999));
     }
 
+    public function testRemoveEmpty() {
+        $this->expectException(NotFoundException::class);
+        $this->list->remove('string');
+    }
+    
     public function testRemove() {
-        $this->assertNull($this->list->remove('string'));
         $this->list->push(3.14);
         $this->list->push(true);
         $this->list->push('string');
@@ -234,6 +242,21 @@ class ArrayListTest extends TestCase {
         $this->assertEquals(3.14, $this->list->remove(3.14));
         $this->assertTrue($this->list->contains(3.14));
         $this->assertEquals(2, $this->list->indexOf(3.14));
+    }
+
+    public function testRemoveAllAndWhenEmpty() {
+        $this->expectException(NotFoundException::class);
+        $this->list->push(3.14);
+        $this->list->push(true);
+        $this->list->push('string');
+        $this->list->push(3.14);
+        
+        $this->list->remove(3.14);
+        $this->list->remove(true);
+        $this->list->remove('string');
+        $this->list->remove(3.14);
+
+        $this->list->remove('string');
     }
     
     public function testToArray() {

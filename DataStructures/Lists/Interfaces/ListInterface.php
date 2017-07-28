@@ -43,7 +43,7 @@ interface ListInterface extends ArrayAccess, Iterator, Countable {
      * @return mixed null if the array is empty.
      */
     public function getLast();
-    
+
     /**
      * Returns the index of the first occurrence of the specified element in this list,
      * or false if this list does not contain the element.
@@ -73,6 +73,7 @@ interface ListInterface extends ArrayAccess, Iterator, Countable {
      * if it is present (optional operation).
      *
      * @param mixed $data The data used to compare.
+     * @throws DataStructures\Exceptions\NotFoundException when empty or not found.
      * @return the element removed.
      */
     public function remove($data);
