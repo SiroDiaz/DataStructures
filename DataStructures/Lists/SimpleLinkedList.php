@@ -10,6 +10,7 @@ namespace DataStructures\Lists;
 
 use DataStructures\Lists\Traits\{CountTrait, ArrayAccessTrait};
 use DataStructures\Lists\Nodes\SimpleLinkedListNode;
+use DataStructures\Exceptions\NotFoundException;
 use OutOfBoundsException;
 use Iterator;
 
@@ -160,7 +161,7 @@ class SimpleLinkedList extends ListAbstract {
         $i = 0;
         
         if($this->head === null) {
-            return null;
+            throw new NotFoundException();
         }
 
         if($this->head->data === $data) {
@@ -181,7 +182,7 @@ class SimpleLinkedList extends ListAbstract {
             $current = $current->next;
         }
 
-        return null;
+        throw new NotFoundException();
     }
 
     /**
