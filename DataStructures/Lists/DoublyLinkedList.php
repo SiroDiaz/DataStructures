@@ -11,6 +11,7 @@ namespace DataStructures\Lists;
 use DataStructures\Lists\Traits\{CountTrait, ArrayAccessTrait};
 use DataStructures\Lists\Nodes\DoublyLinkedListNode;
 use DataStructures\Lists\ListAbstract;
+use DataStructures\Exceptions\NotFoundException;
 use OutOfBoundsException;
 
 /**
@@ -163,7 +164,7 @@ class DoublyLinkedList extends ListAbstract {
         $i = 0;
         
         if($this->head === null) {
-            return null;
+            throw new NotFoundException();
         }
 
         if($this->head->data === $data) {
@@ -185,7 +186,7 @@ class DoublyLinkedList extends ListAbstract {
             $current = $current->next;
         }
 
-        return null;
+        throw new NotFoundException();
     }
     
     /**
