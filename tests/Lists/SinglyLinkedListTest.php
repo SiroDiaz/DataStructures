@@ -2,15 +2,15 @@
 
 namespace DataStructures\Tests\Lists;
 
-use DataStructures\Lists\SimpleLinkedList;
+use DataStructures\Lists\SinglyLinkedList;
 use DataStructures\Exceptions\NotFoundException;
 use PHPUnit\Framework\TestCase;
 
-class SimpleLinkedListTest extends TestCase {
+class SinglyLinkedListTest extends TestCase {
     private $list;
 
     public function setUp() {
-        $this->list = new SimpleLinkedList();
+        $this->list = new SinglyLinkedList();
     }
 
     public function testSize() {

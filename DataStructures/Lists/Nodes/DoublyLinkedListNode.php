@@ -8,13 +8,13 @@
  */
 namespace DataStructures\Lists\Nodes;
 
-use DataStructures\Lists\Nodes\SimpleLinkedListNode;
+use DataStructures\Lists\Nodes\SinglyLinkedListNode;
 /**
  * DoublyLinkedList represents the node structure that points to 
  * the next and previous node.
  *
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
-class DoublyLinkedListNode extends SimpleLinkedListNode {
+class DoublyLinkedListNode extends SinglyLinkedListNode {
     public $prev = null;
 }

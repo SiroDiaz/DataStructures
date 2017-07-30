@@ -9,20 +9,20 @@
 namespace DataStructures\Lists;
 
 use DataStructures\Lists\Traits\{CountTrait, ArrayAccessTrait};
-use DataStructures\Lists\Nodes\SimpleLinkedListNode;
+use DataStructures\Lists\Nodes\SinglyLinkedListNode;
 use DataStructures\Exceptions\NotFoundException;
 use OutOfBoundsException;
 use Iterator;
 
 /**
- * SimpleLinkedList
+ * SinglyLinkedList
  *
- * SimpleLinkedList is a singly linked list that has
+ * SinglyLinkedList is a singly linked list that has
  * a pointer to the next node but last node points to null.
  *
  * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
  */
-class SimpleLinkedList extends ListAbstract {
+class SinglyLinkedList extends ListAbstract {
     use ArrayAccessTrait;
     
     protected $head;
@@ -192,7 +192,7 @@ class SimpleLinkedList extends ListAbstract {
      * @param mixed $data the data to be stored.
      */
     protected function insertAt($index, $data) {
-        $newNode = new SimpleLinkedListNode($data);
+        $newNode = new SinglyLinkedListNode($data);
         $current = $this->head;
         $prev = null;
         $i = 0;
@@ -207,7 +207,7 @@ class SimpleLinkedList extends ListAbstract {
     }
 
     protected function insertEnd($data) {
-        $newNode = new SimpleLinkedListNode($data);
+        $newNode = new SinglyLinkedListNode($data);
         if($this->head === null) {
             $this->head = &$newNode;
             $this->current = &$this->head;
@@ -224,7 +224,7 @@ class SimpleLinkedList extends ListAbstract {
      * {@inheritDoc}
      */
     protected function insertBeginning($data) {
-        $newNode = new SimpleLinkedListNode($data);
+        $newNode = new SinglyLinkedListNode($data);
         if($this->head === null) {
             $this->head = &$newNode;
         } else {

@@ -9,7 +9,7 @@
 namespace DataStructures\Lists;
 
 use DataStructures\Lists\Traits\{CountTrait, ArrayAccessTrait};
-use DataStructures\Lists\Nodes\SimpleLinkedListNode;
+use DataStructures\Lists\Nodes\SinglyLinkedListNode;
 use DataStructures\Lists\ListAbstract;
 use DataStructures\Exceptions\NotFoundException;
 use OutOfBoundsException;
@@ -44,7 +44,7 @@ class CircularLinkedList extends ListAbstract {
      * @param mixed $data
      */
     protected function insertBeginning($data) {
-        $newNode = new SimpleLinkedListNode($data);
+        $newNode = new SinglyLinkedListNode($data);
         if($this->head === null) {
             $newNode->next = &$this->head;
             $this->head = &$newNode;
@@ -63,7 +63,7 @@ class CircularLinkedList extends ListAbstract {
      * @param mixed $data the data to be stored.
      */
     protected function insertEnd($data) {
-        $newNode = new SimpleLinkedListNode($data);
+        $newNode = new SinglyLinkedListNode($data);
         $this->tail->next = &$newNode;
         $newNode->next = &$this->head;
         $this->tail = &$newNode;
@@ -76,7 +76,7 @@ class CircularLinkedList extends ListAbstract {
      * @param mixed $data the data to be stored.
      */
     protected function insertAt($index, $data) {
-        $newNode = new SimpleLinkedListNode($data);
+        $newNode = new SinglyLinkedListNode($data);
         $current = $this->head;
         $prev = null;
         $i = 0;
@@ -109,7 +109,7 @@ class CircularLinkedList extends ListAbstract {
      *
      * @param integer $index the position.
      * @throws OutOfBoundsException if it is out of limits (< 0 or > size - 1)
-     * @return DataStructures\Lists\Nodes\SimpleLinkedListNode the node stored in $index.
+     * @return DataStructures\Lists\Nodes\SinglyLinkedListNode the node stored in $index.
      */
     protected function search($index) {
         if($index < 0 || $index > $this->size - 1) {

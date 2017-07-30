@@ -8,7 +8,7 @@
  */
 namespace DataStructures\Lists;
 
-use DataStructures\Lists\Nodes\SimpleLinkedListNode as Node;
+use DataStructures\Lists\Nodes\SinglyLinkedListNode as Node;
 use DataStructures\Exceptions\FullException;
 use InvalidArgumentException;
 use Countable;
