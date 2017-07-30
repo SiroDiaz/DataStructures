@@ -171,7 +171,11 @@ class AVLTree extends BinaryTreeAbstract {
     }
 
     /**
+     * Rebalance the tree if the difference of height is greater than 1
+     * between the right and left subtree or reverse. Then it apply a rotation
+     * depending on the type of unbalance.
      *
+     * @param DataStructures\Trees\Nodes\AVLNode
      */
     private function rebalance(&$node) {
         while($node !== null) {
@@ -205,6 +209,11 @@ class AVLTree extends BinaryTreeAbstract {
         }
     }
 
+    /**
+     * Recomputes the height of the nodes ascending in the tree.
+     * 
+     * @param DataStructures\Trees\Nodes\AVLNode
+     */
     private function recomputeHeight($node) {
         while($node !== null) {
             $node->height = $this->maxHeight($node->left, $node->right) + 1;
@@ -212,6 +221,13 @@ class AVLTree extends BinaryTreeAbstract {
         }
     }
 
+    /**
+     * Returns the maximum height between two subtrees.
+     * 
+     * @param DataStructures\Trees\Nodes\AVLNode|null
+     * @param DataStructures\Trees\Nodes\AVLNode|null
+     * @return int the maximum height
+     */
     private function maxHeight($node1, $node2) {
         if($node1 !== null && $node2 !== null) {
             return $node1->height > $node2->height ? $node1->height : $node2->height;
@@ -225,7 +241,9 @@ class AVLTree extends BinaryTreeAbstract {
     }
 
     /**
-     *
+     * Adjust the height of the node.
+     * 
+     * @param DataStructures\Trees\Nodes\AVLNode
      */
     private function adjustHeight(&$node) {
         $leftHeight = ($node->left === null) ? 0 : $node->left->height;
