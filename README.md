@@ -46,6 +46,7 @@ interface.
  - empty()
  - get($index)
  - getAll()
+ - getLast()
  - delete($index)
  - clear()
  - pop()
@@ -204,5 +205,42 @@ echo "Last element inserted and being removed: ". $myStack->pop();
 ```
 
 ### Trees
+
+The tree data structures supported are the following:
+
+*tree type*: **class**
+
+ - *Trie tree*: **TrieTree**
+ - *Binary search tree*: **BinarySearchTree**
+ - *AVL tree*: **AVLTree**
+
+#### Trie tree
+##### Introduction
+Singly linked list is the simplest linked list that can be created. It has a pointer
+to the next node in the list and the last node points to null.
+All lists except stacks and queues have the same methods because they implements the same
+interface.
+##### Methods
+ - size()
+ - empty()
+ - wordCount()
+ - withPrefix($prefix)
+ - startsWith($prefix)
+ - getWords()
+ - clear()
+ - delete($word)
+ - contains($word)
+ - add($word)
+##### Example
+```php
+use DataStructures\Lists\SimpleLinkedList;
+
+$myList = new SimpleLinkedList();
+$myList->push(20);
+echo "Size of : ". $myList->size();
+$myList->unshift(100);
+echo "Item at the beginnig: ". $myList->get(0);
+```
+
 
 ### Hash tables
