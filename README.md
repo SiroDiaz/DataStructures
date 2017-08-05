@@ -13,6 +13,9 @@ Data structures for PHP >= 7.0. Use data structures in your project using this l
 - [Stack](https://github.com/SiroDiaz/DataStructures#stack)<br>
 - [Queue](https://github.com/SiroDiaz/DataStructures#queue)<br>
 *[Tree implementations](https://github.com/SiroDiaz/DataStructures#trees)*<br>
+- [Trie tree](https://github.com/SiroDiaz/DataStructures#trie-tree)
+- [Binary search tree](https://github.com/SiroDiaz/DataStructures#binary-search-tree)
+- [AVL Tree](https://github.com/SiroDiaz/DataStructures#avl-tree)
 ## Install
 
 Via Composer just copy and paste:
@@ -279,4 +282,23 @@ $bst->put(10, 1000);
 echo "Size of : ". $bst->size();
 $bst->exists(100);  // false
 echo "Is leaf?: ". $bst->isLeaf($bst->min());   // true
+```
+
+#### AVL Tree
+##### Introduction
+AVL Tree is a binary search tree that has a balance condition. The condition consists in each
+subnode can have a maximum height of one respect the oposite side subtree (it means that right subtree of a node can't be higher than one, compared with the left subtree). If it has a height of two or more then is rebalanced the tree using a single left rotation, single right rotation, double left rotation or a double right rotation.
+##### Methods
+Same method that binary search tree.
+##### Example
+```php
+use DataStructures\Trees\AVLTree;
+
+$avl = new BinarySearchTree();
+$avl->put(4, 10);
+$avl->put(2, 100);
+$avl->put(10, 1000);
+echo "Size of : ". $avl->size();
+$avl->exists(100);  // false
+echo "Is leaf?: ". $avl->isLeaf($avl->min());   // true
 ```
