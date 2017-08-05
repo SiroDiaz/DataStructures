@@ -105,7 +105,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
      * @param int|string $key the key to identify the data.
      * @return mixed
      */
-    public function get($key){
+    public function get($key) {
         if($this->root === null) {
             return null;
         }
@@ -129,7 +129,7 @@ abstract class BinaryTreeAbstract implements TreeInterface {
      *
      * @return DataStructures\Trees\Nodes\BinaryNodeInterface|null the root node.
      */
-    public function getRoot(){
+    public function getRoot() {
         return $this->root;
     }
 

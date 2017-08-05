@@ -1,6 +1,5 @@
 # DataStructures [![Build Status](https://travis-ci.org/SiroDiaz/DataStructures.svg?branch=master)](https://travis-ci.org/SiroDiaz/DataStructures) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/SiroDiaz/DataStructures/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/SiroDiaz/DataStructures/?branch=master) 
-Data structures for PHP >= 7.0. **STILL UNDER DEVELOPMENT, DON'T USE IT YET**: anyway
-you can see the algorithms and data structures created at this moment.
+Data structures for PHP >= 7.0. Use data structures in your project using this library.
 
 ## Index
 
@@ -13,7 +12,7 @@ you can see the algorithms and data structures created at this moment.
 - [Array list](https://github.com/SiroDiaz/DataStructures#array-list)<br>
 - [Stack](https://github.com/SiroDiaz/DataStructures#stack)<br>
 - [Queue](https://github.com/SiroDiaz/DataStructures#queue)<br>
-
+*[Tree implementations](https://github.com/SiroDiaz/DataStructures#trees)*<br>
 ## Install
 
 Via Composer just copy and paste:
@@ -27,7 +26,7 @@ The list data structures supported are the following:
 
 *list type*: **class**
 
- - *Singly linked list*: **SimpleLinkedList**
+ - *Singly linked list*: **SinglyLinkedList**
  - *Circular singly linked list*: **CircularLinkedList**
  - *Circular doubly linked list*: **DoublyLinkedList**
  - *Array list*: **ArrayList**
@@ -57,9 +56,9 @@ interface.
  - toArray()
 ##### Example
 ```php
-use DataStructures\Lists\SimpleLinkedList;
+use DataStructures\Lists\SinglyLinkedList;
 
-$myList = new SimpleLinkedList();
+$myList = new SinglyLinkedList();
 $myList->push(20);
 echo "Size of : ". $myList->size();
 $myList->unshift(100);
@@ -233,14 +232,51 @@ interface.
  - add($word)
 ##### Example
 ```php
-use DataStructures\Lists\SimpleLinkedList;
+use DataStructures\Trees\TrieTree;
 
-$myList = new SimpleLinkedList();
-$myList->push(20);
-echo "Size of : ". $myList->size();
-$myList->unshift(100);
-echo "Item at the beginnig: ". $myList->get(0);
+$trie = new TrieTree();
+$trie->add('hello');
+$trie->add('hell');
+$trie->add('world');
+echo "Size of : ". $trie->wordCount();  // 3
+$trie->contains('hell');    // true
+
+echo "There are words that start with 'he': ". $trie->startsWith('he');   // true
 ```
 
+#### Binary Search Tree
+##### Introduction
+Binary search tree (BST) is a data structure which has a root node that may have up to 2 siblings.
+Each sibling also can have a maximum of 2 siblings. If the node have not siblings it is called leaf node.
+The left sibling is lower than the parent node and right sibling is grater than it parent.
+##### Methods
+ - size()
+ - empty()
+ - delete($key)
+ - put($key, $data, $update = false)
+ - putOrUpdate($key, $data)
+ - get($key)
+ - getRoot()
+ - exists($key)
+ - min()
+ - max()
+ - deleteMin(BinaryNodeInterface $node = null)
+ - deleteMax(BinaryNodeInterface $node = null)
+ - search($key)
+ - isLeaf($node)
+ - isRoot($node)
+ - preorder(Callable $callback = null)
+ - inorder(Callable $callback = null)
+ - postorder(Callable $callback = null)
+##### Example
+```php
+use DataStructures\Trees\BinarySearchTree;
 
-### Hash tables
+$bst = new BinarySearchTree();
+$bst->put(4, 10);
+$bst->put(2, 100);
+$bst->put(10, 1000);
+echo "Size of : ". $bst->size();
+$bst->exists(100);  // false
+echo "Is leaf?: ". $bst->isLeaf($bst->min());   // true
+```
