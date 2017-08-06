@@ -6,16 +6,16 @@ Data structures for PHP >= 7.0. Use data structures in your project using this l
 [Install](https://github.com/SiroDiaz/DataStructures#install)<br>
 **[API](https://github.com/SiroDiaz/DataStructures#api)**<br>
 *[List implementations](https://github.com/SiroDiaz/DataStructures#lists)*<br>
-- [Singly linked list](https://github.com/SiroDiaz/DataStructures#singly-linked-list)<br>
-- [Singly circular linked list](https://github.com/SiroDiaz/DataStructures#circular-linked-list)<br>
-- [Doubly circular linked list](https://github.com/SiroDiaz/DataStructures#doubly-circular-linked-list)<br>
-- [Array list](https://github.com/SiroDiaz/DataStructures#array-list)<br>
-- [Stack](https://github.com/SiroDiaz/DataStructures#stack)<br>
-- [Queue](https://github.com/SiroDiaz/DataStructures#queue)<br>
+ - [Singly linked list](https://github.com/SiroDiaz/DataStructures#singly-linked-list)<br>
+ - [Singly circular linked list](https://github.com/SiroDiaz/DataStructures#circular-linked-list)<br>
+ - [Doubly circular linked list](https://github.com/SiroDiaz/DataStructures#doubly-circular-linked-list)<br>
+ - [Array list](https://github.com/SiroDiaz/DataStructures#array-list)<br>
+ - [Stack](https://github.com/SiroDiaz/DataStructures#stack)<br>
+ - [Queue](https://github.com/SiroDiaz/DataStructures#queue)<br>
 *[Tree implementations](https://github.com/SiroDiaz/DataStructures#trees)*<br>
-- [Trie tree](https://github.com/SiroDiaz/DataStructures#trie-tree)
-- [Binary search tree](https://github.com/SiroDiaz/DataStructures#binary-search-tree)
-- [AVL Tree](https://github.com/SiroDiaz/DataStructures#avl-tree)
+ - [Trie tree](https://github.com/SiroDiaz/DataStructures#trie-tree)<br>
+ - [Binary search tree](https://github.com/SiroDiaz/DataStructures#binary-search-tree)<br>
+ - [AVL Tree](https://github.com/SiroDiaz/DataStructures#avl-tree)<br>
 ## Install
 
 Via Composer just copy and paste:
