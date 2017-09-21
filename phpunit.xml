@@ -14,5 +14,8 @@
         <testsuite name="Sets test">
             <directory>./tests/Sets</directory>
         </testsuite>
+        <testsuite name="Hash Table test">
+            <directory>./tests/Hash</directory>
+        </testsuite>
     </testsuites>
 </phpunit>
