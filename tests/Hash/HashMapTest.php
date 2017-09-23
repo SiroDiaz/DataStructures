@@ -64,18 +64,24 @@ class HashMapTest extends TestCase {
         $this->hashmap->insert('c', 'Class');
         $this->hashmap->insert('d', 'Dig');
         $this->hashmap->insert('hello_world', 'Hello World!');
-        $this->assertEquals($this->hashmap->delete('d'), 'Dig');
+        $this->hashmap->delete('d');
+        $this->assertFalse($this->hashmap->contains('d'));
         $this->assertEquals($this->hashmap->getCount(), 5);
-        $this->assertEquals($this->hashmap->delete('c'), 'Class');
+        $this->hashmap->delete('c');
+        $this->assertFalse($this->hashmap->contains('c'));
         $this->assertEquals($this->hashmap->getCount(), 4);
 
-        $this->assertEquals($this->hashmap->delete('b'), 'Before');
+        $this->hashmap->delete('b');
+        $this->assertFalse($this->hashmap->contains('b'));
         $this->assertEquals($this->hashmap->getCount(), 3);
-        $this->assertEquals($this->hashmap->delete('ax'), 'Axon');
+        $this->hashmap->delete('ax');
+        $this->assertFalse($this->hashmap->contains('ax'));
         $this->assertEquals($this->hashmap->getCount(), 2);
-        $this->assertEquals($this->hashmap->delete('a'), 'All');
+        $this->hashmap->delete('a');
+        $this->assertFalse($this->hashmap->contains('a'));
         $this->assertEquals($this->hashmap->getCount(), 1);
-        $this->assertEquals($this->hashmap->delete('hello_world'), 'Hello World!');
+        $this->hashmap->delete('hello_world');
+        $this->assertFalse($this->hashmap->contains('hello_world'));
         $this->assertEquals($this->hashmap->getCount(), 0);
     }
         
