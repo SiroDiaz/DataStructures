@@ -78,11 +78,11 @@ class HashMap implements HashTableInterface, Countable {
             $hash = (($hash << 5) + $hash) + ord(mb_substr($key, $i, 1));
         }
 
-        return abs($hash);
+        return $hash;
     }
 
     private function getBucket($key) {
-        return $this->getHash($key) % $this->size;
+        return abs($this->getHash($key) % $this->size);
     }
 
     public function search($key) {
