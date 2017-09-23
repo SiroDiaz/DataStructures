@@ -78,7 +78,7 @@ class HashMap implements HashTableInterface, Countable {
             $hash = (($hash << 5) + $hash) + ord(mb_substr($key, $i, 1));
         }
 
-        return $hash;
+        return abs($hash);
     }
 
     private function getBucket($key) {
