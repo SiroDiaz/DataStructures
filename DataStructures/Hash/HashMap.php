@@ -55,18 +55,38 @@ class HashMap implements HashTableInterface, Countable {
         $this->hashTable = array_fill(0, $this->size, new AVLTree());
     }
 
+    /**
+     * Returns the load factor.
+     * 
+     * @return float|int the load factor
+     */
     public function getLoadFactor() {
         return $this->loadFactor;
     }
 
+    /**
+     * Returns the size of the hash table.
+     * 
+     * @return int the size
+     */
     public function getSize() {
         return $this->size;
     }
 
+    /**
+     * Returns the number of elements stored in the hash table.
+     * 
+     * @return int the total of elements stored in the hash table.
+     */
     public function getCount() {
         return $this->count;
     }
 
+    /**
+     * Checks if is necessary to resize the hash table.
+     *
+     * @return bool true if the length is over the load factor percent.
+     */
     private function needsResize() {
         return $this->count >= $this->size * $this->loadFactor;
     }
