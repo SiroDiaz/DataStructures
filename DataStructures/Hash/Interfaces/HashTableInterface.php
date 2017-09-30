@@ -8,7 +8,13 @@
  */
 namespace DataStructures\Hash\Interfaces;
 
-
+/**
+ * HashTableInterface
+ *
+ * This interface is used to apply the strategy design pattern.
+ *
+ * @author Siro Diaz Palazon <siro_diaz@yahoo.com>
+ */
 interface HashTableInterface {
     
     /**
